@@ -45,4 +45,13 @@ public class Subject implements Serializable {
     public void setName(final String pName) {
         name = pName;
     }
+
+	/**
+     * Gibt das Kürzel dieses Faches zurück.
+     * 
+     * @return das Kürzel dieses LehrerIn
+     */
+    public String getAcronym() {
+        return acronym;
+    }
 }
