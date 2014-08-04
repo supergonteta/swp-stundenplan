@@ -21,6 +21,7 @@ public class StartFrame extends JFrame {
 	private JPanel panel2Button;
 	private JLabel oben;
 
+	
 	public StartFrame() {
 		super("Start");
 		setLocation(100, 300);

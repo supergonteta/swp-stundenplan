@@ -23,6 +23,7 @@ public class AddNewTeacher extends Panel {
 	String acro;
 	String time;
 	
+	
 	TextField nameField;
 	TextField acroField;
 	TextField timeField;
