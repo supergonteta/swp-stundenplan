@@ -8,6 +8,8 @@ import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import de.unibremen.swp.stundenplan.persistence.Data;
 
@@ -18,12 +20,27 @@ import de.unibremen.swp.stundenplan.persistence.Data;
  */
 public class Activity extends Subject {
 
+	/**
+	 * Liste der Lehrer, die dieser Aktivität angehören.
+	 */
 	private ArrayList<Teacher> teachers;
 
+	/**
+	 * Liste der Klassen, die dieser Aktivität angehören.
+	 */
 	private ArrayList<Schoolclass> classes;
 
+	/**
+	 * Startzeit der Aktivität. Die Einträge für {@linkplain Calendar#HOUR} und {@linkplain Calendar#MINUTE}
+     * müssen entsprechend gesetzt sein.
+	 */
+	@Temporal(TemporalType.TIME)
 	private Calendar activityStart;
 
+	/**
+	 * Endzeit der Aktivität. Die Einträge für {@linkplain Calendar#HOUR} und {@linkplain Calendar#MINUTE}
+     * müssen entsprechend gesetzt sein.
+	 */
 	private Calendar activityEnd;
 
 	/**
