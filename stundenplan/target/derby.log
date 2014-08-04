@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Sun Aug 03 19:01:28 CEST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0147-9cd1-9a0f-000008402230 
+on database directory C:\Users\Fabian\Dropbox\Uni Bremen\02 - SS 14\SWP\SWP I\Testplan\Stundenplan\stundenplan\target\stundenplan.db  with class loader sun.misc.Launcher$AppClassLoader@55f96302 
+Loaded from file:/C:/Users/Fabian/Dropbox/Uni%20Bremen/02%20-%20SS%2014/SWP/SWP%20I/Testplan/Stundenplan/stundenplan/target/stundenplan-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=C:\Users\Fabian\Dropbox\Uni Bremen\02 - SS 14\SWP\SWP I\Testplan\Stundenplan\stundenplan\target
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
