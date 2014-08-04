@@ -20,7 +20,6 @@ public class StartFrame extends JFrame {
 	private JPanel panelButton;
 	private JPanel panel2Button;
 	private JLabel oben;
-	private JLabel anzeige;
 
 	public StartFrame() {
 		super("Start");
@@ -49,7 +48,7 @@ public class StartFrame extends JFrame {
 		panelButton.add(button3);
 		panel2Button.add(buttonS1);
 
-		// Listener für Buttons
+		
 		addLehrer(button1);
 		addFach(button2);
 		addKlasse(button3);
@@ -92,7 +91,12 @@ public class StartFrame extends JFrame {
 	private void addLehrer(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				System.out.println("Lehrer");
+				AddNewTeacher a = new AddNewTeacher();
+				JFrame f = new JFrame("neue Lehrer hinzufÃ¼gen");
+				f.add(a, BorderLayout.CENTER);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				f.pack();
+				f.setVisible(true);
 				
 			}
 		});
@@ -111,5 +115,7 @@ public class StartFrame extends JFrame {
 			}
 		});
 	}
+	
+	
 
 }

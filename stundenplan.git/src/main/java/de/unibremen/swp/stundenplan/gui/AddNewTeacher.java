@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,38 +18,66 @@ import javax.swing.Spring;
 import javax.swing.SpringLayout;
 
 public class AddNewTeacher extends Panel {
+	
+	String name;
+	String acro;
+	String time;
+	
+	TextField nameField;
+	TextField acroField;
+	TextField timeField;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1219589162309740553L;
 
 	public AddNewTeacher(){
+		
 		setLayout(new BorderLayout());
 		String[] labels = {"Name: ", "Akronym: ", "Max. Arbeitstunden:"};
 		
 		int labelslength = labels.length;
 		Panel p = new Panel();
 		p.setLayout(new GridLayout(4,2));
-		for (int i = 0; i < labelslength; i++) {
-		    Label l = new Label(labels[i]);
+		
+		Label l = new Label(labels[0]);
 		    l.setAlignment(Label.LEFT);
 		    p.add(l);
-		    TextField textField = new TextField(10);
-		    p.add(textField);
-		}
+		nameField = new TextField(10);
+	    p.add(nameField);
+	    
+	    Label l2 = new Label(labels[1]);
+	    l2.setAlignment(Label.LEFT);
+	    p.add(l2);
+		acroField = new TextField(10);
+	    p.add(acroField);
+	    
+	    Label l3 = new Label(labels[2]);
+	    l3.setAlignment(Label.LEFT);
+	    p.add(l3);
+		timeField = new TextField(10);
+	    p.add(timeField);
+	    
 		JButton button = new JButton("Lehrer Hinzufügen");
 		p.add(button);
 	    add(p,BorderLayout.NORTH);
+	    
+	    buttonOkay(button);
 		
 	}
 	
-	public static void main(String[] args) {
-		AddNewTeacher a = new AddNewTeacher();
-		JFrame f = new JFrame("neue Lehrer hinzufügen");
-		f.add(a, BorderLayout.CENTER);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.pack();
-		f.setVisible(true);
+	private void buttonOkay(JButton b) {
+		b.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent ae) {
+				name = nameField.getText();
+				acro = acroField.getText();
+				time = timeField.getText();
+				
+				System.out.println(name + acro + time);
+				
+			}
+		});
 	}
 	
 
