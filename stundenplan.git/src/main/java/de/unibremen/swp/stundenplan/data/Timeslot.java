@@ -69,12 +69,11 @@ public final class Timeslot implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Teacher> teachers;
     
-//    /**
-//     * Die Fächer, die dieser Zeiteinheit aktuell zugeordnet sind. Diese Sammlung wird erst aus dem Datenbestand
-//     * geladen, wenn darauf zugegriffen wird.
-//     */
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    private Collection<Subject> subjects;
+    /**
+     * Die Fächer, die dieser Zeiteinheit aktuell zugeordnet sind. Diese Sammlung wird erst aus dem Datenbestand
+     * geladen, wenn darauf zugegriffen wird.
+     */
+    private Collection<Subject> subjects;
 
     /**
      * Die Startzeit dieses Timeslots. Die Einträge für {@linkplain Calendar#HOUR} und {@linkplain Calendar#MINUTE}
@@ -95,7 +94,7 @@ public final class Timeslot implements Serializable {
      */
     public Timeslot() {
         teachers = new ArrayList<Teacher>();
-//        subjects = new ArrayList<Subject>();
+        subjects = new ArrayList<Subject>();
         schoolclasses = new ArrayList<Schoolclass>();
     }
 
@@ -117,14 +116,14 @@ public final class Timeslot implements Serializable {
         return schoolclasses;
     }
     
-//    /**
-//     * Gibt die Sammlung der Fächer zurück, die dieser Zeiteinheit aktuell zugeordnet sind.
-//     * 
-//     * @return die Sammlung der Fächer, die dieser Zeiteinheit aktuell zugeordnet sind
-//     */
-//    public Collection<Subject> getSubjects() {
-//        return subjects;
-//    }
+    /**
+     * Gibt die Sammlung der Fächer zurück, die dieser Zeiteinheit aktuell zugeordnet sind.
+     * 
+     * @return die Sammlung der Fächer, die dieser Zeiteinheit aktuell zugeordnet sind
+     */
+    public Collection<Subject> getSubjects() {
+        return subjects;
+    }
 
     /**
      * Fügt die gegebene LehrerIn dieser Zeiteinheit hinzu. Es wird hier nicht überprüft, ob eine gleiche LehrerIn
@@ -152,22 +151,22 @@ public final class Timeslot implements Serializable {
         }
     }
     
-//    /**
-//     * Fügt das gegebene Fach dieser Zeiteinheit hinzu. 
-//     * Ein Parameterwert von {@code null} wird ignoriert.
-//     * 
-//     * @param teacher
-//     *            die hinzuzufügende LehrerIn
-//     */
-//    public void addSubject(final Subject subject) {
-//    	boolean exist = false;
-//        if (subject != null) {
-//        	for(final Subject subjectList : subjects) {
-//        		if(subjectList.equals(subject)) exist = true;
-//        	}
-//        	if(!exist) subjects.add(subject);
-//        }
-//    }
+    /**
+     * Fügt das gegebene Fach dieser Zeiteinheit hinzu. 
+     * Ein Parameterwert von {@code null} wird ignoriert.
+     * 
+     * @param teacher
+     *            die hinzuzufügende LehrerIn
+     */
+    public void addSubject(final Subject subject) {
+    	boolean exist = false;
+        if (subject != null) {
+        	for(final Subject subjectList : subjects) {
+        		if(subjectList.equals(subject)) exist = true;
+        	}
+        	if(!exist) subjects.add(subject);
+        }
+    }
 
     /**
      * Gibt die dieser Zeiteinheit zugeordneten LehrerInnen als Liste ihrer Kürzel, getrennt durch Komma, zurück.
@@ -186,22 +185,22 @@ public final class Timeslot implements Serializable {
         return teacherString.toString();
     }
     
-//    /**
-//     * Gibt die dieser Zeiteinheit zugeordneten Fächer als Liste ihrer Kürzel, getrennt durch Komma, zurück.
-//     * 
-//     * @return die dieser Zeiteinheit zugeordneten Fächer als kommaseparierte Liste
-//     */
-//    public String getSubjectAcronymList() {
-//        final StringBuilder subjectString = new StringBuilder();
-//
-//        String separator = "";
-//        for (final Subject subject : subjects) {
-//            subjectString.append(separator);
-//            subjectString.append(subject.getAcronym());
-//            separator = ", ";
-//        }
-//        return subjectString.toString();
-//    }
+    /**
+     * Gibt die dieser Zeiteinheit zugeordneten Fächer als Liste ihrer Kürzel, getrennt durch Komma, zurück.
+     * 
+     * @return die dieser Zeiteinheit zugeordneten Fächer als kommaseparierte Liste
+     */
+    public String getSubjectAcronymList() {
+        final StringBuilder subjectString = new StringBuilder();
+
+        String separator = "";
+        for (final Subject subject : subjects) {
+            subjectString.append(separator);
+            subjectString.append(subject.getAcronym());
+            separator = ", ";
+        }
+        return subjectString.toString();
+    }
 
     @Override
     public String toString() {
