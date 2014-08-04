@@ -104,10 +104,10 @@ public final class MainFrame extends JFrame {
      */
     private final AddTeacherDialog addTeacherDialog;
     
-    /**
-     * Der Dialog, der aufpopt, um ein Fach hinzuzufügen.
-     */
-    private final AddSubjectDialog addSubjectDialog;
+//    /**
+//     * Der Dialog, der aufpopt, um ein Fach hinzuzufügen.
+//     */
+//    private final AddSubjectDialog addSubjectDialog;
 
     /**
      * Die generierte serialVersionUID.
@@ -127,7 +127,7 @@ public final class MainFrame extends JFrame {
     public MainFrame() {
         super();
         addTeacherDialog = new AddTeacherDialog(this);
-        addSubjectDialog = new AddSubjectDialog(this);
+//        addSubjectDialog = new AddSubjectDialog(this);
         table = new JTable(new TimetableModel());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
