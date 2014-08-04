@@ -24,6 +24,8 @@ public class AddNewTeacher extends Panel {
 	String time;
 	
 	
+	
+	
 	TextField nameField;
 	TextField acroField;
 	TextField timeField;
@@ -44,19 +46,19 @@ public class AddNewTeacher extends Panel {
 		Label l = new Label(labels[0]);
 		    l.setAlignment(Label.LEFT);
 		    p.add(l);
-		nameField = new TextField(10);
+		nameField = new TextField(20);
 	    p.add(nameField);
 	    
 	    Label l2 = new Label(labels[1]);
 	    l2.setAlignment(Label.LEFT);
 	    p.add(l2);
-		acroField = new TextField(10);
+		acroField = new TextField(4);
 	    p.add(acroField);
 	    
 	    Label l3 = new Label(labels[2]);
 	    l3.setAlignment(Label.LEFT);
 	    p.add(l3);
-		timeField = new TextField(10);
+		timeField = new TextField(2);
 	    p.add(timeField);
 	    
 		JButton button = new JButton("Lehrer Hinzufügen");
@@ -64,19 +66,24 @@ public class AddNewTeacher extends Panel {
 	    add(p,BorderLayout.NORTH);
 	    
 	    buttonOkay(button);
-		
+
 	}
 	
 	private void buttonOkay(JButton b) {
 		b.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent ae) {
+				
 				name = nameField.getText();
 				acro = acroField.getText();
 				time = timeField.getText();
+				nameField.setText("");
+				acroField.setText("");
+				timeField.setText("");
 				
-				System.out.println(name + acro + time);
+				System.out.println(name +" " + acro + " "+ time);
 				
+				StartFrame.l.dispose();
 			}
 		});
 	}

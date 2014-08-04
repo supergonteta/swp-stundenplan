@@ -20,7 +20,9 @@ public class StartFrame extends JFrame {
 	private JPanel panelButton;
 	private JPanel panel2Button;
 	private JLabel oben;
-
+	public static JFrame f;
+	public static JFrame l;
+	public static JFrame c;
 	
 	public StartFrame() {
 		super("Start");
@@ -93,11 +95,10 @@ public class StartFrame extends JFrame {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				AddNewTeacher a = new AddNewTeacher();
-				JFrame f = new JFrame("neue Lehrer hinzufügen");
-				f.add(a, BorderLayout.CENTER);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				f.pack();
-				f.setVisible(true);
+				l = new JFrame("neue Lehrer hinzufügen");
+				l.add(a, BorderLayout.CENTER);
+				l.pack();
+				l.setVisible(true);
 				
 			}
 		});
@@ -105,17 +106,28 @@ public class StartFrame extends JFrame {
 	private void addKlasse(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				System.out.println("Klasse");
+				AddNewClass a = new AddNewClass();
+				c = new JFrame("neue Klasse hinzufügen");
+				c.add(a, BorderLayout.CENTER);
+				c.pack();
+				c.setVisible(true);
+				
 			}
 		});
 	}
 	private void addFach(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				System.out.println("Fach");
+				AddNewSubject a = new AddNewSubject();
+				f = new JFrame("neue Aktivitaet hinzufügen");
+				f.add(a, BorderLayout.CENTER);
+				f.pack();
+				f.setVisible(true);
+				
 			}
 		});
 	}
+
 	
 	
 
