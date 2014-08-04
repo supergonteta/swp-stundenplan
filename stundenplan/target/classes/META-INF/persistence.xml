@@ -10,15 +10,13 @@
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="JDBC" />
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:stundenplan.db;create=true" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:stundenplantest.db;create=true" />
 			<property name="javax.persistence.jdbc.user" value="stundenplan" />
 			<property name="javax.persistence.jdbc.password" value="stundenplan" />
 			<property name="eclipselink.jdbc.exclusive-connection.mode"
 				value="Transactional" />
 			<property name="eclipselink.target-database" value="Derby" />
-			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" 
-				/> -->
-			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
 			<property name="eclipselink.debug" value="ALL" />
 			<property name="eclipselink.weaving" value="static" />
 			<property name="eclipselink.logging.level" value="WARNING" />

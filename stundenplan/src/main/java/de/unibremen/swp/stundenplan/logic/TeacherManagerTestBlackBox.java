@@ -1,13 +1,9 @@
 package de.unibremen.swp.stundenplan.logic;
 
-import static org.junit.Assert.*;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,14 +16,12 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import de.unibremen.swp.stundenplan.config.Config;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
-import de.unibremen.swp.stundenplan.persistence.Data;
-import de.unibremen.swp.stundenplan.*;
 
 /**
- * Blackboxtest für die Klasse TeacherManager, auf die Methoden itit()
+ * Blackboxtest fï¿½r die Klasse TeacherManager, auf die Methoden itit()
  * und fillDefaultData() wurden keine Tests gemacht, da diese Methoden keine,
  * Parameter erwarten und wir nach dem Blackbox Prinzip ja nicht wissen was im
- * Rumpf passiert und somit nichts testen können.
+ * Rumpf passiert und somit nichts testen kï¿½nnen.
  * 
  * @author Patrick
  *
@@ -39,8 +33,8 @@ public class TeacherManagerTestBlackBox {
 
 	/**
 	 * Vor den Tests wird die Config einmal gestartet,
-	 * aus unerklärlichen Gründen kann es vorkommen das man mehrmals
-	 * Starten muss damit die Config erfolgreich ausgeführt wird.
+	 * aus unerklï¿½rlichen Grï¿½nden kann es vorkommen das man mehrmals
+	 * Starten muss damit die Config erfolgreich ausgefï¿½hrt wird.
 	 */
 	@Before
 	public void setUp() {
@@ -67,9 +61,9 @@ public class TeacherManagerTestBlackBox {
 	}
 
 	/**
-	 * Hier wurde ein TestLehrer eingefügt und dazu noch die Ausgabe der
+	 * Hier wurde ein TestLehrer eingefï¿½gt und dazu noch die Ausgabe der
 	 * der Collection aller Lehrer bisherigen eingetragenen Lehrer. Um so
-	 * zu testen ob der eben hinzugefühte Lehrer dabei ist. Zum Schluss
+	 * zu testen ob der eben hinzugefï¿½hte Lehrer dabei ist. Zum Schluss
 	 * wird noch getestet ob die Methode getAcronym() gleich dem 
 	 * aktuellem Lehrer Objekt entspricht. 
 	 * 
@@ -88,7 +82,7 @@ public class TeacherManagerTestBlackBox {
 		
 	}
 	/**
-	 * Hier wird nochmal Test auf Funktionalität mit
+	 * Hier wird nochmal Test auf Funktionalitï¿½t mit
 	 * der Methode getAkroynm gemacht.
 	 * @throws DatasetException
 	 */

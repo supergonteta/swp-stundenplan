@@ -82,5 +82,4 @@ public class TeacherManagerDataIntTest {
         assertEquals(new BigDecimal("23.25"), t.getHoursPerWeek());
     }
 
-    
 }

@@ -115,7 +115,6 @@
 	</repositories>
 
 	<build>
-	<pluginManagement>
 		<plugins>
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
@@ -265,6 +264,6 @@
 				</includes>
 			</resource>
 		</resources>
-</pluginManagement>
+
 	</build>
 </project>

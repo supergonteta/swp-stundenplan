@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Sun Aug 03 19:15:24 CEST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0147-9cde-5dbe-000005b85d18 
-on database directory /home/mten/Dropbox/SWP I/Testplan/Stundenplan/stundenplan/stundenplan.db  with class loader sun.misc.Launcher$AppClassLoader@42aab87f 
-Loaded from file:/home/mten/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
+Mon Aug 04 11:03:45 CEST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0147-a042-9785-000004b6efa0 
+on database directory C:\Users\Petra\Dropbox\Uni\Softwareprojekt 1\Prototyp\stundenplan.git\stundenplantest.db  with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Loaded from file:/C:/Users/Petra/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_51-b00
-user.dir=/home/mten/Dropbox/SWP I/Testplan/Stundenplan/stundenplan
+java.runtime.version=1.8.0_11-b12
+user.dir=C:\Users\Petra\Dropbox\Uni\Softwareprojekt 1\Prototyp\stundenplan.git
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

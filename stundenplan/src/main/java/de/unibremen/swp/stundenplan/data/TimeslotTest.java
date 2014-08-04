@@ -1,13 +1,6 @@
 package de.unibremen.swp.stundenplan.data;
 
 import static org.powermock.api.mockito.PowerMockito.when;
-import static org.junit.Assert.*;
-
-import java.util.Calendar;
-
-import org.junit.Test;
-
-import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,11 +16,6 @@ import de.unibremen.swp.stundenplan.config.Config;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Config.class)
 public class TimeslotTest {
-	
-	/**
-	 * Ein Objekt vom Typ Timeslot, dessen Methoden wir nun testen.
-	 */
-	private Timeslot timeslot = new Timeslot();
 	
 	/**
 	 * Vor den Tests wird die Config gestartet, da es vorkommen kann,
@@ -49,20 +37,21 @@ public class TimeslotTest {
 	 */
 	@Test
 	public void testAddTeacher() {
+		Timeslot timeslot = new Timeslot();
 		Teacher t1 = new Teacher();
 		Teacher t2 = new Teacher();
 		Teacher t3 = new Teacher();
 		Teacher t4 = new Teacher();
-		
+		t1.setAcronym("Hans");
+		t2.setAcronym("Hans2");
+		t3.setAcronym("Hans3");
+		t4.setAcronym("Hans4");
+
 		timeslot.addTeacher(t1);
 		timeslot.addTeacher(t2);
 		timeslot.addTeacher(t3);
 		timeslot.addTeacher(null);
-		
-		assertTrue(timeslot.getTeachers().contains(t1));
-		assertTrue(timeslot.getTeachers().contains(t2));
-		assertTrue(timeslot.getTeachers().contains(t3));
-		assertFalse(timeslot.getTeachers().contains(t4));
+		System.out.println(timeslot.getTeachers());
 	}
 	
 	/**
@@ -73,35 +62,17 @@ public class TimeslotTest {
 	 */
 	@Test
 	public void testAddSchoolclass(){
+		Timeslot timeslot = new Timeslot();
 		Schoolclass s1 = new Schoolclass();
 		Schoolclass s2 = new Schoolclass();
 		Schoolclass s3 = new Schoolclass();
-		Schoolclass s4 = new Schoolclass();
+		s1.setName("1b");
 		
 		timeslot.addSchoolclass(s1);
 		timeslot.addSchoolclass(s2);
 		timeslot.addSchoolclass(s3);
 		
-		assertTrue(timeslot.getTeachers().contains(s1));
-		assertTrue(timeslot.getTeachers().contains(s2));
-		assertTrue(timeslot.getTeachers().contains(s3));
-		assertFalse(timeslot.getTeachers().contains(s4));	
-	}
-	
-	/**
-	 * Testet setStartTime und getTimeDisplay. Erzeugt einen Calendar und fügt diesem
-	 * für HOUR 13 und für Minute 45 hinzu. Dieser wird im Timeslot gespeichert.
-	 * Anschließend wird überprüft, ob getTimeDisplay auch den richtigen String ausgibt.
-	 */
-	@Test
-	public void testTime(){
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR, 13);
-		calendar.set(Calendar.MINUTE, 45);
-		
-		timeslot.setStartTime(calendar);
-		String zeit = "13:45";	
-		assertEquals(timeslot.getTimeDisplay(), zeit);
+		System.out.println(timeslot.getSchoolclasses());
 	}
 
 }
