@@ -29,6 +29,7 @@ import org.apache.log4j.Logger;
 import de.unibremen.swp.stundenplan.config.Config;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.DayTable;
+import de.unibremen.swp.stundenplan.data.Subject;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -39,7 +40,7 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
  * {@link IllegalStateException} ausgelöst.
  * 
  * @author K. Hölscher
- * @version 0.1
+ * @editor Belavic, Oliver
  */
 public final class Data {
 
@@ -156,6 +157,75 @@ public final class Data {
         try {
             final Query query = entityManager.createQuery("SELECT t FROM Teacher t");
             return (Collection<Teacher>) query.getResultList();
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting all teachers!", e);
+            throw new DatasetException("Error while getting all teachers: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Fügt das gegebene Fach dem Datenbestand hinzu. Löst eine {@link IllegalArgumentException} aus, falls der
+     * Parameterwert {@code null} ist.
+     * 
+     * @param subject
+     *            die hinzuzufügende LehrerIn
+     * 
+     * @throws DatasetException
+     *             falls beim Hinzufügen in der unterliegenden Persistenzkomponente ein Fehler auftritt
+     */
+    public static void addSubject(final Subject subject) throws DatasetException {
+        if (subject == null) {
+            throw new IllegalArgumentException("Value of teacher parameter is null");
+        }
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(subject);
+            entityManager.getTransaction().commit();
+            LOGGER.debug(String.format("Teacher %s persisted.", subject));
+        } catch (Exception e) {
+            LOGGER.error("Error adding teacher: ", e);
+            throw new DatasetException("Error while adding a teacher: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Gibt die F�cher zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solches Fach gibt oder das
+     * gegebene Kürzel {@code null} oder leer ist.
+     * 
+     * @param acronym
+     *            das Kürzel der gesuchtes Fach
+     * @return das Fach zu dem gegebenen Kürzel oder {@code null} falls es kein fach mit dem Kürzel im
+     *         Datenbestand gibt oder der Parameterwert ungültig war
+     * @throws DatasetException
+     *             falls ein Fehler bei der Abfrage des Datenbestandes in der unterliegenden Persistenzkomponente
+     *             auftritt
+     * 
+     */
+    public static Subject getSubjectByAcronym(final String acronym) throws DatasetException {
+        if (acronym == null || acronym.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return entityManager.find(Subject.class, acronym);
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting teacher by acronym " + acronym, e);
+            throw new DatasetException("Error while searching a teacher for acronym " + acronym + ": " + e.getMessage());
+        }
+    }
+
+    /**
+     * Gibt die Sammlung aller im Datenbestand befindlichen F�cher zurück.
+     * 
+     * @return die Sammlung aller F�cher
+     * @throws DatasetException
+     *             falls bei der Abfrage des Datenbestandes ein Fehler in der unterliegenden Persistenzkomponente
+     *             auftritt
+     */
+    @SuppressWarnings("unchecked")
+    public static Collection<Subject> getAllSubjects() throws DatasetException {
+        try {
+            final Query query = entityManager.createQuery("SELECT t FROM Teacher t");
+            return (Collection<Subject>) query.getResultList();
         } catch (Exception e) {
             LOGGER.error("Exception while getting all teachers!", e);
             throw new DatasetException("Error while getting all teachers: " + e.getMessage());
