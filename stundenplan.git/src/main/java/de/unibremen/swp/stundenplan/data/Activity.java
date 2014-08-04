@@ -2,11 +2,12 @@ package de.unibremen.swp.stundenplan.data;
 
 import java.io.Serializable;
 
-public class Activity implements Serializable {
+import javax.persistence.Column;
+import javax.persistence.Id;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2597139574206115534L;
+import de.unibremen.swp.stundenplan.persistence.Data;
 
+public class Activity extends Subject {
+
+	
 }
