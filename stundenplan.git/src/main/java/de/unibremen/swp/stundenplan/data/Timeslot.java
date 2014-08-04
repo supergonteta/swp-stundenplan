@@ -73,7 +73,6 @@ public final class Timeslot implements Serializable {
      * Die Fächer, die dieser Zeiteinheit aktuell zugeordnet sind. Diese Sammlung wird erst aus dem Datenbestand
      * geladen, wenn darauf zugegriffen wird.
      */
-    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Subject> subjects;
 
     /**
@@ -95,6 +94,7 @@ public final class Timeslot implements Serializable {
      */
     public Timeslot() {
         teachers = new ArrayList<Teacher>();
+        subjects = new ArrayList<Subject>();
         schoolclasses = new ArrayList<Schoolclass>();
     }
 

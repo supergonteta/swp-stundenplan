@@ -189,7 +189,7 @@ public final class Data {
     }
 
     /**
-     * Gibt die F�cher zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solches Fach gibt oder das
+     * Gibt die F�cher zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solches Fach gibt oder das
      * gegebene Kürzel {@code null} oder leer ist.
      * 
      * @param acronym
@@ -214,9 +214,9 @@ public final class Data {
     }
 
     /**
-     * Gibt die Sammlung aller im Datenbestand befindlichen F�cher zurück.
+     * Gibt die Sammlung aller im Datenbestand befindlichen F�cher zurück.
      * 
-     * @return die Sammlung aller F�cher
+     * @return die Sammlung aller F�cher
      * @throws DatasetException
      *             falls bei der Abfrage des Datenbestandes ein Fehler in der unterliegenden Persistenzkomponente
      *             auftritt
