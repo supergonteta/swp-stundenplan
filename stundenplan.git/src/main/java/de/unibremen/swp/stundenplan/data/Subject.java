@@ -2,10 +2,18 @@ package de.unibremen.swp.stundenplan.data;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 
 import de.unibremen.swp.stundenplan.persistence.Data;
+
+/**
+ * Repr�sentiert ein Fach 
+ * 
+ * @author Belavic, Oliver
+ *
+ */
 
 public class Subject implements Serializable {
 
@@ -53,5 +61,22 @@ public class Subject implements Serializable {
      */
     public String getAcronym() {
         return acronym;
+    }
+
+	    /**
+     * Setzt das Kürzel dieses Faches auf das übergebene Kürzel. Falls das Kürzel länger als
+     * {@linkplain Data#MAX_ACRONYM_LEN} Zeichen ist, wird es entsprechend gekürzt. Führende und folgende
+     * Leerzeichen werden entfernt. Löst eine {@link IllegalArgumentException} aus, falls das Kürzel leer ist.
+     * 
+     * Die systemweite Eindeutigkeit des Kürzels wird hier NICHT geprüft!
+     * 
+     * @param pAcronym
+     *            das neue Kürzel dieser LehrerIn
+     */
+    public void setAcronym(final String pAcronym) {
+        if (pAcronym == null || pAcronym.trim().isEmpty()) {
+            throw new IllegalArgumentException("Kürzel der LehrerIn ist leer");
+        }
+        acronym = pAcronym.trim().substring(0, Math.min(Data.MAX_ACRONYM_LEN, pAcronym.length()));
     }
 }
