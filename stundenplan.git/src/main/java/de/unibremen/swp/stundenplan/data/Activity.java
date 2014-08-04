@@ -21,6 +21,11 @@ import de.unibremen.swp.stundenplan.persistence.Data;
 public class Activity extends Subject {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1234L;
+
+	/**
 	 * Liste der Lehrer, die dieser Aktivität angehören.
 	 */
 	private ArrayList<Teacher> teachers;
@@ -122,5 +127,47 @@ public class Activity extends Subject {
 		c.set(Calendar.MINUTE, endMinute);
 
 		activityEnd = c;
+	}
+
+	/**
+	 * Gibt die Liste mit den beteiligten Lehrern zurück.
+	 * @return
+	 * 		Eine Liste mit den beteiligten Lehrern.
+	 */
+	public ArrayList<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	/**
+	 * Gibt die Liste mit den beteiligten Klassen zurück.
+	 * @return
+	 * 		Eine Liste mit den beteiligten Klassen.
+	 */
+	public ArrayList<Schoolclass> getClasses() {
+		return classes;
+	}
+	
+	/**
+	 * Fügt einen Lehrer zu der Liste der beteiligten Lehrer hinzu,
+	 * falls dieser nicht {@code null} ist.
+	 * @param t
+	 * 		Der Lehrer, der hinzugefügt werden soll.
+	 */
+	public void addTeacher(final Teacher t){
+		if(t != null){
+			this.teachers.add(t);
+		}
+	}
+	
+	/**
+	 * Fügt eine Klasse zu der Liste der beteiligten Klassen hinzu,
+	 * falls dieser nicht {@code null} ist.
+	 * @param s
+	 * 		Die Klasse, die hinzugefügt werden soll.
+	 */
+	public void addClass(final Schoolclass s){
+		if(s != null){
+			this.classes.add(s);
+		}
 	}
 }
