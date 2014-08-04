@@ -172,7 +172,7 @@ public final class MainFrame extends JFrame {
             }
         });
         final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
-        menu1.addActionListener(new ActionListener() {
+        menu2.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent event) {
@@ -183,6 +183,7 @@ public final class MainFrame extends JFrame {
         popmen.add(menu1);
         popmen.add(menu2);
         popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveTeacher")));
+        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSubject")));
         popmen.setVisible(true);
         return popmen;
     }
