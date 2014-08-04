@@ -11,19 +11,34 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.derby.iapi.services.cache.SizedCacheable;
+
 import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
  * Realisiert Aktivitäten im Stundenplan.
  * 
- * @author Roman
+ * @author Oliver, Roman
  */
-public class Activity extends Subject {
+public class Activity implements Serializable {
 
 	/**
-	 * 
+	 * Die eineindeutige ID fÃ¼r Serialisierung.
 	 */
-	private static final long serialVersionUID = 1234L;
+	private static final long serialVersionUID = 2597139574206115533L;
+
+	/**
+	 * Der Name diese Faches.
+	 */
+	@Column(nullable = false, length = Data.MAX_NORMAL_STRING_LEN)
+	private String name;
+
+	/**
+	 * Das Kürzel dieses Faches. Ein KÃ¼rzel muss systemweit eindeutig sein.
+	 */
+	@Id
+	@Column(length = Data.MAX_ACRONYM_LEN)
+	private String acronym;
 
 	/**
 	 * Liste der Lehrer, die dieser Aktivität angehören.
@@ -36,15 +51,15 @@ public class Activity extends Subject {
 	private ArrayList<Schoolclass> classes;
 
 	/**
-	 * Startzeit der Aktivität. Die Einträge für {@linkplain Calendar#HOUR} und {@linkplain Calendar#MINUTE}
-     * müssen entsprechend gesetzt sein.
+	 * Startzeit der Aktivität. Die Einträge für {@linkplain Calendar#HOUR} und
+	 * {@linkplain Calendar#MINUTE} müssen entsprechend gesetzt sein.
 	 */
 	@Temporal(TemporalType.TIME)
 	private Calendar activityStart;
 
 	/**
-	 * Endzeit der Aktivität. Die Einträge für {@linkplain Calendar#HOUR} und {@linkplain Calendar#MINUTE}
-     * müssen entsprechend gesetzt sein.
+	 * Endzeit der Aktivität. Die Einträge für {@linkplain Calendar#HOUR} und
+	 * {@linkplain Calendar#MINUTE} müssen entsprechend gesetzt sein.
 	 */
 	private Calendar activityEnd;
 
@@ -57,10 +72,11 @@ public class Activity extends Subject {
 	 *            Die Stunde der Uhrzeit, an der die Aktivität beginnen soll.
 	 * @param startMinute
 	 *            Die Minute der Uhrzeit, an der die Aktivität beginnen soll.
-	 * @exception Falls @param startStunde kleiner als 0 oder größer als 23 ist.
-	 *            Falls @param startMinute kleiner als 0 oder größer als 59
-	 *                ist.
-	 *            Falls die Startzeit hinter der bereits vorhandenen Endzeit liegt.
+	 * @exception Falls
+	 *                @param startStunde kleiner als 0 oder größer als 23 ist.
+	 *                Falls @param startMinute kleiner als 0 oder größer als 59
+	 *                ist. Falls die Startzeit hinter der bereits vorhandenen
+	 *                Endzeit liegt.
 	 * 
 	 * @author Roman
 	 */
@@ -98,10 +114,11 @@ public class Activity extends Subject {
 	 *            Die Stunde der Uhrzeit, an der die Aktivität beginnen soll.
 	 * @param endMinute
 	 *            Die Minute der Uhrzeit, an der die Aktivität beginnen soll.
-	 * @exception Falls @param endStunde kleiner als 0 oder größer als 23 ist.
-	 *            Falls @param endMinute kleiner als 0 oder größer als 59
-	 *                ist.
-	 *            Falls die Endzeit vor der bereits vorhandenen Startzeit liegt.
+	 * @exception Falls
+	 *                @param endStunde kleiner als 0 oder größer als 23 ist.
+	 *                Falls @param endMinute kleiner als 0 oder größer als 59
+	 *                ist. Falls die Endzeit vor der bereits vorhandenen
+	 *                Startzeit liegt.
 	 * 
 	 * @author Roman
 	 */
@@ -131,8 +148,8 @@ public class Activity extends Subject {
 
 	/**
 	 * Gibt die Liste mit den beteiligten Lehrern zurück.
-	 * @return
-	 * 		Eine Liste mit den beteiligten Lehrern.
+	 * 
+	 * @return Eine Liste mit den beteiligten Lehrern.
 	 */
 	public ArrayList<Teacher> getTeachers() {
 		return teachers;
@@ -140,34 +157,85 @@ public class Activity extends Subject {
 
 	/**
 	 * Gibt die Liste mit den beteiligten Klassen zurück.
-	 * @return
-	 * 		Eine Liste mit den beteiligten Klassen.
+	 * 
+	 * @return Eine Liste mit den beteiligten Klassen.
 	 */
 	public ArrayList<Schoolclass> getClasses() {
 		return classes;
 	}
-	
+
 	/**
-	 * Fügt einen Lehrer zu der Liste der beteiligten Lehrer hinzu,
-	 * falls dieser nicht {@code null} ist.
+	 * Fügt einen Lehrer zu der Liste der beteiligten Lehrer hinzu, falls dieser
+	 * nicht {@code null} ist.
+	 * 
 	 * @param t
-	 * 		Der Lehrer, der hinzugefügt werden soll.
+	 *            Der Lehrer, der hinzugefügt werden soll.
 	 */
-	public void addTeacher(final Teacher t){
-		if(t != null){
+	public void addTeacher(final Teacher t) {
+		if (t != null) {
 			this.teachers.add(t);
 		}
 	}
-	
+
 	/**
-	 * Fügt eine Klasse zu der Liste der beteiligten Klassen hinzu,
-	 * falls dieser nicht {@code null} ist.
+	 * Fügt eine Klasse zu der Liste der beteiligten Klassen hinzu, falls dieser
+	 * nicht {@code null} ist.
+	 * 
 	 * @param s
-	 * 		Die Klasse, die hinzugefügt werden soll.
+	 *            Die Klasse, die hinzugefügt werden soll.
 	 */
-	public void addClass(final Schoolclass s){
-		if(s != null){
+	public void addClass(final Schoolclass s) {
+		if (s != null) {
 			this.classes.add(s);
 		}
+	}
+
+	/**
+	 * Gibt den Namen dieses Faches zurÃ¼ck.
+	 * 
+	 * @return den Namen dieses Faches
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Setzt den Namen dieses faches auf den gegebenen Wert. Ein Parameterwert
+	 * von {@code null} wird ignoriert.
+	 * 
+	 * @param pName
+	 *            der neue Name dieses Faches (falls nicht {@code null}
+	 */
+	public void setName(final String pName) {
+		name = pName;
+	}
+
+	/**
+	 * Gibt das Kürzel dieses Faches zurÃ¼ck.
+	 * 
+	 * @return das Kürzel dieses LehrerIn
+	 */
+	public String getAcronym() {
+		return acronym;
+	}
+
+	/**
+	 * Setzt das KÃ¼rzel dieses Faches auf das Ã¼bergebene KÃ¼rzel. Falls das
+	 * KÃ¼rzel lÃ¤nger als {@linkplain Data#MAX_ACRONYM_LEN} Zeichen ist, wird
+	 * es entsprechend gekÃ¼rzt. FÃ¼hrende und folgende Leerzeichen werden
+	 * entfernt. LÃ¶st eine {@link IllegalArgumentException} aus, falls das
+	 * KÃ¼rzel leer ist.
+	 * 
+	 * Die systemweite Eindeutigkeit des KÃ¼rzels wird hier NICHT geprÃ¼ft!
+	 * 
+	 * @param pAcronym
+	 *            das neue KÃ¼rzel dieser LehrerIn
+	 */
+	public void setAcronym(final String pAcronym) {
+		if (pAcronym == null || pAcronym.trim().isEmpty()) {
+			throw new IllegalArgumentException("KÃ¼rzel der LehrerIn ist leer");
+		}
+		acronym = pAcronym.trim().substring(0,
+				Math.min(Data.MAX_ACRONYM_LEN, pAcronym.length()));
 	}
 }

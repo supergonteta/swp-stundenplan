@@ -15,68 +15,25 @@ import de.unibremen.swp.stundenplan.persistence.Data;
  *
  */
 
-public class Subject implements Serializable {
-
-    /**
-     * Die eineindeutige ID für Serialisierung.
-     */
-    private static final long serialVersionUID = 2597139574206115533L;
+public class Subject extends Activity {
     
-    /**
-     * Der Name diese Faches.
-     */
-    @Column(nullable = false, length = Data.MAX_NORMAL_STRING_LEN)
-    private String name;
-
-    /**
-     * Das K�rzel dieses Faches. Ein Kürzel muss systemweit eindeutig sein.
-     */
-    @Id
-    @Column(length = Data.MAX_ACRONYM_LEN)
-    private String acronym;
-    
-    /**
-     * Gibt den Namen dieses Faches zurück.
-     * 
-     * @return den Namen dieses Faches
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Setzt den Namen dieses faches auf den gegebenen Wert. Ein Parameterwert von {@code null} wird ignoriert.
-     * 
-     * @param pName
-     *            der neue Name dieses Faches (falls nicht {@code null}
-     */
-    public void setName(final String pName) {
-        name = pName;
-    }
+	/**
+	 * Die dem Fach zugeordnete Klasse.
+	 */
+	private Schoolclass klasse;
 
 	/**
-     * Gibt das Kürzel dieses Faches zurück.
-     * 
-     * @return das Kürzel dieses LehrerIn
-     */
-    public String getAcronym() {
-        return acronym;
-    }
-
-	    /**
-     * Setzt das Kürzel dieses Faches auf das übergebene Kürzel. Falls das Kürzel länger als
-     * {@linkplain Data#MAX_ACRONYM_LEN} Zeichen ist, wird es entsprechend gekürzt. Führende und folgende
-     * Leerzeichen werden entfernt. Löst eine {@link IllegalArgumentException} aus, falls das Kürzel leer ist.
-     * 
-     * Die systemweite Eindeutigkeit des Kürzels wird hier NICHT geprüft!
-     * 
-     * @param pAcronym
-     *            das neue Kürzel dieser LehrerIn
-     */
-    public void setAcronym(final String pAcronym) {
-        if (pAcronym == null || pAcronym.trim().isEmpty()) {
-            throw new IllegalArgumentException("Kürzel der LehrerIn ist leer");
-        }
-        acronym = pAcronym.trim().substring(0, Math.min(Data.MAX_ACRONYM_LEN, pAcronym.length()));
-    }
+	 * �berschreibt die Methode addClass aus Activity. Da jedem Fach nur eine Klasse
+	 * hinzugef�gt werden soll, f�gt addClass die Klasse aus dem Parameter nun nicht mehr der Liste der beteiligten
+	 * Klassen, sondern verwendet das interne Attribut 'klasse'.
+	 * 
+	 * @param s
+	 * 	 	Die Schulklasse, die hinzugef�gt werden soll.
+	 */
+	@Override
+	public void addClass(final Schoolclass s){
+		if(s != null){
+			klasse = s;
+		}
+	}
 }
