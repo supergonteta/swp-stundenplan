@@ -137,6 +137,7 @@ public final class Timeslot implements Serializable {
     public void addTeacher(final Teacher teacher) {
         if (teacher != null) {
             teachers.add(teacher);
+            teacher.addWorkingHours(LENGTH);
         }
     }
     

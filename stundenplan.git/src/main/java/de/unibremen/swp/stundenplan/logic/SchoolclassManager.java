@@ -20,110 +20,104 @@ import java.util.Collection;
 import org.apache.log4j.Logger;
 
 import de.unibremen.swp.stundenplan.config.Weekday;
-import de.unibremen.swp.stundenplan.data.Subject;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
- * Diese Klasse verwaltet die F�cher. Es können beispielsweise F�cher hinzugefügt werden oder F�cher ausgegeben werden.
+ * Diese Klasse verwaltet die Schulklassen. Es können beispielsweise Schulklassen hinzugefügt werden oder Schulklassen ausgegeben werden.
  * 
  * @author Belavic, Oliver
  * 
  */
-public final class SubjectManager {
+public final class SchoolclassManager {
 
     /**
      * Logger dieser Klasse zum Protokollieren von Ereignissen und Informationen.
      */
-    private static final Logger LOGGER = Logger.getLogger(SubjectManager.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(SchoolclassManager.class.getName());
 
     /**
      * Privater Konstruktor, der eine Instanziierung dieser Utility-Klasse verhindert.
      */
-    private SubjectManager() {
+    private SchoolclassManager() {
     }
 
     /**
-     * Prüft, ob schon Klassen im Datenbestand vorhanden sind. Falls nicht, werden einige Default-F�cher angelegt.
+     * Prüft, ob schon Klassen im Datenbestand vorhanden sind. Falls nicht, werden einige Default-Schulklassen angelegt.
      * 
      * @throws DatasetException
      *             falls bei der Erzeugung oder der Verwendung des Persistenzobjektes ein Fehler auftritt
      */
     public static void init() throws DatasetException {
-        LOGGER.debug("Checking database for subjects");
-        final Collection<Subject> subjects = Data.getAllSubjects();
-        if (subjects.isEmpty()) {
-            LOGGER.debug("Creating default subjects.");
+        LOGGER.debug("Checking database for schoolclasses");
+        final Collection<Schoolclass> schoolclasses = Data.getAllSchoolclasses();
+        if (schoolclasses.isEmpty()) {
+            LOGGER.debug("Creating default schoolclasses.");
             fillDefaultData();
         }
     }
 
     /**
-     * Füllt den Datenbestand mit drei F�chern und weist dem Zeitslot 1,1 eins dieser Fach zu.
+     * Füllt den Datenbestand mit drei Schulklassen und weist dem Zeitslot 1,1 einer dieser Schulklassen zu.
      * 
      * @throws DatasetException
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
      */
     private static void fillDefaultData() throws DatasetException {
         LOGGER.info("Creating test data in database");
-        addSubject("Spo", "Sport");
-        addSubject("Omv", "Omasverm�beln");
-        addSubject("Kun", "Kunst");
-        addSubject("Mat", "Mathematik");
+        addSchoolclass("1b");
+        addSchoolclass("2c");
+        addSchoolclass("4a");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
-        timeslot.addSubject(getSubjectByAcronym("Spo"));
+        timeslot.addSchoolclass(getSchoolclassByName("4b"));
         Data.updateTimeslot(timeslot);
     }
 
     /**
-     * Legt ein neues Fach mit den gegebenen Werten an und persistiert ihn. Löst eine
+     * Legt eine neue Schulklasse mit den gegebenen Werten an und persistiert ihn. Löst eine
      * {@link IllegalArgumentException} aus, falls ein oder mehrere Parameterwerte nicht erlaubt sind.
-     * 
-     * @param acronym
-     *            die Abkürzung für das neue fach
      * @param name
-     *            der Name des neuen faches
+     *            der Name der neuen Schulklasse
      * @throws DatasetException
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
      */
-    public static void addSubject(final String acronym, final String name)
+    public static void addSchoolclass(final String name)
             throws DatasetException {
-        LOGGER.debug("adding subject");
-        final Subject subject = new Subject();
+        LOGGER.debug("adding schoolclass");
+        final Schoolclass schoolclass = new Schoolclass();
         // setter checks for illegal argument
-        subject.setAcronym(acronym);
-        // setter checks for illegal argument
-        subject.setName(name);
-        Data.addSubject(subject);
-        LOGGER.debug("subject added " + subject);
+        schoolclass.setName(name);
+        Data.addSchoolclass(schoolclass);
+        LOGGER.debug("schoolclass added " + schoolclass);
     }
 
     /**
-     * Gibt eine Sammlung aller LehrerInnen zurück, die von diesem Manager aktuell verwaltet werden.
+     * Gibt eine Sammlung aller Schulklassen zurück, die von diesem Manager aktuell verwaltet werden.
      * 
-     * @return die Sammlung aller LehrerInnen, die aktuell von diesem Manager verwaltet werden
+     * @return die Sammlung aller Schulklassen, die aktuell von diesem Manager verwaltet werden
      * @throws DatasetException
      *             falls ein Fehler beim Abfragen des Datenbestandes auftritt
      */
-    public static Collection<Subject> getAllSubjects() throws DatasetException {
-        LOGGER.debug("List of all subjects");
-        return Data.getAllSubjects();
+    public static Collection<Schoolclass> getAllSchoolclasses() throws DatasetException {
+        LOGGER.debug("List of all schoolclasses");
+        return Data.getAllSchoolclasses();
     }
 
     /**
-     * Gibt die LehrerIn mit dem gegebenen Kürzel zurück.
+     * Gibt die Schuklasse zurück.
      * 
-     * @param acronym
-     *            das Kürzel der gesuchten LehrerIn
-     * @return die LehrerIn mit dem gesuchten Kürzel oder {@code null} falls keine LehrerIn mit dem gegebenen Kürzel
+     * @param name
+     *            Name der Klasse
+     * @return die Schulklasse mit dem Namen oder {@code null} falls keine S mit dem gegebenen Kürzel
      *         existiert
      * @throws DatasetException
      *             falls ein Fehler beim Zugriff auf den Datenbestand auftritt
      */
-    public static Subject getSubjectByAcronym(final String acronym) throws DatasetException {
-        LOGGER.debug("Subjects for acronym " + acronym);
-        return Data.getSubjectByAcronym(acronym);
+    public static Schoolclass getSchoolclassByName(final String name) throws DatasetException {
+        LOGGER.debug("Schoolclasss for acronym " + name);
+        return Data.getSchoolclassByName(name);
     }
 
 }

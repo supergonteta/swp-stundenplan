@@ -7,6 +7,8 @@
 		<class>de.unibremen.swp.stundenplan.data.Schoolclass</class>
 		<class>de.unibremen.swp.stundenplan.data.Teacher</class>
 		<class>de.unibremen.swp.stundenplan.data.Timeslot</class>
+<class>de.unibremen.swp.stundenplan.data.Subject</class>
+<class>de.unibremen.swp.stundenplan.data.Schoolclass</class>
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="JDBC" />
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
