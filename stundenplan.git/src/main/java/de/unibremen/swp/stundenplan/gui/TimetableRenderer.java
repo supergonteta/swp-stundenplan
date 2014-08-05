@@ -22,7 +22,6 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.TableCellRenderer;
-
 import org.apache.log4j.Logger;
 
 import de.unibremen.swp.stundenplan.config.Messages;
@@ -117,7 +116,9 @@ public final class TimetableRenderer extends JLabel implements TableCellRenderer
         }
         final Timeslot timeslot = (Timeslot) value;
         final String text = timeslot.getTeacherAcronymList();
-        setText(text);
+        final String subjectText = timeslot.getSubjectAcronymList();
+        String ausgabeText = "<html>"+subjectText+" <br/> "+text+"</html>";
+        setText(ausgabeText);
         return this;
     }
 
