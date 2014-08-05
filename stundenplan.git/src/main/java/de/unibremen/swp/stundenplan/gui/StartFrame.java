@@ -102,7 +102,7 @@ public class StartFrame extends JFrame {
 	private void addKlasse(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				AddNewClass a = new AddNewClass();
+				AddNewSchoolclass a = new AddNewSchoolclass();
 				c = new JFrame("neue Klasse hinzufügen");
 				c.add(a, BorderLayout.CENTER);
 				c.pack();
