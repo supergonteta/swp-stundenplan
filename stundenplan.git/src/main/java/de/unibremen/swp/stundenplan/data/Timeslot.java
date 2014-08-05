@@ -141,7 +141,7 @@ public final class Timeslot implements Serializable {
         }
     }
     
-    public boolean LehrerIstSchonImTimeslot(final Teacher t){
+    public boolean lehrerIstSchonImTimeslot(final Teacher t){
     	if(teachers.contains(t)) return true;
     	
     	return false;
