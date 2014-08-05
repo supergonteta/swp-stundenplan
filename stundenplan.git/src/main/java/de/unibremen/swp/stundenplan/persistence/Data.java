@@ -303,7 +303,7 @@ public final class Data {
      *             auftritt
      */
     @SuppressWarnings("unchecked")
-    public static Collection<Schoolclass> getAllSchoolclass() throws DatasetException {
+    public static Collection<Schoolclass> getAllSchoolclasses() throws DatasetException {
         try {
             final Query query = entityManager.createQuery("SELECT c FROM Schoolclass s");
             return (Collection<Schoolclass>) query.getResultList();
