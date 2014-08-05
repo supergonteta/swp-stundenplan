@@ -70,6 +70,7 @@ public final class SubjectManager {
         addSubject("Spo", "Sport");
         addSubject("Kun", "Kunst");
         addSubject("Mat", "Mathematik");
+        addSubject("OMV", "Omas vermöbeln");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
         timeslot.addSubject(getSubjectByAcronym("Spo"));
         Data.updateTimeslot(timeslot);
