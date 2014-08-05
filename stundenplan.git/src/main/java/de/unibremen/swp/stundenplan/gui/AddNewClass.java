@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.persistence.Data;
+
 
 public class AddNewClass extends Panel {
 	
@@ -54,12 +58,17 @@ public class AddNewClass extends Panel {
 			public void actionPerformed(ActionEvent ae) {
 				
 				name = nameField.getText();
-				
-				nameField.setText("");
+				Schoolclass c = new Schoolclass();
+				c.setName(name);
+				try {
+					Data.addSchoolclass(c);
+				} catch (DatasetException e) {
+					System.out.println("Fehler addTeacher");
+				}
 				
 				
 				System.out.println(name);
-				
+				nameField.setText("");
 				StartFrame.c.dispose();
 			}
 		});
