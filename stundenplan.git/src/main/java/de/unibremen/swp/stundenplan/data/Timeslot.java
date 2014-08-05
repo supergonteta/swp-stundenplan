@@ -141,7 +141,11 @@ public final class Timeslot implements Serializable {
         }
     }
     
-
+    public boolean LehrerIstSchonImTimeslot(final Teacher t){
+    	if(teachers.contains(t)) return true;
+    	
+    	return false;
+    }
 
     /**
      * Fügt die gegebene Schulklasse dieser Zeiteinheit hinzu. Es wird hier nicht überprüft, ob eine gleiche Schulklasse
@@ -227,6 +231,8 @@ public final class Timeslot implements Serializable {
         }
     }
 
+    
+    
     /**
      * Gibt die Startzeit dieser Zeiteinheit im Format <stunde>:<minute> mit evtl. führenden Nullen zurück oder einen
      * leeren String, falls die Startzeit noch nicht initialisiert wurde.
