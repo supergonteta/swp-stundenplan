@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
@@ -27,6 +28,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.Timer;
 
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
@@ -148,8 +150,18 @@ public final class MainFrame extends JFrame {
 
         table.setFillsViewportHeight(true);
         table.setGridColor(Color.YELLOW);
-        table.setBackground(Color.GREEN);
         table.setRowHeight(ROW_HEIGHT);
+        
+        Timer t = new Timer(50, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	Random r = new Random();
+            	table.setGridColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+            	table.setBackground(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+            }
+        });
+        t.start();
 
         add(scrollPane);
         pack();
