@@ -20,16 +20,16 @@ public class StartFrame extends JFrame {
 	private JButton button3;
 	private JButton buttonS1;
 	private JPanel panelButton;
-	private JPanel panel2Button;
+
 	private JLabel oben;
 	public static JFrame f;
 	public static JFrame l;
 	public static JFrame c;
 	
 	public StartFrame() {
-		super("Start");
+		super("Add-Panel");
 		setLocation(100, 300);
-		this.setSize(600, 600);
+		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(5, 5));
 
@@ -40,27 +40,27 @@ public class StartFrame extends JFrame {
 	
 		button3 = new JButton("Klasse hinzuf�gen");
 		
-		buttonS1 = new JButton("Stundenplan anzeigen");
+		
 		
 
 		// Panels erzeugen
 		panelButton = new JPanel(new GridLayout(1, 3));
-		panel2Button = new JPanel(new GridLayout(1, 2));
+
 
 		// Auf Panel Buttons packen
 		panelButton.add(button1);
 		panelButton.add(button2);
 		panelButton.add(button3);
-		panel2Button.add(buttonS1);
+
 
 		
 		addLehrer(button1);
 		addFach(button2);
 		addKlasse(button3);
-		showStundenplan(buttonS1);
+
 
 		// Labels erzeugen
-		oben = new JLabel("StartPanel");
+		oben = new JLabel("Der Datenbank hinzufuegen");
 		// Label zentrieren
 		oben.setHorizontalAlignment(JLabel.CENTER);
 
@@ -69,7 +69,7 @@ public class StartFrame extends JFrame {
 
 		// Panels auf Frame packen
 		getContentPane().add(BorderLayout.WEST, panelButton);
-		getContentPane().add(BorderLayout.SOUTH, panel2Button);
+
 
 		pack();
 		setVisible(true);
@@ -78,20 +78,14 @@ public class StartFrame extends JFrame {
 
 
 
-	private void showStundenplan(JButton b) {
-		b.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				String[] args = new String[8];
-				Stundenplan.main(args);
-			}
-		});
-	}
+
 	
 	private void addLehrer(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				AddNewTeacher a = new AddNewTeacher();
 				l = new JFrame("neue Lehrer hinzufügen");
+				l.setLocation(500, 150);
 				l.add(a, BorderLayout.CENTER);
 				l.pack();
 				l.setVisible(true);
@@ -104,6 +98,7 @@ public class StartFrame extends JFrame {
 			public void actionPerformed(ActionEvent ae) {
 				AddNewSchoolclass a = new AddNewSchoolclass();
 				c = new JFrame("neue Klasse hinzufügen");
+				c.setLocation(500, 150);
 				c.add(a, BorderLayout.CENTER);
 				c.pack();
 				c.setVisible(true);
@@ -116,6 +111,7 @@ public class StartFrame extends JFrame {
 			public void actionPerformed(ActionEvent ae) {
 				AddNewSubject a = new AddNewSubject();
 				f = new JFrame("neue Aktivitaet hinzufügen");
+				f.setLocation(500, 150);
 				f.add(a, BorderLayout.CENTER);
 				f.pack();
 				f.setVisible(true);
