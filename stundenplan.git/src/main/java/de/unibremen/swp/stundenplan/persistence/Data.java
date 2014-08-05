@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 
 import de.unibremen.swp.stundenplan.config.Config;
 import de.unibremen.swp.stundenplan.config.Weekday;
+import de.unibremen.swp.stundenplan.data.Activity;
 import de.unibremen.swp.stundenplan.data.DayTable;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Subject;
@@ -119,6 +120,26 @@ public final class Data {
             throw new DatasetException("Error while adding a teacher: " + e.getMessage());
         }
     }
+    
+    /**
+     * 
+     * @param activity
+     * @throws DatasetException
+     */
+    public static void addActivity(final Activity activity) throws DatasetException {
+        if (activity == null) {
+            throw new IllegalArgumentException("Value of activity parameter is null");
+        }
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(activity);
+            entityManager.getTransaction().commit();
+            LOGGER.debug(String.format("Activity %s persisted.", activity));
+        } catch (Exception e) {
+            LOGGER.error("Error adding activity: ", e);
+            throw new DatasetException("Error while adding an activity: " + e.getMessage());
+        }
+    }
 
     /**
      * Gibt die LehrerIn zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solche LehrerIn gibt oder das
@@ -144,6 +165,18 @@ public final class Data {
             throw new DatasetException("Error while searching a teacher for acronym " + acronym + ": " + e.getMessage());
         }
     }
+    
+    public static Activity getActivityByAcronym(final String acronym) throws DatasetException {
+        if (acronym == null || acronym.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return entityManager.find(Activity.class, acronym);
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting activity by acronym " + acronym, e);
+            throw new DatasetException("Error while searching an activity for acronym " + acronym + ": " + e.getMessage());
+        }
+    }
 
     /**
      * Gibt die Sammlung aller im Datenbestand befindlichen LehrerInnen zurück.
@@ -161,6 +194,17 @@ public final class Data {
         } catch (Exception e) {
             LOGGER.error("Exception while getting all teachers!", e);
             throw new DatasetException("Error while getting all teachers: " + e.getMessage());
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+    public static Collection<Activity> getAllActivities() throws DatasetException {
+        try {
+            final Query query = entityManager.createQuery("SELECT t FROM Activity a");
+            return (Collection<Activity>) query.getResultList();
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting all activities!", e);
+            throw new DatasetException("Error while getting all activities: " + e.getMessage());
         }
     }
     
@@ -251,7 +295,7 @@ public final class Data {
             entityManager.getTransaction().begin();
             entityManager.persist(schoolclass);
             entityManager.getTransaction().commit();
-            LOGGER.debug(String.format("Subject %s persisted.", schoolclass));
+            LOGGER.debug(String.format("Schoolclass %s persisted.", schoolclass.getName()));
         } catch (Exception e) {
             LOGGER.error("Error adding subject: ", e);
             throw new DatasetException("Error while adding a subject: " + e.getMessage());

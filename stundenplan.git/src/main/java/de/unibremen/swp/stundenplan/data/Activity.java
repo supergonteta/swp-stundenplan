@@ -7,7 +7,11 @@ import javax.persistence.Id;
 
 import de.unibremen.swp.stundenplan.persistence.Data;
 
-public class Activity extends Subject {
+public class Activity {
+
+	public void addClass(Schoolclass s) {
+
+	}
 
 	
 }
