@@ -1,7 +1,6 @@
 package de.unibremen.swp.stundenplan.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
@@ -10,17 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.Spring;
-import javax.swing.SpringLayout;
 
-import de.unibremen.swp.stundenplan.data.Teacher;
+import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.TeacherManager;
-import de.unibremen.swp.stundenplan.persistence.Data;
 
 public class AddNewTeacher extends Panel {
 	
@@ -29,7 +21,7 @@ public class AddNewTeacher extends Panel {
 	String time;
 	
 	
-	
+	public static PlanList planList;
 	
 	TextField nameField;
 	TextField acroField;
@@ -87,6 +79,8 @@ public class AddNewTeacher extends Panel {
 				
 				try {
 					TeacherManager.addTeacher(acro, name, time);
+					Stundenplan.pList.dispose();
+					Stundenplan.pList = new PlanList();
 				} catch (DatasetException e) {
 					System.out.println("Teacheradd fehlgeschlagen");
 				}
