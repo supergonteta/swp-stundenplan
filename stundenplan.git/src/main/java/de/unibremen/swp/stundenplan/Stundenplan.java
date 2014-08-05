@@ -26,6 +26,7 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.gui.ErrorHandler;
 import de.unibremen.swp.stundenplan.gui.MainFrame;
 import de.unibremen.swp.stundenplan.gui.StartFrame;
+import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
 import de.unibremen.swp.stundenplan.logic.TeacherManager;
 import de.unibremen.swp.stundenplan.logic.TimetableManager;
@@ -75,6 +76,7 @@ public final class Stundenplan {
             TimetableManager.init();
             TeacherManager.init();
             SubjectManager.init();
+            SchoolclassManager.init();
         } catch (DatasetException e) {
             LOGGER.error("Exception while initializing logic!", e);
             throw new IllegalStateException("Could not initialize logic components: " + e.getMessage());
