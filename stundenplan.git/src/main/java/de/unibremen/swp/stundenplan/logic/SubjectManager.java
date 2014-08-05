@@ -68,7 +68,7 @@ public final class SubjectManager {
     private static void fillDefaultData() throws DatasetException {
         LOGGER.info("Creating test data in database");
         addSubject("Spo", "Sport");
-        addSubject("OMV", "Omas vermöbeln");
+        addSubject("Omv", "Omasvermöbeln");
         addSubject("Kun", "Kunst");
         addSubject("Mat", "Mathematik");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
