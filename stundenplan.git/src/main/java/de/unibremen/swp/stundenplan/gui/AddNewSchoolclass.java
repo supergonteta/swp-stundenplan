@@ -15,7 +15,7 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.persistence.Data;
 
 
-public class AddNewClass extends Panel {
+public class AddNewSchoolclass extends Panel {
 	
 	String name;
 
@@ -28,7 +28,7 @@ public class AddNewClass extends Panel {
 	 */
 	private static final long serialVersionUID = 1219589162309740553L;
 
-	public AddNewClass(){
+	public AddNewSchoolclass(){
 		
 		setLayout(new BorderLayout());
 		Panel p = new Panel();
