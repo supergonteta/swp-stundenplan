@@ -67,28 +67,26 @@ public final class SubjectManager {
      */
     private static void fillDefaultData() throws DatasetException {
         LOGGER.info("Creating test data in database");
-        addSubject("Spo", "Sport", "35");
-        addSubject("KaH", "Karsten Hölscher", "2");
-        addSubject("RaK", "Rainer Koschke", "40");
+        addSubject("Spo", "Sport");
+        addSubject("Kun", "Kunst");
+        addSubject("Mat", "Mathematik");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
         timeslot.addSubject(getSubjectByAcronym("DiL"));
         Data.updateTimeslot(timeslot);
     }
 
     /**
-     * Legt einen neue LehrerIn mit den gegebenen Werten an und persistiert ihn. Löst eine
+     * Legt ein neues Fach mit den gegebenen Werten an und persistiert ihn. Löst eine
      * {@link IllegalArgumentException} aus, falls ein oder mehrere Parameterwerte nicht erlaubt sind.
      * 
      * @param acronym
-     *            die Abkürzung für die neue LehrerIn
+     *            die Abkürzung für das neue fach
      * @param name
-     *            der Name der neuen LehrerIn
-     * @param hoursPerWeek
-     *            die Anzahl an Stunden, die diese LehrerIn gibt
+     *            der Name des neuen faches
      * @throws DatasetException
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
      */
-    public static void addSubject(final String acronym, final String name, final String hoursPerWeek)
+    public static void addSubject(final String acronym, final String name)
             throws DatasetException {
         LOGGER.debug("adding subject");
         final Subject subject = new Subject();
