@@ -52,8 +52,8 @@ public final class SchoolclassListModel extends DefaultListModel<String> {
     /**
      * Fügt eine Schulklasse hinzu.
      * 
-     * @param teacher
-     *            Der hinzuzufügende Lehrer.
+     * @param schoolclass
+     *            die hinzuzuf�gende schulklasse.
      */
     protected void addSchoolclass(final Schoolclass schoolclass) {
         classes.add(schoolclass);
