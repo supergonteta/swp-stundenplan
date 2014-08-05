@@ -42,7 +42,7 @@ public final class SchoolclassListModel extends DefaultListModel<String> {
     private final List<Schoolclass> classes;
 
     /**
-     * Der Konstruktor für des TecherListMode. Hier wird nur die Liste der teacher initialisiert.
+     * Der Konstruktor für des SchoolclassListMode. Hier wird nur die Liste der teacher initialisiert.
      */
     protected SchoolclassListModel() {
         super();

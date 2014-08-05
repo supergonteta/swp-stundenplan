@@ -295,7 +295,7 @@ public final class Data {
             entityManager.getTransaction().begin();
             entityManager.persist(schoolclass);
             entityManager.getTransaction().commit();
-            LOGGER.debug(String.format("Subject %s persisted.", schoolclass));
+            LOGGER.debug(String.format("Schoolclass %s persisted.", schoolclass.getName()));
         } catch (Exception e) {
             LOGGER.error("Error adding subject: ", e);
             throw new DatasetException("Error while adding a subject: " + e.getMessage());
