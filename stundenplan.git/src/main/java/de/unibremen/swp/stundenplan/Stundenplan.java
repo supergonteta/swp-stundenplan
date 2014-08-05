@@ -25,6 +25,7 @@ import de.unibremen.swp.stundenplan.config.Config;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.gui.ErrorHandler;
 import de.unibremen.swp.stundenplan.gui.MainFrame;
+import de.unibremen.swp.stundenplan.gui.PlanList;
 import de.unibremen.swp.stundenplan.gui.StartFrame;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
@@ -45,11 +46,18 @@ public final class Stundenplan {
      */
     private static final Logger LOGGER = Logger.getLogger(Stundenplan.class.getName());
 
+    
+    public static PlanList pList;
+    
+    
     /**
      * Privater Konstruktor, der eine Instanziierung dieser Utility-Klasse verhindert.
      */
     private Stundenplan() {
     }
+    
+   
+
 
     /**
      * Startet die Anwendung. Erzeugt dazu einen neuen Stundenplaner und dann das Hauptanzeigefenster und macht dieses
@@ -89,6 +97,7 @@ public final class Stundenplan {
                 mainFrame.pack();
                 mainFrame.setVisible(true);
                 final StartFrame startFrame = new StartFrame();
+                pList = new PlanList();
             }
         });
 
