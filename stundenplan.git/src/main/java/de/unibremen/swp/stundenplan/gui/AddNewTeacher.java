@@ -17,6 +17,10 @@ import javax.swing.JTextField;
 import javax.swing.Spring;
 import javax.swing.SpringLayout;
 
+import de.unibremen.swp.stundenplan.data.Teacher;
+import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.persistence.Data;
+
 public class AddNewTeacher extends Panel {
 	
 	String name;
@@ -77,6 +81,18 @@ public class AddNewTeacher extends Panel {
 				name = nameField.getText();
 				acro = acroField.getText();
 				time = timeField.getText();
+				
+				Teacher teacher = new Teacher();
+				teacher.setName(name);
+				teacher.setAcronym(acro);
+				teacher.setHoursPerWeek(time);
+				
+				try {
+					Data.addTeacher(teacher);
+				} catch (DatasetException e) {
+					System.out.println("Fehler addTeacher");
+				}
+				
 				nameField.setText("");
 				acroField.setText("");
 				timeField.setText("");

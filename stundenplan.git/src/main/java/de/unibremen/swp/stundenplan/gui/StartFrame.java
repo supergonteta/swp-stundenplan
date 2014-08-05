@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
+import de.unibremen.swp.stundenplan.data.Teacher;
+import de.unibremen.swp.stundenplan.persistence.Data;
 
 public class StartFrame extends JFrame {
 	private JButton button1;
