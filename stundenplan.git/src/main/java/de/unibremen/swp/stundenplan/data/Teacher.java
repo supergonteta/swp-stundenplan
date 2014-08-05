@@ -67,7 +67,7 @@ public final class Teacher implements Serializable {
     public static final BigDecimal MAX_HOURS_PER_WEEK = new BigDecimal(40);
 
     /**
-     * Derzeitige Arbeitszeit, die der Lehrer eingeteilt ist.
+     * Derzeitige Arbeitszeit, in der der Lehrer eingeteilt ist.
      */
     @Column(scale = SCALE)
     public BigDecimal arbeitsZeit = BigDecimal.ZERO;
