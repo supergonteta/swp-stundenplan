@@ -112,7 +112,7 @@ public final class MainFrame extends JFrame {
     /**
      * Der Dialog, der aufpopt, um eine Schulklasse hinzuzufügen.
      */
-    private final AddSubjectDialog addSchoolclassDialog;
+    private final AddSchoolclassDialog addSchoolclassDialog;
 
     /**
      * Die generierte serialVersionUID.
@@ -133,7 +133,7 @@ public final class MainFrame extends JFrame {
         super();
         addTeacherDialog = new AddTeacherDialog(this);
         addSubjectDialog = new AddSubjectDialog(this);
-        addSchoolclassDialog = new AddSubjectDialog(this);
+        addSchoolclassDialog = new AddSchoolclassDialog(this);
         table = new JTable(new TimetableModel());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
