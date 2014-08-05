@@ -33,9 +33,9 @@ public class ActivityManager {
      */
     public static void init() throws DatasetException {
         LOGGER.debug("Checking database for activities");
-        final Collection<Activity> teachers = Data.getAllActivities();
-        if (teachers.isEmpty()) {
-            LOGGER.debug("Creating default teachers.");
+        final Collection<Activity> activities = Data.getAllActivities();
+        if (activities.isEmpty()) {
+            LOGGER.debug("Creating default activities.");
             fillDefaultData();
         }
     }
