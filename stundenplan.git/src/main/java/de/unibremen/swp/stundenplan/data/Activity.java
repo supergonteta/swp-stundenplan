@@ -1,4 +1,4 @@
-package de.unibremen.swp.stundenplan.data;
+ package de.unibremen.swp.stundenplan.data;
 
 import java.util.Calendar;
 import java.io.Serializable;
