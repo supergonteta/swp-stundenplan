@@ -180,10 +180,21 @@ public final class MainFrame extends JFrame {
                 addSubjectDialog.setVisible(true);
             }
         });
+        final JMenuItem menu3 = new JMenuItem(Messages.getString("MainFrame.AddSchoolclass"));
+        menu3.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+                addSchoolclassDialog.setTimeslot(Weekday.values()[col], row);
+                addSchoolclassDialog.setVisible(true);
+            }
+        });
         popmen.add(menu1);
         popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveTeacher")));
         popmen.add(menu2);
         popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSubject")));
+        popmen.add(menu3);
+        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSchoolclass")));
         popmen.setVisible(true);
         return popmen;
     }
