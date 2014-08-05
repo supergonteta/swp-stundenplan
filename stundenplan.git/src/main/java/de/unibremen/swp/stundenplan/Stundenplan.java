@@ -25,6 +25,7 @@ import de.unibremen.swp.stundenplan.config.Config;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.gui.ErrorHandler;
 import de.unibremen.swp.stundenplan.gui.MainFrame;
+import de.unibremen.swp.stundenplan.gui.StartFrame;
 import de.unibremen.swp.stundenplan.logic.TeacherManager;
 import de.unibremen.swp.stundenplan.logic.TimetableManager;
 
@@ -83,6 +84,7 @@ public final class Stundenplan {
                 ErrorHandler.setMainFrame(mainFrame);
                 mainFrame.pack();
                 mainFrame.setVisible(true);
+                final StartFrame startFrame = new StartFrame();
             }
         });
 

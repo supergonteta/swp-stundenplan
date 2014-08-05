@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
+import de.unibremen.swp.stundenplan.data.Teacher;
+import de.unibremen.swp.stundenplan.persistence.Data;
 
 public class StartFrame extends JFrame {
 	private JButton button1;
@@ -20,8 +22,10 @@ public class StartFrame extends JFrame {
 	private JPanel panelButton;
 	private JPanel panel2Button;
 	private JLabel oben;
-	private JLabel anzeige;
-
+	public static JFrame f;
+	public static JFrame l;
+	public static JFrame c;
+	
 	public StartFrame() {
 		super("Start");
 		setLocation(100, 300);
@@ -49,7 +53,7 @@ public class StartFrame extends JFrame {
 		panelButton.add(button3);
 		panel2Button.add(buttonS1);
 
-		// Listener f�r Buttons
+		
 		addLehrer(button1);
 		addFach(button2);
 		addKlasse(button3);
@@ -72,13 +76,7 @@ public class StartFrame extends JFrame {
  
 	}
 
-	public static void main(String[] args) {
-		
-		StartFrame g = new StartFrame();
-		
-		
-		
-	}
+
 
 	private void showStundenplan(JButton b) {
 		b.addActionListener(new ActionListener() {
@@ -92,7 +90,11 @@ public class StartFrame extends JFrame {
 	private void addLehrer(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				System.out.println("Lehrer");
+				AddNewTeacher a = new AddNewTeacher();
+				l = new JFrame("neue Lehrer hinzufügen");
+				l.add(a, BorderLayout.CENTER);
+				l.pack();
+				l.setVisible(true);
 				
 			}
 		});
@@ -100,16 +102,29 @@ public class StartFrame extends JFrame {
 	private void addKlasse(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				System.out.println("Klasse");
+				AddNewClass a = new AddNewClass();
+				c = new JFrame("neue Klasse hinzufügen");
+				c.add(a, BorderLayout.CENTER);
+				c.pack();
+				c.setVisible(true);
+				
 			}
 		});
 	}
 	private void addFach(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				System.out.println("Fach");
+				AddNewSubject a = new AddNewSubject();
+				f = new JFrame("neue Aktivitaet hinzufügen");
+				f.add(a, BorderLayout.CENTER);
+				f.pack();
+				f.setVisible(true);
+				
 			}
 		});
 	}
+
+	
+	
 
 }

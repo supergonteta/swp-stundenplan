@@ -181,10 +181,10 @@ public final class Data {
             entityManager.getTransaction().begin();
             entityManager.persist(subject);
             entityManager.getTransaction().commit();
-            LOGGER.debug(String.format("Teacher %s persisted.", subject));
+            LOGGER.debug(String.format("Subject %s persisted.", subject));
         } catch (Exception e) {
-            LOGGER.error("Error adding teacher: ", e);
-            throw new DatasetException("Error while adding a teacher: " + e.getMessage());
+            LOGGER.error("Error adding subject: ", e);
+            throw new DatasetException("Error while adding a subject: " + e.getMessage());
         }
     }
 
@@ -208,8 +208,8 @@ public final class Data {
         try {
             return entityManager.find(Subject.class, acronym);
         } catch (Exception e) {
-            LOGGER.error("Exception while getting teacher by acronym " + acronym, e);
-            throw new DatasetException("Error while searching a teacher for acronym " + acronym + ": " + e.getMessage());
+            LOGGER.error("Exception while getting subject by acronym " + acronym, e);
+            throw new DatasetException("Error while searching a subject for acronym " + acronym + ": " + e.getMessage());
         }
     }
 
@@ -224,11 +224,11 @@ public final class Data {
     @SuppressWarnings("unchecked")
     public static Collection<Subject> getAllSubjects() throws DatasetException {
         try {
-            final Query query = entityManager.createQuery("SELECT t FROM Teacher t");
+            final Query query = entityManager.createQuery("SELECT s FROM Subject s");
             return (Collection<Subject>) query.getResultList();
         } catch (Exception e) {
-            LOGGER.error("Exception while getting all teachers!", e);
-            throw new DatasetException("Error while getting all teachers: " + e.getMessage());
+            LOGGER.error("Exception while getting all subjects!", e);
+            throw new DatasetException("Error while getting all subjects: " + e.getMessage());
         }
     }
 
