@@ -71,7 +71,7 @@ public final class SchoolclassManager {
         addSchoolclass("2c");
         addSchoolclass("4a");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
-        timeslot.addSchoolclass(getSchoolclassByName("4b"));
+        timeslot.addSchoolclass(getSchoolclassByName("4a"));
         Data.updateTimeslot(timeslot);
     }
 
