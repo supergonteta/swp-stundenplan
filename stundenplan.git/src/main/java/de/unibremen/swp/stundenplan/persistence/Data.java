@@ -72,7 +72,7 @@ public final class Data {
     public static final int MAX_NORMAL_STRING_LEN = 255;
 
     /**
-     * Maximale Anzahl von Zeichen, die ein Lehrer-Akronym haben darf. Definiert die entsprechende Spaltenbreite in der
+     * Maximale Anzahl von Zeichen, die ein Akronym haben darf. Definiert die entsprechende Spaltenbreite in der
      * unterliegenden Datenbank-Tabelle.
      */
     public static final int MAX_ACRONYM_LEN = 5;
