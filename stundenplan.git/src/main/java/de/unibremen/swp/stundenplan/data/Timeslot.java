@@ -76,7 +76,7 @@ public final class Timeslot implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Subject> subjects;
 
-    private Collection<Activity> activities;
+ 
     /**
      * Die Startzeit dieses Timeslots. Die Einträge für {@linkplain Calendar#HOUR} und {@linkplain Calendar#MINUTE}
      * müssen entsprechend gesetzt sein.
@@ -140,11 +140,7 @@ public final class Timeslot implements Serializable {
         }
     }
     
-    public void addActivity(final Activity activity){
-    	if(activity != null){
-    		activities.add(activity);
-    	}
-    }
+
 
     /**
      * Fügt die gegebene Schulklasse dieser Zeiteinheit hinzu. Es wird hier nicht überprüft, ob eine gleiche Schulklasse

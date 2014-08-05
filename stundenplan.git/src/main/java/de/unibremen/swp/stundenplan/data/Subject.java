@@ -17,7 +17,7 @@ import de.unibremen.swp.stundenplan.persistence.Data;
  *
  */
 @Entity
-public final class Subject extends Activity implements Serializable {
+public final class Subject implements Serializable {
 
     /**
      * Die eineindeutige ID für Serialisierung.
