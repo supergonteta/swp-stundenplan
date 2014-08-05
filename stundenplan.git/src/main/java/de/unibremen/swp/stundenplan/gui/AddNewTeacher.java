@@ -36,7 +36,7 @@ public class AddNewTeacher extends Panel {
 		setLayout(new BorderLayout());
 		String[] labels = {"Name: ", "Akronym: ", "Max. Arbeitstunden:"};
 		
-		int labelslength = labels.length;
+
 		Panel p = new Panel();
 		p.setLayout(new GridLayout(4,2));
 		

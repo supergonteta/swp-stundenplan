@@ -94,10 +94,13 @@ public final class Stundenplan {
             public void run() {
                 final MainFrame mainFrame = new MainFrame();
                 ErrorHandler.setMainFrame(mainFrame);
+                mainFrame.setLocation(300, 300);
                 mainFrame.pack();
                 mainFrame.setVisible(true);
                 final StartFrame startFrame = new StartFrame();
+                startFrame.setLocation(800, 300);
                 pList = new PlanList();
+                pList.setLocation(800, 500);
             }
         });
 
