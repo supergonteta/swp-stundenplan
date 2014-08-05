@@ -69,6 +69,7 @@ public final class Teacher implements Serializable {
     /**
      * Derzeitige Arbeitszeit, die der Lehrer eingeteilt ist.
      */
+    @Column(scale = SCALE)
     public BigDecimal arbeitsZeit = BigDecimal.ZERO;
     
     /**
