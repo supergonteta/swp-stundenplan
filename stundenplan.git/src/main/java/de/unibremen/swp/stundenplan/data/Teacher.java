@@ -190,6 +190,11 @@ public final class Teacher implements Serializable {
     	return false;
     }
     
+    public int kannNochSoVielArbeiten(){
+    	int i = hoursPerWeek.intValue() - arbeitsZeit.intValue();
+    	return i;
+    }
+    
     @Override
     public String toString() {
         return String.format("Teacher [acronym=%s, name=%s, hpw=%.2f]", acronym, name, hoursPerWeek);
