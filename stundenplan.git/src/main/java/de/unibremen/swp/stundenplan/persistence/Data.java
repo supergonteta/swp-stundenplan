@@ -29,6 +29,7 @@ import org.apache.log4j.Logger;
 import de.unibremen.swp.stundenplan.config.Config;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.DayTable;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Subject;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
@@ -168,7 +169,7 @@ public final class Data {
      * Parameterwert {@code null} ist.
      * 
      * @param subject
-     *            die hinzuzufügende LehrerIn
+     *            die hinzuzufügende Fach
      * 
      * @throws DatasetException
      *             falls beim Hinzufügen in der unterliegenden Persistenzkomponente ein Fehler auftritt
@@ -232,6 +233,75 @@ public final class Data {
         }
     }
 
+    /**
+     * Fügt das gegebene Fach dem Datenbestand hinzu. Löst eine {@link IllegalArgumentException} aus, falls der
+     * Parameterwert {@code null} ist.
+     * 
+     * @param subject
+     *            die hinzuzufügende Fach
+     * 
+     * @throws DatasetException
+     *             falls beim Hinzufügen in der unterliegenden Persistenzkomponente ein Fehler auftritt
+     */
+    public static void addSchoolclass(final Schoolclass schoolclass) throws DatasetException {
+        if (schoolclass == null) {
+            throw new IllegalArgumentException("Value of teacher parameter is null");
+        }
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(schoolclass);
+            entityManager.getTransaction().commit();
+            LOGGER.debug(String.format("Subject %s persisted.", schoolclass));
+        } catch (Exception e) {
+            LOGGER.error("Error adding subject: ", e);
+            throw new DatasetException("Error while adding a subject: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Gibt die F�cher zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solches Fach gibt oder das
+     * gegebene Kürzel {@code null} oder leer ist.
+     * 
+     * @param acronym
+     *            das Kürzel der gesuchtes Fach
+     * @return das Fach zu dem gegebenen Kürzel oder {@code null} falls es kein fach mit dem Kürzel im
+     *         Datenbestand gibt oder der Parameterwert ungültig war
+     * @throws DatasetException
+     *             falls ein Fehler bei der Abfrage des Datenbestandes in der unterliegenden Persistenzkomponente
+     *             auftritt
+     * 
+     */
+    public static Schoolclass getSchoolclassByAcronym(final String acronym) throws DatasetException {
+        if (acronym == null || acronym.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return entityManager.find(Schoolclass.class, acronym);
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting subject by acronym " + acronym, e);
+            throw new DatasetException("Error while searching a subject for acronym " + acronym + ": " + e.getMessage());
+        }
+    }
+
+    /**
+     * Gibt die Sammlung aller im Datenbestand befindlichen F�cher zurück.
+     * 
+     * @return die Sammlung aller F�cher
+     * @throws DatasetException
+     *             falls bei der Abfrage des Datenbestandes ein Fehler in der unterliegenden Persistenzkomponente
+     *             auftritt
+     */
+    @SuppressWarnings("unchecked")
+    public static Collection<Schoolclass> getAllSchoolclass() throws DatasetException {
+        try {
+            final Query query = entityManager.createQuery("SELECT c FROM Schoolclass s");
+            return (Collection<Schoolclass>) query.getResultList();
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting all schoolclasse!", e);
+            throw new DatasetException("Error while getting all schoolclasses: " + e.getMessage());
+        }
+    }
+    
     /**
      * Fügt den gegebenen Tagesplan zum Datenbestand hinzu. Falls der Parameterwert {@code null} ist, wird eine
      * {@link IllegalArgumentException} ausgelöst.
