@@ -67,6 +67,11 @@ public final class Teacher implements Serializable {
     public static final BigDecimal MAX_HOURS_PER_WEEK = new BigDecimal(40);
 
     /**
+     * Derzeitige Arbeitszeit, die der Lehrer eingeteilt ist.
+     */
+    public BigDecimal arbeitsZeit = BigDecimal.ZERO;
+    
+    /**
      * Der Name dieser LehrerIn.
      */
     @Column(nullable = false, length = Data.MAX_NORMAL_STRING_LEN)
@@ -161,6 +166,29 @@ public final class Teacher implements Serializable {
         return hoursPerWeek;
     }
 
+    /**
+     * Gibt die Anzahl an angeteilten Unterrichts- bzw. Arbeitsstunden dieser LehrerIn zurück.
+     * 
+     * @return die Anzahl an Unterrichts- bzw. Arbeitsstunden, für die dieserLehrerIn eingeteilt ist.
+     */
+    public BigDecimal getWorkingHours(){
+    	return arbeitsZeit;
+    }
+    
+    public void addWorkingHours(final int i){
+    	BigDecimal b = new BigDecimal(i);
+    	arbeitsZeit = arbeitsZeit.add(b);
+    }
+    
+    public boolean arbeitetZuViel(){
+    	int wochenStunden = hoursPerWeek.intValue();
+    	int arbeitetStunden = arbeitsZeit.intValue();
+    	if(wochenStunden < arbeitetStunden){
+    		return true;
+    	}
+    	return false;
+    }
+    
     @Override
     public String toString() {
         return String.format("Teacher [acronym=%s, name=%s, hpw=%.2f]", acronym, name, hoursPerWeek);
