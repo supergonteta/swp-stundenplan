@@ -34,11 +34,11 @@ public class StartFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout(5, 5));
 
 		// Buttons erzeugen
-		button1 = new JButton("Add Lehrer");
+		button1 = new JButton("Lehrer hinzufügen");
 		
-		button2 = new JButton("Add Fach");
+		button2 = new JButton("Fach hinzufügen");
 	
-		button3 = new JButton("Add Klasse");
+		button3 = new JButton("Klasse hinzufügen");
 		
 		buttonS1 = new JButton("Stundenplan anzeigen");
 		
