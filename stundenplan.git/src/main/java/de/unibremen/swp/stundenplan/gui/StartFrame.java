@@ -76,13 +76,7 @@ public class StartFrame extends JFrame {
  
 	}
 
-	public static void main(String[] args) {
-		
-		StartFrame g = new StartFrame();
-		
-		
-		
-	}
+
 
 	private void showStundenplan(JButton b) {
 		b.addActionListener(new ActionListener() {
