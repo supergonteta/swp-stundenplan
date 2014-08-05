@@ -23,7 +23,7 @@ import javax.swing.DefaultListModel;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 
 /**
- * Das ListModel für die Lehrer.
+ * Das ListModel für die Klassen.
  * 
  * @author F. Vidjaja,
  * @version 0.1
@@ -37,12 +37,12 @@ public final class SchoolclassListModel extends DefaultListModel<String> {
     private static final long serialVersionUID = 5564982556376658908L;
 
     /**
-     * Die Liste der Lehrkräfte dieses Modells.
+     * Die Liste der Schulklassen dieses Modells.
      */
     private final List<Schoolclass> classes;
 
     /**
-     * Der Konstruktor für des SchoolclassListMode. Hier wird nur die Liste der teacher initialisiert.
+     * Der Konstruktor für des SchoolclassListModel. Hier wird nur die Liste der schoolclass initialisiert.
      */
     protected SchoolclassListModel() {
         super();
@@ -64,8 +64,8 @@ public final class SchoolclassListModel extends DefaultListModel<String> {
      * Gibt die Schulklasse am gegebenen Index aus der Liste zurück.
      * 
      * @param index
-     *            Der Index an dem der Lehrer steht, der zurückgegeben werden soll.
-     * @return die Lehrkraft am gegebenen Index
+     *            Der Index an dem die Schulklasse steht, der zurückgegeben werden soll.
+     * @return die Schulklasse am gegebenen Index
      */
     protected Schoolclass getSchoolclassAt(final int index) {
         return classes.get(index);
