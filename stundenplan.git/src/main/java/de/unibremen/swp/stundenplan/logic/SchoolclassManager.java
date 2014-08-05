@@ -110,7 +110,7 @@ public final class SchoolclassManager {
      * 
      * @param name
      *            Name der Klasse
-     * @return die Schulklasse mit dem Namen oder {@code null} falls keine Schulklasse mit dem gegebenen Kürzel
+     * @return die Schulklasse mit dem Namen oder {@code null} falls keine S mit dem gegebenen Kürzel
      *         existiert
      * @throws DatasetException
      *             falls ein Fehler beim Zugriff auf den Datenbestand auftritt
