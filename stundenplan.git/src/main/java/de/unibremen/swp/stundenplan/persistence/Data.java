@@ -119,13 +119,6 @@ public final class Data {
             throw new DatasetException("Error while adding a teacher: " + e.getMessage());
         }
     }
-    
-    /**
-     * 
-     * @param activity
-     * @throws DatasetException
-     */
-
 
     /**
      * Gibt die LehrerIn zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solche LehrerIn gibt oder das
@@ -151,8 +144,6 @@ public final class Data {
             throw new DatasetException("Error while searching a teacher for acronym " + acronym + ": " + e.getMessage());
         }
     }
-    
-
 
     /**
      * Gibt die Sammlung aller im Datenbestand befindlichen LehrerInnen zurück.
@@ -172,8 +163,6 @@ public final class Data {
             throw new DatasetException("Error while getting all teachers: " + e.getMessage());
         }
     }
-    
-
     
     /**
      * Fügt das gegebene Fach dem Datenbestand hinzu. Löst eine {@link IllegalArgumentException} aus, falls der
@@ -245,18 +234,18 @@ public final class Data {
     }
 
     /**
-     * Fügt das gegebene Fach dem Datenbestand hinzu. Löst eine {@link IllegalArgumentException} aus, falls der
+     * Fügt die gegebene Schulklasse dem Datenbestand hinzu. Löst eine {@link IllegalArgumentException} aus, falls der
      * Parameterwert {@code null} ist.
      * 
      * @param subject
-     *            die hinzuzufügende Fach
+     *            die hinzuzufügende Schulklasse
      * 
      * @throws DatasetException
      *             falls beim Hinzufügen in der unterliegenden Persistenzkomponente ein Fehler auftritt
      */
     public static void addSchoolclass(final Schoolclass schoolclass) throws DatasetException {
         if (schoolclass == null) {
-            throw new IllegalArgumentException("Value of teacher parameter is null");
+            throw new IllegalArgumentException("Value of schoolclass parameter is null");
         }
         try {
             entityManager.getTransaction().begin();
@@ -264,40 +253,15 @@ public final class Data {
             entityManager.getTransaction().commit();
             LOGGER.debug(String.format("Schoolclass %s persisted.", schoolclass.getName()));
         } catch (Exception e) {
-            LOGGER.error("Error adding subject: ", e);
-            throw new DatasetException("Error while adding a subject: " + e.getMessage());
+            LOGGER.error("Error adding schoolclass: ", e);
+            throw new DatasetException("Error while adding a schoolclass: " + e.getMessage());
         }
     }
-
+    
     /**
-     * Gibt die F�cher zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solches Fach gibt oder das
-     * gegebene Kürzel {@code null} oder leer ist.
+     * Gibt die Sammlung aller im Datenbestand befindlichen Schulklassen zurück.
      * 
-     * @param acronym
-     *            das Kürzel der gesuchtes Fach
-     * @return das Fach zu dem gegebenen Kürzel oder {@code null} falls es kein fach mit dem Kürzel im
-     *         Datenbestand gibt oder der Parameterwert ungültig war
-     * @throws DatasetException
-     *             falls ein Fehler bei der Abfrage des Datenbestandes in der unterliegenden Persistenzkomponente
-     *             auftritt
-     * 
-     */
-    public static Schoolclass getSchoolclassByAcronym(final String acronym) throws DatasetException {
-        if (acronym == null || acronym.trim().isEmpty()) {
-            return null;
-        }
-        try {
-            return entityManager.find(Schoolclass.class, acronym);
-        } catch (Exception e) {
-            LOGGER.error("Exception while getting subject by acronym " + acronym, e);
-            throw new DatasetException("Error while searching a subject for acronym " + acronym + ": " + e.getMessage());
-        }
-    }
-
-    /**
-     * Gibt die Sammlung aller im Datenbestand befindlichen F�cher zurück.
-     * 
-     * @return die Sammlung aller F�cher
+     * @return die Sammlung aller Schulklassen
      * @throws DatasetException
      *             falls bei der Abfrage des Datenbestandes ein Fehler in der unterliegenden Persistenzkomponente
      *             auftritt
@@ -305,7 +269,7 @@ public final class Data {
     @SuppressWarnings("unchecked")
     public static Collection<Schoolclass> getAllSchoolclass() throws DatasetException {
         try {
-            final Query query = entityManager.createQuery("SELECT c FROM Schoolclass s");
+            final Query query = entityManager.createQuery("SELECT c FROM Schoolclass c");
             return (Collection<Schoolclass>) query.getResultList();
         } catch (Exception e) {
             LOGGER.error("Exception while getting all schoolclasse!", e);
