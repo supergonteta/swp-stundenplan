@@ -152,7 +152,7 @@ public final class MainFrame extends JFrame {
         table.setGridColor(Color.YELLOW);
         table.setRowHeight(ROW_HEIGHT);
         
-        Timer t = new Timer(100, new ActionListener() {
+        Timer t = new Timer(50, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {

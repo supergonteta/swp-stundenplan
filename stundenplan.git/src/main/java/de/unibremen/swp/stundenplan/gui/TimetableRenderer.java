@@ -15,6 +15,7 @@
  */
 package de.unibremen.swp.stundenplan.gui;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.BorderFactory;
@@ -22,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.TableCellRenderer;
+
 import org.apache.log4j.Logger;
 
 import de.unibremen.swp.stundenplan.config.Messages;
@@ -99,7 +101,7 @@ public final class TimetableRenderer extends JLabel implements TableCellRenderer
             } else {
                 if (unselectedBorder == null) {
                     unselectedBorder = BorderFactory.createMatteBorder(MATTE_BORDER_HEIGHT, MATTE_BORDER_WIDTH,
-                            MATTE_BORDER_HEIGHT, MATTE_BORDER_WIDTH, table.getBackground());
+                            MATTE_BORDER_HEIGHT, MATTE_BORDER_WIDTH, Color.GRAY);
                 }
                 setBorder(unselectedBorder);
             }
