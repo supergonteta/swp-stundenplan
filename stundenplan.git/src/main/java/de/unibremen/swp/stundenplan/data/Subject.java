@@ -3,7 +3,9 @@ package de.unibremen.swp.stundenplan.data;
 import java.io.Serializable;
 
 
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import de.unibremen.swp.stundenplan.persistence.Data;
@@ -14,7 +16,7 @@ import de.unibremen.swp.stundenplan.persistence.Data;
  * @author Belavic, Oliver
  *
  */
-
+@Entity
 public class Subject implements Serializable {
 
     /**

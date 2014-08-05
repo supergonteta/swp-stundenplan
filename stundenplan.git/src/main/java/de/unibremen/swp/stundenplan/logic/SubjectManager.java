@@ -71,7 +71,7 @@ public final class SubjectManager {
         addSubject("Kun", "Kunst");
         addSubject("Mat", "Mathematik");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
-        timeslot.addSubject(getSubjectByAcronym("DiL"));
+        timeslot.addSubject(getSubjectByAcronym("Spo"));
         Data.updateTimeslot(timeslot);
     }
 
