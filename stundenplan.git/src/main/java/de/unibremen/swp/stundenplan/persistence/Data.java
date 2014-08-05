@@ -259,6 +259,31 @@ public final class Data {
     }
     
     /**
+     * Gibt die Schulklasse zu dem gegebenen Namen zurück oder {@code null} falls es keine solche Schulklasse gibt oder der
+     * gegebene Name {@code null} oder leer ist.
+     * 
+     * @param name
+     *            der Name der gesuchten Schulklasse
+     * @return die Schulklasse zu dem gegebenen Namen oder {@code null} falls es keine Schulklasse mit dem Namen im
+     *         Datenbestand gibt oder der Parameterwert ungültig war
+     * @throws DatasetException
+     *             falls ein Fehler bei der Abfrage des Datenbestandes in der unterliegenden Persistenzkomponente
+     *             auftritt
+     * 
+     */
+    public static Schoolclass getSchoolclassByName(final String name) throws DatasetException {
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return entityManager.find(Schoolclass.class, name);
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting schoolclass by name " + name, e);
+            throw new DatasetException("Error while searching a schoolclass for name " + name + ": " + e.getMessage());
+        }
+    }
+    
+    /**
      * Gibt die Sammlung aller im Datenbestand befindlichen Schulklassen zurück.
      * 
      * @return die Sammlung aller Schulklassen
