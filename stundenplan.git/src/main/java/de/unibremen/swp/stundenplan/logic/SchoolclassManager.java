@@ -26,7 +26,7 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
- * Diese Klasse verwaltet die F�cher. Es können beispielsweise F�cher hinzugefügt werden oder F�cher ausgegeben werden.
+ * Diese Klasse verwaltet die Schulklassen. Es können beispielsweise Schulklassen hinzugefügt werden oder Schulklassen ausgegeben werden.
  * 
  * @author Belavic, Oliver
  * 
@@ -45,7 +45,7 @@ public final class SchoolclassManager {
     }
 
     /**
-     * Prüft, ob schon Klassen im Datenbestand vorhanden sind. Falls nicht, werden einige Default-F�cher angelegt.
+     * Prüft, ob schon Klassen im Datenbestand vorhanden sind. Falls nicht, werden einige Default-Schulklassen angelegt.
      * 
      * @throws DatasetException
      *             falls bei der Erzeugung oder der Verwendung des Persistenzobjektes ein Fehler auftritt
@@ -60,7 +60,7 @@ public final class SchoolclassManager {
     }
 
     /**
-     * Füllt den Datenbestand mit drei F�chern und weist dem Zeitslot 1,1 eins dieser Fach zu.
+     * Füllt den Datenbestand mit drei Schulklassen und weist dem Zeitslot 1,1 einer dieser Schulklassen zu.
      * 
      * @throws DatasetException
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
@@ -71,18 +71,15 @@ public final class SchoolclassManager {
         addSchoolclass("2c");
         addSchoolclass("4a");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
-        timeslot.addSchoolclass(getSchoolclassByAcronym("4b"));
+        timeslot.addSchoolclass(getSchoolclassByName("4b"));
         Data.updateTimeslot(timeslot);
     }
 
     /**
-     * Legt ein neues Fach mit den gegebenen Werten an und persistiert ihn. Löst eine
+     * Legt eine neue Schulklasse mit den gegebenen Werten an und persistiert ihn. Löst eine
      * {@link IllegalArgumentException} aus, falls ein oder mehrere Parameterwerte nicht erlaubt sind.
-     * 
-     * @param acronym
-     *            die Abkürzung für das neue fach
      * @param name
-     *            der Name des neuen faches
+     *            der Name der neuen Schulklasse
      * @throws DatasetException
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
      */
@@ -97,9 +94,9 @@ public final class SchoolclassManager {
     }
 
     /**
-     * Gibt eine Sammlung aller LehrerInnen zurück, die von diesem Manager aktuell verwaltet werden.
+     * Gibt eine Sammlung aller Schulklassen zurück, die von diesem Manager aktuell verwaltet werden.
      * 
-     * @return die Sammlung aller LehrerInnen, die aktuell von diesem Manager verwaltet werden
+     * @return die Sammlung aller Schulklassen, die aktuell von diesem Manager verwaltet werden
      * @throws DatasetException
      *             falls ein Fehler beim Abfragen des Datenbestandes auftritt
      */
@@ -109,18 +106,18 @@ public final class SchoolclassManager {
     }
 
     /**
-     * Gibt die LehrerIn mit dem gegebenen Kürzel zurück.
+     * Gibt die Schuklasse zurück.
      * 
-     * @param acronym
-     *            das Kürzel der gesuchten LehrerIn
-     * @return die LehrerIn mit dem gesuchten Kürzel oder {@code null} falls keine LehrerIn mit dem gegebenen Kürzel
+     * @param name
+     *            Name der Klasse
+     * @return die Schulklasse mit dem Namen oder {@code null} falls keine Schulklasse mit dem gegebenen Kürzel
      *         existiert
      * @throws DatasetException
      *             falls ein Fehler beim Zugriff auf den Datenbestand auftritt
      */
-    public static Schoolclass getSchoolclassByAcronym(final String acronym) throws DatasetException {
-        LOGGER.debug("Schoolclasss for acronym " + acronym);
-        return Data.getSchoolclassByAcronym(acronym);
+    public static Schoolclass getSchoolclassByName(final String name) throws DatasetException {
+        LOGGER.debug("Schoolclasss for acronym " + name);
+        return Data.getSchoolclassByName(name);
     }
 
 }
