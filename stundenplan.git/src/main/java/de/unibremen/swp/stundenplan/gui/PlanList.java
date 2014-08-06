@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import de.unibremen.swp.stundenplan.config.Config;
+import de.unibremen.swp.stundenplan.config.Weekday;
+import de.unibremen.swp.stundenplan.data.DayTable;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -111,6 +114,33 @@ public class PlanList extends JFrame {
 					System.out.println("mehrere gecheckt");
 				} else {
 					System.out.println("ein gecheckt"+checkBoxen.get(position).getText());
+					String checkName;
+					DayTable tag = new DayTable();
+					System.out.println("ein gecheckt");
+					for (int i = 0; i < checkBoxen.size(); i++) {
+						if (checkBoxen.get(i).isSelected()) {
+
+							checkName = checkBoxen.get(i).getText();
+							System.out.println(checkName);
+							try {
+								
+								for(Weekday weekday : Weekday.values()){
+								tag = Data.getDayTableForWeekday(weekday);
+								for (int j = 0; j < (Config.DAYTABLE_LENGTH_DEFAULT + 1); j++) {
+									for (Teacher t : tag.getTimeslot(j).getTeachers()) {
+
+										if (t.getName().equals(checkName)) {
+											System.out.println("geht klar"+j);
+										}
+									}
+								}
+								}
+							} catch (DatasetException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
 					for(Schoolclass s : klassen){
 						if(s.getName().equals(checkBoxen.get(position).getText())){
 							final SchoolclassFrame schoolclassFrame = new SchoolclassFrame();
