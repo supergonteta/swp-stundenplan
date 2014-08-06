@@ -122,11 +122,11 @@ public final class AddSubjectDialog extends JDialog implements PropertyChangeLis
         try {
             Collection<Subject> subjects;
             timeslot = TimetableManager.getTimeslotAt(weekday, position);
-            final Subject subjectInSlot = timeslot.getSubject();
+            final Collection<Subject> subjectsInSlot = timeslot.getSubjects();
             subjects = SubjectManager.getAllSubjects();
             subjectListModel.clear();
             for (final Subject subject : subjects) {
-                if (!subjectInSlot.equals(subject)) {
+                if (!subjectsInSlot.contains(subject)) {
                     subjectListModel.addSubject(subject);
                 }
             }
