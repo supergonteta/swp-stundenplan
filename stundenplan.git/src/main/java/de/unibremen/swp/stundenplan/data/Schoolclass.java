@@ -39,13 +39,14 @@ public final class Schoolclass implements Serializable {
     /**
      * Die eindeutige, von der unterliegenden Persistenzschicht automatisch erzeugte ID.
      */
-    @Id
+    
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     /**
      * Der Name dieser Schulklasse.
      */
+    @Id
     private String name;
 
     /**
@@ -66,4 +67,5 @@ public final class Schoolclass implements Serializable {
     public void setName(final String pName) {
         name = pName;
     }
+    
 }
