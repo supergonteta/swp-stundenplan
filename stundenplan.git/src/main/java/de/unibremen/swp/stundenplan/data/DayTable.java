@@ -25,6 +25,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
@@ -88,6 +89,18 @@ public final class DayTable {
      */
     @Enumerated(EnumType.STRING)
     private Weekday weekday;
+    
+    /**
+     * 
+     */
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Schoolclass schoolclass;
+    
+    /**
+     * 
+     */
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Teacher teacher;
 
     /**
      * Erzeugt einen neuen Tagesplan mit einer leeren Liste von Zeiteinheiten.

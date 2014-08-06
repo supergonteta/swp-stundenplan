@@ -16,6 +16,7 @@
 package de.unibremen.swp.stundenplan.data;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,6 +49,11 @@ public final class Schoolclass implements Serializable {
      */
     @Id
     private String name;
+    
+    /**
+     * 
+     */
+    private Collection<Timeslot> timeslots;
 
     /**
      * Gibt den Namen dieser Schulklasse zurück.
@@ -67,5 +73,12 @@ public final class Schoolclass implements Serializable {
     public void setName(final String pName) {
         name = pName;
     }
+
+    public void addTimeslot(Timeslot timeslot) {
+    	timeslots.add(timeslot);
+    }
     
+    public Collection<Timeslot> getTimeslots() {
+    	return timeslots;
+    }
 }

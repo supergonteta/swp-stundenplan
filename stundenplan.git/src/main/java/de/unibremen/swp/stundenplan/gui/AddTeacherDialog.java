@@ -143,6 +143,11 @@ public final class AddTeacherDialog extends JDialog implements PropertyChangeLis
             for (final Teacher teacher : teachers) {
                 if (!teachersInSlot.contains(teacher)) {
                     teacherListModel.addTeacher(teacher);
+                }else {
+                    if(!teacher.getTimeslots().contains(timeslot)) {
+                    	teacher.addTimeslot(timeslot);
+                    	System.out.println("Timeslot wurde dem Lehre zugewiesen.");
+                    }
                 }
             }
             pack();

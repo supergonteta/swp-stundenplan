@@ -20,6 +20,8 @@ import java.util.List;
 
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.DayTable;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.persistence.Data;
@@ -121,6 +123,34 @@ public final class TimetableManager {
     public static Timeslot getTimeslotAt(final Weekday weekday, final int position) throws DatasetException {
         DayTable dayTable;
         dayTable = Data.getDayTableForWeekday(weekday);
+        if (dayTable == null) {
+            return null;
+        }
+        return dayTable.getTimeslot(position);
+    }
+    
+    /**
+     * Gibt die Zeiteinheit an der gegebenen Position für den gegebenen Wochentag zurück. Falls die Index-Angaben
+     * außerhalb der jeweils gültigen Bereiche liegen, wird {@code null} zurückgegeben.
+     * 
+     * @param weekday
+     *            der Wochentag der gesuchten Zeiteinheit
+     * @param position
+     *            die Position der gesuchten Zeiteinheit am gegebenen Wochentag
+     * @return die gesuchte Zeiteinheit oder {@code null}, falls unsinnige Parameterwerte übergeben wurden
+     * @throws DatasetException
+     *             falls es ein Problem bei der Abfrage des unterliegenden Datenbestandes gibt oder der Datenbestand
+     *             inkonsistent ist
+     */
+    public static Timeslot getTimeslotAt(final Weekday weekday, final int position, Object clazz) throws DatasetException {
+        DayTable dayTable;
+        if(clazz instanceof Teacher) {
+        	dayTable = Data.getDayTableForWeekday(weekday, (Teacher) clazz);
+        }else if(clazz instanceof Schoolclass) {
+        	dayTable = Data.getDayTableForWeekday(weekday, (Schoolclass) clazz);
+        }else {
+        	dayTable = null;
+        }
         if (dayTable == null) {
             return null;
         }

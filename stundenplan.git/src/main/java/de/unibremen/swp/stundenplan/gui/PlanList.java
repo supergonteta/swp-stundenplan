@@ -122,23 +122,23 @@ public class PlanList extends JFrame {
 
 							checkName = checkBoxen.get(i).getText();
 							System.out.println(checkName);
-							try {
-								
-								for(Weekday weekday : Weekday.values()){
-								tag = Data.getDayTableForWeekday(weekday);
-								for (int j = 0; j < (Config.DAYTABLE_LENGTH_DEFAULT + 1); j++) {
-									for (Teacher t : tag.getTimeslot(j).getTeachers()) {
-
-										if (t.getName().equals(checkName)) {
-											System.out.println("geht klar"+j);
-										}
-									}
-								}
-								}
-							} catch (DatasetException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+//							try {
+//								
+//								for(Weekday weekday : Weekday.values()){
+//								tag = Data.getDayTableForWeekday(weekday);
+//								for (int j = 0; j < (Config.DAYTABLE_LENGTH_DEFAULT + 1); j++) {
+//									for (Teacher t : tag.getTimeslot(j).getTeachers()) {
+//
+//										if (t.getName().equals(checkName)) {
+//											System.out.println("geht klar"+j);
+//										}
+//									}
+//								}
+//								}
+//							} catch (DatasetException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
 						}
 					}
 					for(Schoolclass s : klassen){

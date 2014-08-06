@@ -382,6 +382,84 @@ public final class Data {
                     e.getMessage()));
         }
     }
+    
+    /**
+     * Gibt den Tagesplan des gegebenen Wochentages zurück oder {@code null}, falls kein Tagesplan für den Wochentag im
+     * Datenbestand existiert. Falls der gegebene Wochentag den Wert {@code null} hat, wird ebenfalls {@code null}
+     * zurück gegeben.
+     * 
+     * @param pWeekday
+     *            der Wochentag des gesuchten Tagesplans
+     * @return den Tagesplan des gegebenen Wochentages oder {@code null}
+     * @throws DatasetException
+     *             falls es mehr als einen Tagesplan zu dem gegebenen Wochentag gibt oder es ein Problem bei der Abfrage
+     *             des unterliegenden Datenbestandes gibt
+     */
+    public static DayTable getDayTableForWeekday(final Weekday pWeekday, final Teacher pTeacher) throws DatasetException {
+        if (pWeekday == null) {
+            return null;
+        }
+        final String weekday = pWeekday.name();
+        try {
+
+            final Query query = entityManager.createQuery("SELECT d FROM DayTable d WHERE d.weekday=?1 AND d.teacher=?2");
+            query.setParameter(1, pWeekday);
+            query.setParameter(2, pTeacher);
+            @SuppressWarnings("unchecked")
+            List<DayTable> dayTables = query.getResultList();
+            if (dayTables.isEmpty()) {
+                return null;
+            }
+            if (dayTables.size() > 1) {
+                LOGGER.error("There is more than one daytable for day " + weekday);
+                throw new DatasetException("Daytable not unique for " + weekday);
+            }
+            return dayTables.get(0);
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting day tables for day " + weekday, e);
+            throw new DatasetException(String.format("Error while getting day table for day %s: %s", weekday,
+                    e.getMessage()));
+        }
+    }
+    
+    /**
+     * Gibt den Tagesplan des gegebenen Wochentages zurück oder {@code null}, falls kein Tagesplan für den Wochentag im
+     * Datenbestand existiert. Falls der gegebene Wochentag den Wert {@code null} hat, wird ebenfalls {@code null}
+     * zurück gegeben.
+     * 
+     * @param pWeekday
+     *            der Wochentag des gesuchten Tagesplans
+     * @return den Tagesplan des gegebenen Wochentages oder {@code null}
+     * @throws DatasetException
+     *             falls es mehr als einen Tagesplan zu dem gegebenen Wochentag gibt oder es ein Problem bei der Abfrage
+     *             des unterliegenden Datenbestandes gibt
+     */
+    public static DayTable getDayTableForWeekday(final Weekday pWeekday, final Schoolclass pSchoolclass) throws DatasetException {
+        if (pWeekday == null) {
+            return null;
+        }
+        final String weekday = pWeekday.name();
+        try {
+
+            final Query query = entityManager.createQuery("SELECT d FROM DayTable d WHERE d.weekday=?1 AND d.schoolclass=?2");
+            query.setParameter(1, pWeekday);
+            query.setParameter(2, pSchoolclass);
+            @SuppressWarnings("unchecked")
+            List<DayTable> dayTables = query.getResultList();
+            if (dayTables.isEmpty()) {
+                return null;
+            }
+            if (dayTables.size() > 1) {
+                LOGGER.error("There is more than one daytable for day " + weekday);
+                throw new DatasetException("Daytable not unique for " + weekday);
+            }
+            return dayTables.get(0);
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting day tables for day " + weekday, e);
+            throw new DatasetException(String.format("Error while getting day table for day %s: %s", weekday,
+                    e.getMessage()));
+        }
+    }
 
     /**
      * Aktualisiert die Werte für die gegebene Zeiteinheit im Datenbestand.
