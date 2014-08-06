@@ -46,10 +46,8 @@ public final class Stundenplan {
      * Der Logger dieser Klasse.
      */
     private static final Logger LOGGER = Logger.getLogger(Stundenplan.class.getName());
-
-    
+   
     public static PlanList pList;
-    
     
     /**
      * Privater Konstruktor, der eine Instanziierung dieser Utility-Klasse verhindert.
@@ -57,9 +55,6 @@ public final class Stundenplan {
     private Stundenplan() {
     }
     
-   
-
-
     /**
      * Startet die Anwendung. Erzeugt dazu einen neuen Stundenplaner und dann das Hauptanzeigefenster und macht dieses
      * sichtbar. Der Pfad zur Konfigurationsdatei kann als Parameter übergeben werden.
@@ -90,7 +85,6 @@ public final class Stundenplan {
             LOGGER.error("Exception while initializing logic!", e);
             throw new IllegalStateException("Could not initialize logic components: " + e.getMessage());
         }
-
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	final StartFrame startFrame = new StartFrame();
@@ -100,7 +94,5 @@ public final class Stundenplan {
                 pList.setLocation(800, 500);
             }
         });
-
     }
-
 }
