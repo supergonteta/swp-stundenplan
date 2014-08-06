@@ -41,7 +41,7 @@ import de.unibremen.swp.stundenplan.data.Timeslot;
  * @version 0.1
  * 
  */
-public final class MainFrame extends JFrame {
+public class MainFrame extends JFrame {
 
     /**
      * Ein eigener Maushorcher für die Tabelle.
@@ -50,7 +50,7 @@ public final class MainFrame extends JFrame {
      * @version 0.1
      * 
      */
-    private class MyMouseListener extends MouseAdapter {
+    protected class MyMouseListener extends MouseAdapter {
         @Override
         public void mousePressed(final MouseEvent event) {
             final int row = table.rowAtPoint(event.getPoint());
@@ -99,32 +99,22 @@ public final class MainFrame extends JFrame {
     /**
      * Zur Darstellung der Aktivitäten in einer Tabelle, wird die JTable benutzt.
      */
-    private final JTable table;
-
-    /**
-     * Der Dialog, der aufpopt, um einen Lehrer hinzuzufügen.
-     */
-    private final AddTeacherDialog addTeacherDialog;
+    protected final JTable table;
     
     /**
      * Der Dialog, der aufpopt, um ein Fach hinzuzufügen.
      */
-    private final AddSubjectDialog addSubjectDialog;
-    
-    /**
-     * Der Dialog, der aufpopt, um eine Schulklasse hinzuzufügen.
-     */
-    private final AddSchoolclassDialog addSchoolclassDialog;
+    protected final AddSubjectDialog addSubjectDialog;
 
     /**
      * Die generierte serialVersionUID.
      */
-    private static final long serialVersionUID = 8285305580202003358L;
+    protected static final long serialVersionUID = 8285305580202003358L;
 
     /**
      * Die Zeilenhöhe einer Tabellenzeile.
      */
-    private static final int ROW_HEIGHT = 40;
+    protected static final int ROW_HEIGHT = 40;
 
     /**
      * Der Konstruktor des Frames. Hier werden die wesentlichen Eigenschaften der Darstellung des Frames definiert. Die
@@ -133,9 +123,7 @@ public final class MainFrame extends JFrame {
      */
     public MainFrame() {
         super();
-        addTeacherDialog = new AddTeacherDialog(this);
         addSubjectDialog = new AddSubjectDialog(this);
-        addSchoolclassDialog = new AddSchoolclassDialog(this);
         table = new JTable(new TimetableModel());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -178,19 +166,10 @@ public final class MainFrame extends JFrame {
      *            Die Spalte.
      * @return das neue Popup-Menu
      */
-    private JPopupMenu createPopup(final int row, final int col) {
+    protected JPopupMenu createPopup(final int row, final int col) {
         final JPopupMenu popmen = new JPopupMenu();
-        final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddTeacher"));
+        final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
         menu1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(final ActionEvent event) {
-                addTeacherDialog.setTimeslot(Weekday.values()[col], row);
-                addTeacherDialog.setVisible(true);
-            }
-        });
-        final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
-        menu2.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent event) {
@@ -198,21 +177,8 @@ public final class MainFrame extends JFrame {
                 addSubjectDialog.setVisible(true);
             }
         });
-        final JMenuItem menu3 = new JMenuItem(Messages.getString("MainFrame.AddSchoolclass"));
-        menu3.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(final ActionEvent event) {
-                addSchoolclassDialog.setTimeslot(Weekday.values()[col], row);
-                addSchoolclassDialog.setVisible(true);
-            }
-        });
         popmen.add(menu1);
-        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveTeacher")));
-        popmen.add(menu2);
         popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSubject")));
-        popmen.add(menu3);
-        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSchoolclass")));
         popmen.setVisible(true);
         return popmen;
     }
