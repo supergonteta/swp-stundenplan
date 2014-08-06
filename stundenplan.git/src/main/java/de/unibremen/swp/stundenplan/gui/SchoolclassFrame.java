@@ -2,10 +2,13 @@ package de.unibremen.swp.stundenplan.gui;
 
 	import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
 
 public class SchoolclassFrame extends MainFrame {
 
@@ -29,6 +32,12 @@ public class SchoolclassFrame extends MainFrame {
         addTeacherDialog = new AddTeacherDialog(this);
     }
 
+    public SchoolclassFrame(Schoolclass schoolclass) {
+        super();
+        addTeacherDialog = new AddTeacherDialog(this);
+        setTitle("Stundenplan der Klasse : "+schoolclass.getName());
+    }
+    
     /**
      * Erzeugt ein Popup zum Hinzufügen eines Lehrers.
      * 

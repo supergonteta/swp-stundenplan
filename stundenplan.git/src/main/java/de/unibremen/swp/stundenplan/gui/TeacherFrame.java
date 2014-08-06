@@ -23,6 +23,8 @@ import javax.swing.JPopupMenu;
 
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.data.Teacher;
 
 /**
  * Das Hauptfenster, in dem die GUI dargestellt wird.
@@ -46,6 +48,12 @@ public class TeacherFrame extends MainFrame {
     public TeacherFrame() {
         super();
         addSchoolclassDialog = new AddSchoolclassDialog(this);
+    }
+    
+    public TeacherFrame(Teacher teacher) {
+        super();
+        addSchoolclassDialog = new AddSchoolclassDialog(this);
+        setTitle("Stundenplan von : "+teacher.getName());
     }
 
     /**
