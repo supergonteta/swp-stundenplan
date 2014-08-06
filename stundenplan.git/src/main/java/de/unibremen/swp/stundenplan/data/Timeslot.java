@@ -210,7 +210,24 @@ public final class Timeslot implements Serializable {
         }
         return subjectString.toString();
     }
+    
+    /**
+     * Gibt die dieser Zeiteinheit zugeordnete Klasse zurück.
+     * 
+     * @return die dieser Zeiteinheit zugeordnete Klasse
+     */
+    public String getSchoolclassname() {
+        final StringBuilder schoolclassString = new StringBuilder();
 
+        String separator = "";
+        for (final Schoolclass schoolclass : schoolclasses) {
+            schoolclassString.append(separator);
+            schoolclassString.append(schoolclass.getName());
+            separator = ", ";
+        }
+        return schoolclassString.toString();
+    }
+    
     @Override
     public String toString() {
         return String.format("Timeslot [teachers=%s,schoolclasses=%s", getTeacherAcronymList(), schoolclasses);
