@@ -161,19 +161,15 @@ public final class Timeslot implements Serializable {
     }
     
     /**
-     * Fügt das gegebene Fach dieser Zeiteinheit hinzu. 
-     * Ein Parameterwert von {@code null} wird ignoriert.
+     * Fügt das gegebene Fach dieser Zeiteinheit hinzu. Es wird hier nicht überprüft, ob eine gleiche Schulklasse
+     * bereits zugeordnet wurde. Ein Parameterwert von {@code null} wird ignoriert.
      * 
      * @param teacher
      *            die hinzuzufügende LehrerIn
      */
     public void addSubject(final Subject subject) {
-    	boolean exist = false;
         if (subject != null) {
-        	for(final Subject subjectList : subjects) {
-        		if(subjectList.equals(subject)) exist = true;
-        	}
-        	if(!exist) subjects.add(subject);
+        	subjects.add(subject);
         }
     }
 

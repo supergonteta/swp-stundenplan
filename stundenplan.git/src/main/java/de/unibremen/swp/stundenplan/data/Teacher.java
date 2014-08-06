@@ -222,4 +222,12 @@ public final class Teacher implements Serializable {
     public int hashCode() {
         return acronym.hashCode();
     }
+    
+    public void addTimeslot(Timeslot timeslot) {
+    	timeslots.add(timeslot);
+    }
+    
+    public Collection<Timeslot> getTimeslots() {
+    	return timeslots;
+    }
 }
