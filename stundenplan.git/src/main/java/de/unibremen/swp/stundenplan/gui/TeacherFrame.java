@@ -48,6 +48,7 @@ public class TeacherFrame extends MainFrame {
     public TeacherFrame() {
         super();
         addSchoolclassDialog = new AddSchoolclassDialog(this);
+        setTitle(super.getTitle() + " vom Lehrer");
     }
     
     public TeacherFrame(Teacher teacher) {
