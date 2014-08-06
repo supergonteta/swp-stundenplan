@@ -83,7 +83,7 @@ public class PlanList extends JFrame {
 		panelButton.add(ok);	
 		auswahl(ok);
 		// Labels erzeugen
-		oben = new JLabel("Lehrer, Aktivitaet oder Klasse hinzufuegen");
+		oben = new JLabel("Stundenplan anzeigen von");
 		// Label zentrieren
 		oben.setHorizontalAlignment(JLabel.CENTER);
 		// Labels auf Frame packen
@@ -117,11 +117,13 @@ public class PlanList extends JFrame {
 			            	schoolclassFrame.setLocation(300, 300);
 			            	schoolclassFrame.pack();
 			            	schoolclassFrame.setVisible(true);
+			            	break;
 						}else{
 							final TeacherFrame teacherFrame = new TeacherFrame();
 			            	teacherFrame.setLocation(300, 300);
 			            	teacherFrame.pack();
 			            	teacherFrame.setVisible(true);
+			            	break;
 						}
 					}				
 				}				
