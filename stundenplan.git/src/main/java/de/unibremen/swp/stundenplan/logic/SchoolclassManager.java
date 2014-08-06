@@ -116,7 +116,7 @@ public final class SchoolclassManager {
      *             falls ein Fehler beim Zugriff auf den Datenbestand auftritt
      */
     public static Schoolclass getSchoolclassByName(final String name) throws DatasetException {
-        LOGGER.debug("Schoolclasss for acronym " + name);
+        LOGGER.debug("Schoolclasss for name " + name);
         return Data.getSchoolclassByName(name);
     }
 
