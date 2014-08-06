@@ -118,7 +118,7 @@ public final class TimetableRenderer extends JLabel implements TableCellRenderer
         }
         final Timeslot timeslot = (Timeslot) value;
         final String text = timeslot.getTeacherAcronymList();
-        final String subjectText = timeslot.getSubjectAcronymList();
+        final String subjectText = timeslot.getSubjectAcronym();
         String ausgabeText = "<html>"+subjectText+" <br/> "+text+"</html>";
         setText(ausgabeText);
         return this;

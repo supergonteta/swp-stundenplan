@@ -74,7 +74,7 @@ public final class Timeslot implements Serializable {
      * geladen, wenn darauf zugegriffen wird.
      */
     @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Subject> subjects;
+    private Subject subject;
 
  
     /**
@@ -96,7 +96,7 @@ public final class Timeslot implements Serializable {
      */
     public Timeslot() {
         teachers = new ArrayList<Teacher>();
-        subjects = new ArrayList<Subject>();
+        subject = new Subject();
         schoolclasses = new ArrayList<Schoolclass>();
     }
 
@@ -119,12 +119,12 @@ public final class Timeslot implements Serializable {
     }
     
     /**
-     * Gibt die Sammlung der Fächer zurück, die dieser Zeiteinheit aktuell zugeordnet sind.
+     * Gibt das Fach zurück, die dieser Zeiteinheit aktuell zugeordnet ist.
      * 
-     * @return die Sammlung der Fächer, die dieser Zeiteinheit aktuell zugeordnet sind
+     * @return das Fach, die dieser Zeiteinheit aktuell zugeordnet ist
      */
-    public Collection<Subject> getSubjects() {
-        return subjects;
+    public Subject getSubject() {
+        return subject;
     }
 
     /**
@@ -161,19 +161,17 @@ public final class Timeslot implements Serializable {
     }
     
     /**
-     * Fügt das gegebene Fach dieser Zeiteinheit hinzu. 
-     * Ein Parameterwert von {@code null} wird ignoriert.
+     * Fügt das gegebene Fach dieser Zeiteinheit hinzu. Es wird hier nicht überprüft, ob eine gleiche Schulklasse
+     * bereits zugeordnet wurde. Ein Parameterwert von {@code null} wird ignoriert.
      * 
      * @param teacher
      *            die hinzuzufügende LehrerIn
      */
-    public void addSubject(final Subject subject) {
-    	boolean exist = false;
-        if (subject != null) {
-        	for(final Subject subjectList : subjects) {
-        		if(subjectList.equals(subject)) exist = true;
+    public void addSubject(final Subject pSubject) {
+        if (pSubject != null) {
+        	if(subject == null) { 
+        		subject = pSubject;
         	}
-        	if(!exist) subjects.add(subject);
         }
     }
 
@@ -199,16 +197,8 @@ public final class Timeslot implements Serializable {
      * 
      * @return die dieser Zeiteinheit zugeordneten Fächer als kommaseparierte Liste
      */
-    public String getSubjectAcronymList() {
-        final StringBuilder subjectString = new StringBuilder();
-
-        String separator = "";
-        for (final Subject subject : subjects) {
-            subjectString.append(separator);
-            subjectString.append(subject.getAcronym());
-            separator = ", ";
-        }
-        return subjectString.toString();
+    public String getSubjectAcronym() {
+    	return subject.getAcronym() + ",";
     }
 
     @Override

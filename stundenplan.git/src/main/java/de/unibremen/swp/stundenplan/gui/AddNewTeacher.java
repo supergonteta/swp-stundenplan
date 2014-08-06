@@ -7,6 +7,7 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -22,6 +23,7 @@ public class AddNewTeacher extends Panel {
 	
 	
 	public static PlanList planList;
+	public AddNewTeacher dat;
 	
 	TextField nameField;
 	TextField acroField;
@@ -63,7 +65,8 @@ public class AddNewTeacher extends Panel {
 	    add(p,BorderLayout.NORTH);
 	    
 	    buttonOkay(button);
-
+	    dat = this;
+	
 	}
 	
 	private void buttonOkay(JButton b) {
@@ -71,11 +74,13 @@ public class AddNewTeacher extends Panel {
 			
 			public void actionPerformed(ActionEvent ae) {
 				
+				
 				name = nameField.getText();
 				acro = acroField.getText();
 				time = timeField.getText();
 				
 				
+			
 				
 				try {
 					TeacherManager.addTeacher(acro, name, time);
