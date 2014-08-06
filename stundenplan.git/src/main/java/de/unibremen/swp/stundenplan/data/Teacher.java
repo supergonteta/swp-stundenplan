@@ -18,6 +18,7 @@ package de.unibremen.swp.stundenplan.data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -91,6 +92,11 @@ public final class Teacher implements Serializable {
      */
     @Column(precision = PRECISION, scale = SCALE)
     private BigDecimal hoursPerWeek;
+    
+    /**
+     * 
+     */
+    private Collection<Timeslot> timeslots;
 
     /**
      * Setzt den Namen dieser LehrerIn auf den Ã¼bergebenen Namen. Falls der Name lÃ¤nger als
@@ -168,9 +174,9 @@ public final class Teacher implements Serializable {
     }
 
     /**
-     * Gibt die Anzahl an angeteilten Unterrichts- bzw. Arbeitsstunden dieser LehrerIn zurück.
+     * Gibt die Anzahl an angeteilten Unterrichts- bzw. Arbeitsstunden dieser LehrerIn zurï¿½ck.
      * 
-     * @return die Anzahl an Unterrichts- bzw. Arbeitsstunden, für die dieserLehrerIn eingeteilt ist.
+     * @return die Anzahl an Unterrichts- bzw. Arbeitsstunden, fï¿½r die dieserLehrerIn eingeteilt ist.
      */
     public BigDecimal getWorkingHours(){
     	return arbeitsZeit;
