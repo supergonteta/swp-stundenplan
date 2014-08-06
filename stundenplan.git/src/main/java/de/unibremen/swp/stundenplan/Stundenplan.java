@@ -92,12 +92,11 @@ public final class Stundenplan {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                final MainFrame mainFrame = new MainFrame();
-                ErrorHandler.setMainFrame(mainFrame);
-                mainFrame.pack();
-                mainFrame.setVisible(true);
-                final StartFrame startFrame = new StartFrame();
-                pList = new PlanList();
+            	final StartFrame startFrame = new StartFrame();
+            	pList = new PlanList();
+                ErrorHandler.setMainFrame(startFrame);
+                startFrame.setLocation(800, 300);
+                pList.setLocation(800, 500);
             }
         });
 

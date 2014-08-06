@@ -31,7 +31,7 @@ public final class ErrorHandler {
     /**
      * Das Hauptfenster, das im Fehlerfall geschlossen wird.
      */
-    private static MainFrame mainFrame;
+    private static StartFrame mainFrame;
 
     /**
      * Privater Konstruktor, der eine Instanziierung dieser Utility-Klasse verhindert.
@@ -46,7 +46,7 @@ public final class ErrorHandler {
      * @param pMainFrame
      *            das Hauptfenster für diese Fehlerbehandlung
      */
-    public static void setMainFrame(final MainFrame pMainFrame) {
+    public static void setMainFrame(final StartFrame pMainFrame) {
         if (pMainFrame == null) {
             throw new IllegalArgumentException("Main frame is null!");
         }
