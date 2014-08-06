@@ -129,7 +129,7 @@ public class MainFrame extends JFrame {
         addSubjectDialog = new AddSubjectDialog(this);
         table = new JTable(new TimetableModel());
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setTitle(Messages.getString("MainFrame.Title"));
 
         table.addMouseListener(new MyMouseListener());
