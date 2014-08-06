@@ -102,6 +102,7 @@ public final class Stundenplan {
             	schoolclassFrame.setLocation(300, 300);
             	schoolclassFrame.pack();
             	schoolclassFrame.setVisible(true);
+            	
             }
         });
 
