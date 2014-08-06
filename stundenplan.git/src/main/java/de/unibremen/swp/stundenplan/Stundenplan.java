@@ -98,10 +98,6 @@ public final class Stundenplan {
                 ErrorHandler.setMainFrame(startFrame);
                 startFrame.setLocation(800, 300);
                 pList.setLocation(800, 500);
-            	final SchoolclassFrame schoolclassFrame = new SchoolclassFrame();
-            	schoolclassFrame.setLocation(300, 300);
-            	schoolclassFrame.pack();
-            	schoolclassFrame.setVisible(true);
             }
         });
 

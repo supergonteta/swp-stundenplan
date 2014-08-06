@@ -24,6 +24,7 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -33,6 +34,8 @@ import javax.swing.Timer;
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Timeslot;
+import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.logic.TimetableManager;
 
 /**
  * Das Hauptfenster, in dem die GUI dargestellt wird.
@@ -126,7 +129,7 @@ public class MainFrame extends JFrame {
         addSubjectDialog = new AddSubjectDialog(this);
         table = new JTable(new TimetableModel());
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(MainFrame.EXIT_ON_CLOSE);
         setTitle(Messages.getString("MainFrame.Title"));
 
         table.addMouseListener(new MyMouseListener());
@@ -173,8 +176,17 @@ public class MainFrame extends JFrame {
 
             @Override
             public void actionPerformed(final ActionEvent event) {
-                addSubjectDialog.setTimeslot(Weekday.values()[col], row);
-                addSubjectDialog.setVisible(true);
+            	try {
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row);
+					if(!timeslot.getSubjectAcronymList().equals("")) {
+						JOptionPane.showMessageDialog(menu1, "Dort ist bereits ein Fach eingetragen!", "Fehler", JOptionPane.PLAIN_MESSAGE);
+					}else {
+		                addSubjectDialog.setTimeslot(Weekday.values()[col], row);
+		                addSubjectDialog.setVisible(true);
+					}
+				} catch (DatasetException e) {
+					e.printStackTrace();
+				}
             }
         });
         popmen.add(menu1);

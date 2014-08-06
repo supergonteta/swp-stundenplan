@@ -30,6 +30,7 @@ public class SchoolclassFrame extends MainFrame {
     public SchoolclassFrame() {
         super();
         addTeacherDialog = new AddTeacherDialog(this);
+        setTitle(super.getTitle() + " von der Klasse");
     }
 
     public SchoolclassFrame(Schoolclass schoolclass) {
