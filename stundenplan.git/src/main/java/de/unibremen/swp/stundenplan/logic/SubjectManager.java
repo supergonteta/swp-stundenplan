@@ -69,7 +69,7 @@ public final class SubjectManager {
         LOGGER.info("Creating test data in database");
         addSubject("Spo", "Sport");
         addSubject("Omv", "Omasvermöbeln");
-        addSubject("Kun", "Kunst");
+        addSubject("Imp", "Imperiumkram");
         addSubject("Mat", "Mathematik");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
         timeslot.addSubject(getSubjectByAcronym("Spo"));
