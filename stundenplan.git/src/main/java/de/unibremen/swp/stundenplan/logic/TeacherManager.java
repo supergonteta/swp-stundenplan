@@ -68,9 +68,9 @@ public final class TeacherManager {
      */
     private static void fillDefaultData() throws DatasetException {
         LOGGER.info("Creating test data in database");
-        addTeacher("DiL", "Dierk Lüdemann", "35");
-        addTeacher("KaH", "Karsten Hölscher", "2");
-        addTeacher("RaK", "Rainer Koschke", "40");
+        addTeacher("DrL", "Dr. Hannibal Lecter", "35");
+        addTeacher("KKK", "Karsten Klaus Kinski", "2");
+        addTeacher("HdF", "Halto de Fressi", "40");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
         timeslot.addTeacher(getTeacherByAcronym("DiL"));
         Data.updateTimeslot(timeslot);
