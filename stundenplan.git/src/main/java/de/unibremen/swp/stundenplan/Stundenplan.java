@@ -26,6 +26,7 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.gui.ErrorHandler;
 import de.unibremen.swp.stundenplan.gui.MainFrame;
 import de.unibremen.swp.stundenplan.gui.PlanList;
+import de.unibremen.swp.stundenplan.gui.SchoolclassFrame;
 import de.unibremen.swp.stundenplan.gui.StartFrame;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
@@ -97,6 +98,10 @@ public final class Stundenplan {
                 ErrorHandler.setMainFrame(startFrame);
                 startFrame.setLocation(800, 300);
                 pList.setLocation(800, 500);
+            	final SchoolclassFrame schoolclassFrame = new SchoolclassFrame();
+            	schoolclassFrame.setLocation(300, 300);
+            	schoolclassFrame.pack();
+            	schoolclassFrame.setVisible(true);
             }
         });
 
