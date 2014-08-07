@@ -30,7 +30,7 @@ import de.unibremen.swp.stundenplan.logic.TimetableManager;
  * @version 0.1
  * 
  */
-public final class TimetableModel extends AbstractTableModel {
+public class TimetableModel extends AbstractTableModel {
 
     /**
      * Die generierte serialVersionUID.
