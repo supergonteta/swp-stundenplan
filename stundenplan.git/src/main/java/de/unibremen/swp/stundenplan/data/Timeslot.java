@@ -210,6 +210,7 @@ public final class Timeslot implements Serializable {
     public void addSubject(final Subject subject) {
         if (subject != null) {
         	subjects.add(subject);
+        	subject.setTimeslot(this);
         }
     }
 
