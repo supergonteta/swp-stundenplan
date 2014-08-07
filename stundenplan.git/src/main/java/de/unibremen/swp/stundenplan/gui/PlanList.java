@@ -39,10 +39,8 @@ public class PlanList extends JFrame {
 	private JPanel panelSchoolclass;
 	
 	Teacher[] teacher;
-	int anzLehrer;
 	
 	Schoolclass[] schoolclasses;
-	int anzKlassen;
 	
 	public static JFrame pList;
 	
@@ -55,9 +53,8 @@ public class PlanList extends JFrame {
 		pList = this;
 		checkBoxen = new ArrayList<JCheckBox>();		
 		try {
-			anzLehrer = Data.getAllTeachers().size();
-			panelTeacher = new JPanel(new GridLayout(anzLehrer,2));			
-			teacher = new Teacher[anzLehrer];
+			panelTeacher = new JPanel(new GridLayout(Data.getAllTeachers().size(),2));			
+			teacher = new Teacher[Data.getAllTeachers().size()];
 			Data.getAllTeachers().toArray(teacher);			
 			for(int i=0; i < teacher.length; i++){
 				JCheckBox current = new JCheckBox(teacher[i].getName());
@@ -68,9 +65,8 @@ public class PlanList extends JFrame {
 			System.out.println("PlanList for-schleife fuer Lehrer Fehler");
 		}	
 		try {
-			anzKlassen = Data.getAllSchoolclasses().size();
-			panelSchoolclass = new JPanel(new GridLayout(anzKlassen,2));			
-			schoolclasses = new Schoolclass[anzKlassen];
+			panelSchoolclass = new JPanel(new GridLayout(Data.getAllSchoolclasses().size(),2));			
+			schoolclasses = new Schoolclass[Data.getAllSchoolclasses().size()];
 			Data.getAllSchoolclasses().toArray(schoolclasses);			
 			for(int i=0; i < schoolclasses.length; i++){			
 				JCheckBox current = new JCheckBox(schoolclasses[i].getName());
@@ -114,34 +110,7 @@ public class PlanList extends JFrame {
 				if(isChecked != 1){
 					System.out.println("nur eine Box markieren bitte");
 				} else {
-					System.out.println("ein gecheckt"+checkBoxen.get(position).getText());
-					String checkName;
-					DayTable tag = new DayTable();
-					System.out.println("ein gecheckt");
-					for (int i = 0; i < checkBoxen.size(); i++) {
-						if (checkBoxen.get(i).isSelected()) {
-
-							checkName = checkBoxen.get(i).getText();
-							System.out.println(checkName);
-//							try {
-//								
-//								for(Weekday weekday : Weekday.values()){
-//								tag = Data.getDayTableForWeekday(weekday);
-//								for (int j = 0; j < (Config.DAYTABLE_LENGTH_DEFAULT + 1); j++) {
-//									for (Teacher t : tag.getTimeslot(j).getTeachers()) {
-//
-//										if (t.getName().equals(checkName)) {
-//											System.out.println("geht klar"+j);
-//										}
-//									}
-//								}
-//								}
-//							} catch (DatasetException e) {
-//								// TODO Auto-generated catch block
-//								e.printStackTrace();
-//							}
-						}
-					}
+					System.out.println("Markiert: "+checkBoxen.get(position).getText());
 					// geht die angezeigten Klassen durch
 					for(Schoolclass s : schoolclasses){
 						// Ist die angeklickte Klasse im Klassenverzeichnis 
@@ -149,43 +118,20 @@ public class PlanList extends JFrame {
 						if(s.getName().equals(checkBoxen.get(position).getText())){
 							final SchoolclassFrame schoolclassFrame = new SchoolclassFrame(s);
 							schoolclassFrame.setLocation(300, 300);
-			            	schoolclassFrame.pack();
-			            	schoolclassFrame.setVisible(true);
 			            	break;
 						}
 					}
+					// geht die angezeigten Lehrer durch
 					for(Teacher t: teacher){
 						if(t.getName().equals(checkBoxen.get(position).getText())){
 							final TeacherFrame teacherFrame = new TeacherFrame(t);
 							teacherFrame.setLocation(300, 300);
+							break;
 						} 	
 					}	
 					
-					}
-					//paddys teil
-					String checkName;
-					DayTable tag = new DayTable();
-					for (int i = 0; i < checkBoxen.size(); i++) {
-						if (checkBoxen.get(i).isSelected()) {
-							checkName = checkBoxen.get(i).getText();
-							System.out.println(checkName);
-							try {								
-								for(Weekday weekday : Weekday.values()){
-									tag = Data.getDayTableForWeekday(weekday);
-									for (int j = 0; j < (Config.DAYTABLE_LENGTH_DEFAULT + 1); j++) {
-										for (Teacher t : tag.getTimeslot(j).getTeachers()) {
-											if (t.getName().equals(checkName)) {
-												System.out.println("geht klar "+j);
-											}
-										}
-									}
-								}
-							} catch (DatasetException e) {
-								e.printStackTrace();
-							}
-						}
-					}		
-				}				
-			});
-		}
+				}
+			}				
+		});
 	}
+}

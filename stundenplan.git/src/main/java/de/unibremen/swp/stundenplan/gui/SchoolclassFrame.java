@@ -86,11 +86,6 @@ public class SchoolclassFrame extends JFrame {
      */
     protected static final int ROW_HEIGHT = 40;
     
-
-	
-    /**
-	 * 
-	 */
     /**
 	 * 
 	 */
@@ -101,6 +96,9 @@ public class SchoolclassFrame extends JFrame {
      */
     private final AddTeacherDialog addTeacherDialog;
     
+    /**
+     * 
+     */
     private Schoolclass schoolclass;
 
     /**
@@ -117,7 +115,7 @@ public class SchoolclassFrame extends JFrame {
         setTitle("Stundenplan der Klasse: "+pSchoolclass.getName());
         table = new JTable(new SchoolclasstableModel(pSchoolclass));
 
-        setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         table.addMouseListener(new MyMouseListener());
 
@@ -191,7 +189,7 @@ public class SchoolclassFrame extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent event) {
             	try {
-					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row);
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
 					if(!timeslot.getTeacherAcronymList().equals("")) timeslot.getTeachers().clear();					
 				} catch (DatasetException e) {
 					e.printStackTrace();

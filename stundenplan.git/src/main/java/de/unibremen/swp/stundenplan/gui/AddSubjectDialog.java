@@ -20,12 +20,14 @@ import org.apache.log4j.Logger;
 
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Subject;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
 import de.unibremen.swp.stundenplan.logic.TimetableManager;
+import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
  * Der Dialog zum Hinzufügen eines Lehrers.
@@ -56,6 +58,21 @@ public final class AddSubjectDialog extends JDialog implements PropertyChangeLis
      * Der aktuelle Timeslot.
      */
     private Timeslot timeslot;
+    
+    /**
+     * 
+     */
+    private Weekday weekday;
+    
+    /**
+     * 
+     */
+    private int position;
+    
+    /**
+     * 
+     */
+    private Object clazz;
 
     /**
      * Eine JList für die Fächer.
@@ -153,10 +170,9 @@ public final class AddSubjectDialog extends JDialog implements PropertyChangeLis
         try {
             Collection<Subject> subjects;
             timeslot = TimetableManager.getTimeslotAt(weekday, position, clazz);
-            if(clazz instanceof Teacher){
-            	Teacher t = (Teacher)clazz;
-            	t.addWorkingHours(1);
-            	}
+            this.weekday = weekday;
+            this.position = position;
+            this.clazz = clazz;
             final Collection<Subject> subjectsInSlot = timeslot.getSubjects();
             subjects = SubjectManager.getAllSubjects();
             subjectListModel.clear();
@@ -207,6 +223,32 @@ public final class AddSubjectDialog extends JDialog implements PropertyChangeLis
         for (final int index : selectedIndices) {
             final Subject subject = subjectListModel.getSubjectAt(index);
             timeslot.addSubject(subject);
+            if(clazz instanceof Schoolclass) {
+	            if(timeslot.getTeachers().size()>0) {
+	            	for(Teacher teacher : timeslot.getTeachers()) {
+	            		try {
+	        				Timeslot timeslotTeacher = Data.getDayTableForWeekday(weekday, teacher).getTimeslot(position);
+	        				timeslotTeacher.addSubject(subject);
+	        				TimetableManager.updateTimeslot(timeslotTeacher);
+	        			} catch (DatasetException e) {
+	        				e.printStackTrace();
+	        			}
+	            	}
+	            }
+            }
+            if(clazz instanceof Teacher) {
+	            if(timeslot.getSchoolclasses().size()>0) {
+	            	for(Schoolclass schoolclass : timeslot.getSchoolclasses()) {
+	            		try {
+	        				Timeslot timeslotSchoolclass = Data.getDayTableForWeekday(weekday, schoolclass).getTimeslot(position);
+	        				timeslotSchoolclass.addSubject(subject);
+	        				TimetableManager.updateTimeslot(timeslotSchoolclass);
+	        			} catch (DatasetException e) {
+	        				e.printStackTrace();
+	        			}
+	            	}
+	            }
+            }
             try {
                 TimetableManager.updateTimeslot(timeslot);
             } catch (DatasetException ex) {

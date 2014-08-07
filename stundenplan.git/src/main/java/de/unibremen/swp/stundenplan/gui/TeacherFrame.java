@@ -139,7 +139,7 @@ public class TeacherFrame extends JFrame {
         setTitle("Stundenplan vom Lehrer: "+teacher.getName());
         table = new JTable(new TeachertableModel(pTeacher));
 
-        setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         table.addMouseListener(new MyMouseListener());
         table.setDefaultRenderer(Timeslot.class, new TimetableRenderer());
@@ -213,7 +213,7 @@ public class TeacherFrame extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent event) {
             	try {
-					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row);
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, teacher);
 					if(!timeslot.getSchoolclasses().equals("")) timeslot.getSchoolclasses().clear();					
 				} catch (DatasetException e) {
 					e.printStackTrace();
