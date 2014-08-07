@@ -166,7 +166,7 @@ public class SchoolclassFrame extends JFrame {
             }
         });
         final JMenuItem menu3 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
-        menu2.addActionListener(new ActionListener() {
+        menu3.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent event) {
