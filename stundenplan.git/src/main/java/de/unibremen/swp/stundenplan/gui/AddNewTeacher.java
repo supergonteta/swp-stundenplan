@@ -90,6 +90,8 @@ public class AddNewTeacher extends Panel {
 				acroField.setText("");
 				timeField.setText("");
 				
+				StartFrame.updateTeacherList();
+				
 				System.out.println(name +" " + acro + " "+ time);
 				
 				StartFrame.l.dispose();

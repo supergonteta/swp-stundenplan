@@ -69,6 +69,7 @@ public class AddNewSchoolclass extends Panel {
 					System.out.println("Fehler addSchoolclass");
 				}
 				
+				StartFrame.updateSchoolclassList();
 				
 				System.out.println(name);
 				nameField.setText("");

@@ -81,6 +81,8 @@ public class AddNewSubject extends Panel {
 				} catch (DatasetException e) {
 					System.out.println("Fach add fehlgeschlagen");
 				}
+				
+				StartFrame.updateSubjectList();
 
 				nameField.setText("");
 

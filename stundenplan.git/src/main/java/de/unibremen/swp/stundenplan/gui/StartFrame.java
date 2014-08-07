@@ -1,30 +1,64 @@
 package de.unibremen.swp.stundenplan.gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
-import de.unibremen.swp.stundenplan.Stundenplan;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.data.Subject;
 import de.unibremen.swp.stundenplan.data.Teacher;
+import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
+import de.unibremen.swp.stundenplan.logic.SubjectManager;
+import de.unibremen.swp.stundenplan.logic.TeacherManager;
 import de.unibremen.swp.stundenplan.persistence.Data;
 
 public class StartFrame extends JFrame {
-	private JButton button1;
-	private JButton button2;
-	private JButton button3;
-	private JButton buttonS1;
-	private JPanel panelButton;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8149773824938278639L;
+	
+	private final JButton button1;
+	private final JButton button2;
+	private final JButton button3;
+	private final JButton okButton;
+	
+	private final JPanel panel;
 
-	private JLabel oben;
+	private final JLabel oben;
 	public static JFrame f;
 	public static JFrame l;
 	public static JFrame c;
+	
+	private JList<String> teacherList = new JList<String>();
+	private JList<String> schoolclassList = new JList<String>();
+	private JList<String> subjectList = new JList<String>();
+
+    /**
+     * Das aktuelle TeacherListModel.
+     */
+    private static TeacherListModel teacherListModel;
+    
+    /**
+     * Das aktuelle SchoolclassListModel.
+     */
+    private static SchoolclassListModel schoolclassListModel;
+    
+    /**
+     * Das aktuelle SubjectListModel;
+     */
+    private static SubjectListModel subjectListModel;
 	
 	public StartFrame() {
 		super("Add-Panel");
@@ -32,35 +66,59 @@ public class StartFrame extends JFrame {
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(5, 5));
+        GridBagConstraints c = new GridBagConstraints();
 
 		// Buttons erzeugen
-		button1 = new JButton("Lehrer hinzufügen");
+		button1 = new JButton("Lehrer hinzufÃ¼gen");
+		button2 = new JButton("Klasse hinzufÃ¼gen");
+		button3 = new JButton("Fach hinzufÃ¼gen");
+		okButton = new JButton("OK");
 		
-		button2 = new JButton("Fach hinzufügen");
-	
-		button3 = new JButton("Klasse hinzufügen");
-		
-		
-		
+		button1.setSize(100, 50);
+		button2.setSize(100, 50);
+		button3.setSize(100, 50);
 
 		// Panels erzeugen
-		panelButton = new JPanel(new GridLayout(1, 3));
+		panel = new JPanel(new GridBagLayout());
 
+		// ListModels
+		teacherListModel = new TeacherListModel();
+        teacherList = new JList<>(teacherListModel);
+		updateTeacherList();
+        
+        schoolclassListModel = new SchoolclassListModel();
+        schoolclassList = new JList<>(schoolclassListModel);
+        updateSchoolclassList();
+        
+        subjectListModel = new SubjectListModel();
+        subjectList = new JList<>(subjectListModel);
+		updateSubjectList();
+        
+		// Listen der Daten
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridy = 1;
+		panel.add(teacherList, c);
+		c.gridx = 1;
+		panel.add(schoolclassList, c);
+		c.gridx = 2;
+		panel.add(subjectList, c);
 
 		// Auf Panel Buttons packen
-		panelButton.add(button1);
-		panelButton.add(button2);
-		panelButton.add(button3);
-
-
+		c.gridx = 0;
+		c.gridy = 2;
+		panel.add(button1, c);
+		c.gridx = 1;
+		panel.add(button2, c);
+		c.gridx = 2;
+		panel.add(button3, c);
 		
 		addLehrer(button1);
-		addFach(button2);
-		addKlasse(button3);
-
+		addKlasse(button2);
+		addFach(button3);
 
 		// Labels erzeugen
-		oben = new JLabel("Der Datenbank hinzufuegen");
+		oben = new JLabel("Datenbank");
 		// Label zentrieren
 		oben.setHorizontalAlignment(JLabel.CENTER);
 
@@ -68,17 +126,11 @@ public class StartFrame extends JFrame {
 		getContentPane().add(BorderLayout.NORTH, oben);
 
 		// Panels auf Frame packen
-		getContentPane().add(BorderLayout.WEST, panelButton);
-
+		getContentPane().add(BorderLayout.WEST, panel);
 
 		pack();
 		setVisible(true);
- 
 	}
-
-
-
-
 	
 	private void addLehrer(JButton b) {
 		b.addActionListener(new ActionListener() {
@@ -89,7 +141,7 @@ public class StartFrame extends JFrame {
 				l.add(a, BorderLayout.CENTER);
 				l.pack();
 				l.setVisible(true);
-				
+				updateTeacherList();
 			}
 		});
 	}
@@ -102,10 +154,11 @@ public class StartFrame extends JFrame {
 				c.add(a, BorderLayout.CENTER);
 				c.pack();
 				c.setVisible(true);
-				
+				updateSchoolclassList();
 			}
 		});
 	}
+	
 	private void addFach(JButton b) {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
@@ -115,12 +168,46 @@ public class StartFrame extends JFrame {
 				f.add(a, BorderLayout.CENTER);
 				f.pack();
 				f.setVisible(true);
-				
+				updateSubjectList();
 			}
 		});
 	}
 
+	public static void updateTeacherList() {
+        try {
+			Collection<Teacher> teachers = TeacherManager.getAllTeachers();
+			teacherListModel.clear();
+            for (final Teacher teacher : teachers) {
+            	teacherListModel.addTeacher(teacher);
+            }
+		} catch (DatasetException e1) {
+			e1.printStackTrace();
+		}
+	}
 	
+	public static void updateSchoolclassList() {
+        try {
+			Collection<Schoolclass> schoolclasses = SchoolclassManager.getAllSchoolclasses();
+			schoolclassListModel.clear();
+            for (final Schoolclass schoolclass : schoolclasses) {
+            	schoolclassListModel.addSchoolclass(schoolclass);
+            }
+		} catch (DatasetException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public static void updateSubjectList() {
+        try {
+			Collection<Subject> subjects = SubjectManager.getAllSubjects();
+			subjectListModel.clear();
+            for (final Subject subject : subjects) {
+            	subjectListModel.addSubject(subject);
+            }
+		} catch (DatasetException e1) {
+			e1.printStackTrace();
+		}
+	}
 	
 
 }
