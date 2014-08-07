@@ -137,7 +137,7 @@ public class TeacherFrame extends JFrame {
         setTitle("Stundenplan vom Lehrer: "+teacher.getName());
         table = new JTable(new TeachertableModel(pTeacher));
 
-        setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         table.addMouseListener(new MyMouseListener());
         table.setDefaultRenderer(Timeslot.class, new TimetableRenderer());

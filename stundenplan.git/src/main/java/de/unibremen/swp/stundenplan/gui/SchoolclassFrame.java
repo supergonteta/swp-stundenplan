@@ -85,11 +85,6 @@ public class SchoolclassFrame extends JFrame {
      */
     protected static final int ROW_HEIGHT = 40;
     
-
-	
-    /**
-	 * 
-	 */
     /**
 	 * 
 	 */
@@ -100,6 +95,9 @@ public class SchoolclassFrame extends JFrame {
      */
     private final AddTeacherDialog addTeacherDialog;
     
+    /**
+     * 
+     */
     private Schoolclass schoolclass;
 
     /**
@@ -115,7 +113,7 @@ public class SchoolclassFrame extends JFrame {
         setTitle("Stundenplan der Klasse: "+pSchoolclass.getName());
         table = new JTable(new SchoolclasstableModel(pSchoolclass));
 
-        setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         table.addMouseListener(new MyMouseListener());
 
