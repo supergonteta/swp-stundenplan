@@ -90,6 +90,7 @@ public final class SchoolclassManager {
         // setter checks for illegal argument
         schoolclass.setName(name);
         Data.addSchoolclass(schoolclass);
+        TimetableManager.init(schoolclass);
         LOGGER.debug("schoolclass added " + schoolclass);
     }
 

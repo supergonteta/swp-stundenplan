@@ -100,6 +100,7 @@ public final class TeacherManager {
         // setter checks for illegal argument
         teacher.setHoursPerWeek(hoursPerWeek);
         Data.addTeacher(teacher);
+        TimetableManager.init(teacher);
         LOGGER.debug("teacher added " + teacher);
     }
 

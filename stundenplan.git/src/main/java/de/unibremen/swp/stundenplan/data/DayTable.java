@@ -120,6 +120,26 @@ public final class DayTable {
     }
 
     /**
+     * Setzt den Wochentag dieses Tagesplans.
+     * 
+     * @param pWeekday
+     *            der neue Wochentag für diesen Tagesplan
+     */
+    public void setTeacher(final Teacher pTeacher) {
+        teacher = pTeacher;
+    }
+    
+    /**
+     * Setzt den Wochentag dieses Tagesplans.
+     * 
+     * @param pWeekday
+     *            der neue Wochentag für diesen Tagesplan
+     */
+    public void setSchoolclass(final Schoolclass pSchoolclass) {
+        schoolclass = pSchoolclass;
+    }
+    
+    /**
      * Fügt die übergebene Zeiteinheit zu diesem Tagesplan hinzu. Löst eine {@link IllegalArgumentException} aus, falls
      * die übergebene Zeiteinheit {@code null} ist
      * 

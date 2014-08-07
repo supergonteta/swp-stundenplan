@@ -346,6 +346,46 @@ public final class Data {
     }
 
     /**
+     * Gibt die Liste aller Tagespläne des Datenbestandes zurück.
+     * 
+     * @return die Liste aller Tagespläne des Datenbestandes
+     * @throws DatasetException
+     *             falls bei der Abfrage des Datenbestandes ein Fehler in der unterliegenden Persistenzkomponente
+     *             auftritt
+     */
+    @SuppressWarnings("unchecked")
+    public static List<DayTable> getDayTablesForTeacher(final Teacher pTeacher) throws DatasetException {
+        try {
+            final Query query = entityManager.createQuery("SELECT d FROM DayTable d WHERE d.Teacher = ?1");
+            query.setParameter(1, pTeacher);
+            return (List<DayTable>) query.getResultList();
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting all day tables!", e);
+            throw new DatasetException("Error while getting all day tables: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Gibt die Liste aller Tagespläne des Datenbestandes zurück.
+     * 
+     * @return die Liste aller Tagespläne des Datenbestandes
+     * @throws DatasetException
+     *             falls bei der Abfrage des Datenbestandes ein Fehler in der unterliegenden Persistenzkomponente
+     *             auftritt
+     */
+    @SuppressWarnings("unchecked")
+    public static List<DayTable> getDayTablesForSchoolclass(final Schoolclass pSchoolclas) throws DatasetException {
+        try {
+            final Query query = entityManager.createQuery("SELECT d FROM DayTable d WHERE d.Schoolclass = ?1");
+            query.setParameter(1, pSchoolclas);
+            return (List<DayTable>) query.getResultList();
+        } catch (Exception e) {
+            LOGGER.error("Exception while getting all day tables!", e);
+            throw new DatasetException("Error while getting all day tables: " + e.getMessage());
+        }
+    }
+    
+    /**
      * Gibt den Tagesplan des gegebenen Wochentages zurück oder {@code null}, falls kein Tagesplan für den Wochentag im
      * Datenbestand existiert. Falls der gegebene Wochentag den Wert {@code null} hat, wird ebenfalls {@code null}
      * zurück gegeben.

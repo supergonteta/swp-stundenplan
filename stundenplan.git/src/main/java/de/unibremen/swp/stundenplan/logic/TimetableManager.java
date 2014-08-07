@@ -56,6 +56,34 @@ public final class TimetableManager {
     }
 
     /**
+     * Prüft, ob es im unterliegenden Datenbestand schon Tagespläne gibt. Falls nicht, wird für jeden Wochentag ein
+     * Tagesplan erzeugt.
+     * 
+     * @throws DatasetException
+     *             falls es ein Problem beim Zugriff auf den Datenbestand gibt
+     */
+    public static void init(Teacher pTeacher) throws DatasetException {
+        List<DayTable> daytables = Data.getDayTablesForTeacher(pTeacher);
+        if (daytables.isEmpty()) {
+            fillDefaultDataForTeacher(pTeacher);
+        }
+    }
+
+    /**
+     * Prüft, ob es im unterliegenden Datenbestand schon Tagespläne gibt. Falls nicht, wird für jeden Wochentag ein
+     * Tagesplan erzeugt.
+     * 
+     * @throws DatasetException
+     *             falls es ein Problem beim Zugriff auf den Datenbestand gibt
+     */
+    public static void init(Schoolclass pSchoolclass) throws DatasetException {
+        List<DayTable> daytables = Data.getDayTablesForSchoolclass(pSchoolclass);
+        if (daytables.isEmpty()) {
+            fillDefaultDataForSchoolclass(pSchoolclass);
+        }
+    }
+    
+    /**
      * Erzeugt für jeden Wochentag einen Tagesplan und fügt sie diesem Manager hinzu.
      * 
      * @throws DatasetException
@@ -69,6 +97,33 @@ public final class TimetableManager {
         }
     }
 
+    /**
+     * Erzeugt für jeden Wochentag einen Tagesplan und fügt sie diesem Manager hinzu.
+     * 
+     * @throws DatasetException
+     *             falls ein Problem beim Aktualisieren des Datenbestandes auftritt
+     */
+    private static void fillDefaultDataForTeacher(final Teacher pTeacher) throws DatasetException {
+
+        for (final Weekday weekday : Weekday.values()) {
+            final DayTable dayTable = createDayTableforTeacher(weekday,pTeacher);
+            Data.addDayTable(dayTable);
+        }
+    }
+    
+    /**
+     * Erzeugt für jeden Wochentag einen Tagesplan und fügt sie diesem Manager hinzu.
+     * 
+     * @throws DatasetException
+     *             falls ein Problem beim Aktualisieren des Datenbestandes auftritt
+     */
+    private static void fillDefaultDataForSchoolclass(final Schoolclass pSchoolclass) throws DatasetException {
+
+        for (final Weekday weekday : Weekday.values()) {
+            final DayTable dayTable = createDayTableForSchoolclass(weekday, pSchoolclass);
+            Data.addDayTable(dayTable);
+        }
+    }
     /**
      * Erzeugt einen neuen Tagesplan für den angegebenen Wochentag und gibt ihn zurück.
      * 
@@ -86,6 +141,41 @@ public final class TimetableManager {
         return dayTable;
     }
 
+    /**
+     * Erzeugt einen neuen Tagesplan für den angegebenen Wochentag und gibt ihn zurück.
+     * 
+     * @param weekday
+     *            der Wochentag des neuen Tagesplans
+     * @return der neue Tagesplan
+     * @throws DatasetException
+     *             falls ein Problem beim Aktualisieren des Datenbestandes auftritt
+     */
+    private static DayTable createDayTableforTeacher(final Weekday weekday, final Teacher pTeacher) throws DatasetException {
+        final DayTable dayTable = new DayTable();
+        dayTable.setWeekday(weekday);
+        dayTable.setTeacher(pTeacher);
+        createTimeslotsForDayTable(dayTable);
+        Data.addDayTable(dayTable);
+        return dayTable;
+    }
+    
+    /**
+     * Erzeugt einen neuen Tagesplan für den angegebenen Wochentag und gibt ihn zurück.
+     * 
+     * @param weekday
+     *            der Wochentag des neuen Tagesplans
+     * @return der neue Tagesplan
+     * @throws DatasetException
+     *             falls ein Problem beim Aktualisieren des Datenbestandes auftritt
+     */
+    private static DayTable createDayTableForSchoolclass(final Weekday weekday, final Schoolclass pSchoolclass) throws DatasetException {
+        final DayTable dayTable = new DayTable();
+        dayTable.setWeekday(weekday);
+        dayTable.setSchoolclass(pSchoolclass);
+        createTimeslotsForDayTable(dayTable);
+        Data.addDayTable(dayTable);
+        return dayTable;
+    }
     /**
      * Erzeugt Zeiteinheiten für den gegebenen Tagesplan.
      * 
