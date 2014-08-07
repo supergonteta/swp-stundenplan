@@ -15,6 +15,9 @@
  */
 package de.unibremen.swp.stundenplan.data;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,8 +32,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.config.Config;
+import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.gui.PlanList;
+import de.unibremen.swp.stundenplan.gui.StartFrame;
+import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
  * Entspricht einer Zeiteinheit. Eine Zeiteinheit ist einem Tagesplan zugeordnet und hat eine Startzeit. Die Dauer einer
@@ -40,9 +52,16 @@ import de.unibremen.swp.stundenplan.config.Config;
  * @version 0.1
  * 
  */
+
+
+
 @Entity
 public final class Timeslot implements Serializable {
 
+	
+	@Transient
+	JFrame popUp;
+	
     /**
      * Die generierte serialVersionUID.
      */
@@ -137,9 +156,30 @@ public final class Timeslot implements Serializable {
     public void addTeacher(final Teacher teacher) {
         if (teacher != null) {
             teachers.add(teacher);
-            teacher.addWorkingHours(LENGTH);
+            teacher.addWorkingHours(LENGTH/60);
+            if(teacher.getWorkingHours().longValue()>teacher.getHoursPerWeek().longValue()) {
+            	popUp = new JFrame();
+            	popUp.setTitle("Warnung");
+            	
+            	JOptionPane.showMessageDialog(popUp, "Der Lehrer " + teacher.getName() + " hat seine maximale Arbeitszeit ueberschritten");
+            	
+            
+            	
+            }
+            System.out.println(teacher.getWorkingHours().intValue());
         }
     }
+    
+	private void buttonOkay(JButton b) {
+		b.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent ae) {
+				
+				
+				popUp.dispose();
+			}
+		});
+	}
     
     public boolean lehrerIstSchonImTimeslot(final Teacher t){
     	if(teachers.contains(t)) return true;
@@ -170,15 +210,7 @@ public final class Timeslot implements Serializable {
     public void addSubject(final Subject subject) {
         if (subject != null) {
         	subjects.add(subject);
-        	subject.setTimeslot(this);
         }
-    }
-
-    public void editSubject(final Subject subject, final String name, final String acro){
-    	if(subject != null){
-    		subject.setAcronym(acro);
-    		subject.setName(name);
-    	}
     }
 
     /**
@@ -268,4 +300,12 @@ public final class Timeslot implements Serializable {
         final int minute = startTime.get(Calendar.MINUTE);
         return String.format("%02d:%02d", hour, minute);
     }
+
+	public void editSubject(Subject subject, String name, String acro) {
+		if(subject!= null) {
+			subject.setAcronym(acro);
+			subject.setName(name);
+		}
+		
+	}
 }
