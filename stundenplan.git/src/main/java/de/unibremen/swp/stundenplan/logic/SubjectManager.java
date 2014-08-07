@@ -26,7 +26,7 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
- * Diese Klasse verwaltet die Fächer. Es kÃ¶nnen beispielsweise Fächer hinzugefÃ¼gt werden oder Fächer ausgegeben werden.
+ * Diese Klasse verwaltet die Fï¿½cher. Es kÃ¶nnen beispielsweise Fï¿½cher hinzugefÃ¼gt werden oder Fï¿½cher ausgegeben werden.
  * 
  * @author Belavic, Oliver
  * 
@@ -45,7 +45,7 @@ public final class SubjectManager {
     }
 
     /**
-     * PrÃ¼ft, ob schon Klassen im Datenbestand vorhanden sind. Falls nicht, werden einige Default-Fächer angelegt.
+     * PrÃ¼ft, ob schon Klassen im Datenbestand vorhanden sind. Falls nicht, werden einige Default-Fï¿½cher angelegt.
      * 
      * @throws DatasetException
      *             falls bei der Erzeugung oder der Verwendung des Persistenzobjektes ein Fehler auftritt
@@ -60,7 +60,7 @@ public final class SubjectManager {
     }
 
     /**
-     * FÃ¼llt den Datenbestand mit drei Fächern und weist dem Zeitslot 1,1 eins dieser Fach zu.
+     * FÃ¼llt den Datenbestand mit drei Fï¿½chern und weist dem Zeitslot 1,1 eins dieser Fach zu.
      * 
      * @throws DatasetException
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
@@ -68,10 +68,10 @@ public final class SubjectManager {
     private static void fillDefaultData() throws DatasetException {
         LOGGER.info("Creating test data in database");
         addSubject("Spo", "Sport");
-        addSubject("Omv", "Omasvermöbeln");
+        addSubject("Omv", "Omasvermï¿½beln");
         addSubject("Imp", "Imperiumkram");
         addSubject("Mat", "Mathematik");
-        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
+        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1 );
         timeslot.addSubject(getSubjectByAcronym("Omv"));
         Data.updateTimeslot(timeslot);
     }

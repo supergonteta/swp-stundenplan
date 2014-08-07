@@ -71,7 +71,7 @@ public final class TeacherManager {
         addTeacher("DrL", "Dr. Hannibal Lecter", "35");
         addTeacher("KKK", "Karsten Klaus Kinski", "2");
         addTeacher("HdF", "Halto de Fressi", "40");
-        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
+        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1, getTeacherByAcronym("HdF"));
         timeslot.addTeacher(getTeacherByAcronym("HdF"));
         Data.updateTimeslot(timeslot);
     }

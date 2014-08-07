@@ -70,7 +70,7 @@ public final class SchoolclassManager {
         addSchoolclass("1b");
         addSchoolclass("2c");
         addSchoolclass("4a");
-        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1);
+        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1, getSchoolclassByName("4a"));
         timeslot.addSchoolclass(getSchoolclassByName("4a"));
         Data.updateTimeslot(timeslot);
     }

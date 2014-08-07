@@ -215,6 +215,7 @@ public final class TimetableManager {
         return dayTable.getTimeslot(position);
     }
     
+    
     /**
      * Gibt die Zeiteinheit an der gegebenen Position für den gegebenen Wochentag zurück. Falls die Index-Angaben
      * außerhalb der jeweils gültigen Bereiche liegen, wird {@code null} zurückgegeben.

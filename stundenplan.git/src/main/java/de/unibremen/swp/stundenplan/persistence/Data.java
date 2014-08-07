@@ -411,10 +411,10 @@ public final class Data {
             if (dayTables.isEmpty()) {
                 return null;
             }
-            if (dayTables.size() > 1) {
-                LOGGER.error("There is more than one daytable for day " + weekday);
-                throw new DatasetException("Daytable not unique for " + weekday);
-            }
+//            if (dayTables.size() > 1) {
+//                LOGGER.error("There is more than one daytable for day " + weekday);
+//                throw new DatasetException("Daytable not unique for " + weekday);
+//            }
             return dayTables.get(0);
         } catch (Exception e) {
             LOGGER.error("Exception while getting day tables for day " + weekday, e);
