@@ -15,15 +15,23 @@
  */
 package de.unibremen.swp.stundenplan.gui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.Timer;
 
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Teacher;
+import de.unibremen.swp.stundenplan.data.Timeslot;
+import de.unibremen.swp.stundenplan.gui.MainFrame.MyMouseListener;
 
 /**
  * Das Hauptfenster, in dem die GUI dargestellt wird.
@@ -54,6 +62,39 @@ public class TeacherFrame extends MainFrame {
         super();
         addSchoolclassDialog = new AddSchoolclassDialog(this);
         setTitle("Stundenplan von : "+teacher.getName());
+        addSubjectDialog = new AddSubjectDialog(this);
+        table = new JTable(new TeachertableModel(teacher));
+
+        setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
+        setTitle(Messages.getString("MainFrame.Title"));
+
+        table.addMouseListener(new MyMouseListener());
+
+        table.setDefaultRenderer(Timeslot.class, new TimetableRenderer());
+        table.setCellSelectionEnabled(true);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        final JScrollPane scrollPane = new JScrollPane(table);
+
+        table.setFillsViewportHeight(true);
+        table.setGridColor(Color.YELLOW);
+        table.setRowHeight(ROW_HEIGHT);
+        
+        Timer t = new Timer(50, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	Random r = new Random();
+            	table.setGridColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+            	table.setBackground(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+            }
+        });
+        t.start();
+
+        add(scrollPane);
+        pack();
+        setVisible(true);
+
+        
     }
 
     /**

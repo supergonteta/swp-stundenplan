@@ -102,12 +102,12 @@ public class MainFrame extends JFrame {
     /**
      * Zur Darstellung der Aktivitäten in einer Tabelle, wird die JTable benutzt.
      */
-    protected final JTable table;
+    protected JTable table;
     
     /**
      * Der Dialog, der aufpopt, um ein Fach hinzuzufügen.
      */
-    protected final AddSubjectDialog addSubjectDialog;
+    protected AddSubjectDialog addSubjectDialog;
 
     /**
      * Die generierte serialVersionUID.

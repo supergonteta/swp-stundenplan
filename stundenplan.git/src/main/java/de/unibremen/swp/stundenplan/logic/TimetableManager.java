@@ -63,10 +63,8 @@ public final class TimetableManager {
      *             falls es ein Problem beim Zugriff auf den Datenbestand gibt
      */
     public static void init(Teacher pTeacher) throws DatasetException {
-        List<DayTable> daytables = Data.getDayTablesForTeacher(pTeacher);
-        if (daytables.isEmpty()) {
             fillDefaultDataForTeacher(pTeacher);
-        }
+        
     }
 
     /**
@@ -77,10 +75,8 @@ public final class TimetableManager {
      *             falls es ein Problem beim Zugriff auf den Datenbestand gibt
      */
     public static void init(Schoolclass pSchoolclass) throws DatasetException {
-        List<DayTable> daytables = Data.getDayTablesForSchoolclass(pSchoolclass);
-        if (daytables.isEmpty()) {
-            fillDefaultDataForSchoolclass(pSchoolclass);
-        }
+           fillDefaultDataForSchoolclass(pSchoolclass);
+        
     }
     
     /**
