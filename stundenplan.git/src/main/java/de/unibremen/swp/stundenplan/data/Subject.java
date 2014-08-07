@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
- * Repr�sentiert ein Fach 
+ * Repräsentiert ein Fach 
  * 
  * @author Belavic, Oliver
  *
@@ -31,7 +31,7 @@ public final class Subject implements Serializable {
     private String name;
 
     /**
-     * Das K�rzel dieses Faches. Ein Kürzel muss systemweit eindeutig sein.
+     * Das Kürzel dieses Faches. Ein Kürzel muss systemweit eindeutig sein.
      */
     @Id
     @Column(length = Data.MAX_ACRONYM_LEN)
