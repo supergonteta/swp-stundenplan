@@ -144,8 +144,7 @@ public class PlanList extends JFrame {
 					for(Schoolclass s : klassen){
 						if(s.getName().equals(checkBoxen.get(position).getText())){
 							final SchoolclassFrame schoolclassFrame = new SchoolclassFrame(s);
-							schoolclassFrame.setTitle(schoolclassFrame.getTitle()+" "+checkBoxen.get(position).getText());
-			            	schoolclassFrame.setLocation(300, 300);
+							schoolclassFrame.setLocation(300, 300);
 			            	schoolclassFrame.pack();
 			            	schoolclassFrame.setVisible(true);
 			            	break;
