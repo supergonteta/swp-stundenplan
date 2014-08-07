@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import de.unibremen.swp.stundenplan.persistence.Data;
@@ -33,9 +37,13 @@ public final class Subject implements Serializable {
     /**
      * Das K�rzel dieses Faches. Ein Kürzel muss systemweit eindeutig sein.
      */
-    @Id
     @Column(length = Data.MAX_ACRONYM_LEN)
     private String acronym;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     
     private Timeslot timeslot;
     /**

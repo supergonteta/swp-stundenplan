@@ -193,7 +193,7 @@ public final class Data {
      * Gibt die F�cher zu dem gegebenen Kürzel zurück oder {@code null} falls es keine solches Fach gibt oder das
      * gegebene Kürzel {@code null} oder leer ist.
      * 
-     * @param acronym
+     * @param pID
      *            das Kürzel der gesuchtes Fach
      * @return das Fach zu dem gegebenen Kürzel oder {@code null} falls es kein fach mit dem Kürzel im
      *         Datenbestand gibt oder der Parameterwert ungültig war
@@ -202,15 +202,13 @@ public final class Data {
      *             auftritt
      * 
      */
-    public static Subject getSubjectByAcronym(final String acronym) throws DatasetException {
-        if (acronym == null || acronym.trim().isEmpty()) {
-            return null;
-        }
+    public static Subject getSubjectByID(final long pID) throws DatasetException {
+        
         try {
-            return entityManager.find(Subject.class, acronym);
+            return entityManager.find(Subject.class, pID);
         } catch (Exception e) {
-            LOGGER.error("Exception while getting subject by acronym " + acronym, e);
-            throw new DatasetException("Error while searching a subject for acronym " + acronym + ": " + e.getMessage());
+            LOGGER.error("Exception while getting subject by acronym " + pID, e);
+            throw new DatasetException("Error while searching a subject for acronym " + pID + ": " + e.getMessage());
         }
     }
 

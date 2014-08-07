@@ -72,7 +72,6 @@ public final class SubjectManager {
         addSubject("Imp", "Imperiumkram");
         addSubject("Mat", "Mathematik");
         final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1 );
-        timeslot.addSubject(getSubjectByAcronym("Omv"));
         Data.updateTimeslot(timeslot);
     }
 
@@ -114,16 +113,16 @@ public final class SubjectManager {
     /**
      * Gibt die LehrerIn mit dem gegebenen Kürzel zurück.
      * 
-     * @param acronym
+     * @param id
      *            das Kürzel der gesuchten LehrerIn
      * @return die LehrerIn mit dem gesuchten Kürzel oder {@code null} falls keine LehrerIn mit dem gegebenen Kürzel
      *         existiert
      * @throws DatasetException
      *             falls ein Fehler beim Zugriff auf den Datenbestand auftritt
      */
-    public static Subject getSubjectByAcronym(final String acronym) throws DatasetException {
-        LOGGER.debug("Subjects for acronym " + acronym);
-        return Data.getSubjectByAcronym(acronym);
+    public static Subject getSubjectByAcronym(final long id) throws DatasetException {
+        LOGGER.debug("Subjects for acronym " + id);
+        return Data.getSubjectByID(id);
     }
 
     public static void editSubject(final Subject s, final String acronym, final String name) throws DatasetException {
