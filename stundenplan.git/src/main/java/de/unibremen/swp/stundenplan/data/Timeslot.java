@@ -140,12 +140,6 @@ public final class Timeslot implements Serializable {
             teacher.addWorkingHours(LENGTH);
         }
     }
-    
-    public boolean lehrerIstSchonImTimeslot(final Teacher t){
-    	if(teachers.contains(t)) return true;
-    	
-    	return false;
-    }
 
     /**
      * Fügt die gegebene Schulklasse dieser Zeiteinheit hinzu. Es wird hier nicht überprüft, ob eine gleiche Schulklasse
@@ -173,6 +167,22 @@ public final class Timeslot implements Serializable {
         }
     }
 
+    // TODO NOCH UNBENUTZT DIESE METHODEN
+    public boolean teacherIsInTimeslot(final Teacher t){
+    	if(teachers.contains(t)) return true;   	
+    	return false;
+    }
+    
+    public boolean subjectIsInTimeslot(final Teacher t){
+    	if(subjects.contains(t)) return true;   	
+    	return false;
+    }
+    
+    public boolean schoolclassIsInTimeslot(final Teacher t){
+    	if(schoolclasses.contains(t)) return true;   	
+    	return false;
+    } 
+    
     /**
      * Gibt die dieser Zeiteinheit zugeordneten LehrerInnen als Liste ihrer Kürzel, getrennt durch Komma, zurück.
      * 
@@ -212,9 +222,8 @@ public final class Timeslot implements Serializable {
      * 
      * @return die dieser Zeiteinheit zugeordnete Klasse
      */
-    public String getSchoolclassname() {
+    public String getSchoolclassnames() {
         final StringBuilder schoolclassString = new StringBuilder();
-
         String separator = "";
         for (final Schoolclass schoolclass : schoolclasses) {
             schoolclassString.append(separator);

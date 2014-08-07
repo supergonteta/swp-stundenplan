@@ -4,11 +4,15 @@ package de.unibremen.swp.stundenplan.gui;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.data.Timeslot;
+import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.logic.TimetableManager;
 
 public class SchoolclassFrame extends MainFrame {
 
@@ -51,6 +55,7 @@ public class SchoolclassFrame extends MainFrame {
     protected JPopupMenu createPopup(final int row, final int col) {
         final JPopupMenu popmen = super.createPopup(row, col);
         final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddTeacher"));
+        final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.RemoveTeacher"));
         menu1.addActionListener(new ActionListener() {
 
             @Override
@@ -59,8 +64,19 @@ public class SchoolclassFrame extends MainFrame {
                 addTeacherDialog.setVisible(true);
             }
         });
+        menu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	try {
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row);
+					if(!timeslot.getTeacherAcronymList().equals("")) timeslot.getTeachers().clear();					
+				} catch (DatasetException e) {
+					e.printStackTrace();
+				}
+            }
+        });
         popmen.add(menu1);
-        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveTeacher")));
+        popmen.add(menu2);
         popmen.setVisible(true);
         return popmen;
     }
