@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -19,9 +21,11 @@ import javax.swing.Timer;
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.TimetableManager;
+import de.unibremen.swp.stundenplan.persistence.Data;
 
 public class SchoolclassFrame extends JFrame {
 	protected class MyMouseListener extends MouseAdapter {
@@ -127,14 +131,20 @@ public class SchoolclassFrame extends JFrame {
         table.setFillsViewportHeight(true);
         table.setGridColor(Color.YELLOW);
         table.setRowHeight(ROW_HEIGHT);
+        table.setBackground(Color.LIGHT_GRAY);
         
-        Timer t = new Timer(50, new ActionListener() {
+        table.setFillsViewportHeight(true);
+        table.setRowHeight(ROW_HEIGHT);
+        table.setGridColor(Color.LIGHT_GRAY);
+      	table.setBackground(Color.LIGHT_GRAY);
+        
+	        Timer t = new Timer(500, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-            	Random r = new Random();
-            	table.setGridColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
-            	table.setBackground(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+           	Random r = new Random();
+           	table.setGridColor(new Color(r.nextInt(2), r.nextInt(200), r.nextInt(2)));
+          	table.setBackground(Color.LIGHT_GRAY);
             }
         });
         t.start();
@@ -154,9 +164,12 @@ public class SchoolclassFrame extends JFrame {
      * @return das neue Popup-Menu
      */
     protected JPopupMenu createPopup(final int row, final int col) {
-        final JPopupMenu popmen = new JPopupMenu();
+    	final JPopupMenu popmen = new JPopupMenu();
         final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddTeacher"));
         final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.RemoveTeacher"));
+        final JMenuItem menu3 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
+        final JMenuItem menu4 = new JMenuItem(Messages.getString("MainFrame.RemoveSubject"));
+        final JMenuItem menu5 = new JMenuItem(Messages.getString("MainFrame.EditSubject"));
         menu1.addActionListener(new ActionListener() {
 
             @Override
@@ -165,9 +178,31 @@ public class SchoolclassFrame extends JFrame {
                 addTeacherDialog.setVisible(true);
             }
         });
-        final JMenuItem menu3 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
+        menu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	try {
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
+					Boolean deleted= false;
+					for(Teacher t : timeslot.getTeachers()){
+						Timeslot ts =Data.getDayTableForWeekday(Weekday.values()[col], t).getTimeslot(row);
+						for(Schoolclass sc : ts.getSchoolclasses()){
+							if(sc.getName()==schoolclass.getName())
+								ts.getSchoolclasses().clear();
+								timeslot.getTeachers().clear();
+								deleted=true;
+								break;
+						}
+						if(deleted==true){
+							break;
+						}
+					}
+				} catch (DatasetException e) {
+					e.printStackTrace();
+				}
+            }
+        });
         menu3.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(final ActionEvent event) {
             	try {
@@ -183,40 +218,51 @@ public class SchoolclassFrame extends JFrame {
 				}
             }
         });
-        popmen.add(menu3);
-        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSubject")));
-        menu2.addActionListener(new ActionListener() {
+        menu4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent event) {
             	try {
-					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
-					if(!timeslot.getTeacherAcronymList().equals("")) timeslot.getTeachers().clear();					
+            		Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
+					Boolean deleted= false;
+					for(Teacher t : timeslot.getTeachers()){
+						Timeslot ts =Data.getDayTableForWeekday(Weekday.values()[col], t).getTimeslot(row);
+						for(Schoolclass sc : ts.getSchoolclasses()){
+							if(sc.getName()==schoolclass.getName())
+								ts.getSubjects().clear();
+								timeslot.getSubjects().clear();
+								deleted=true;
+								break;
+						}
+						if(deleted==true){
+							break;
+						}
+					}
 				} catch (DatasetException e) {
 					e.printStackTrace();
 				}
             }
         });
-        final JMenuItem menu4 = new JMenuItem(Messages.getString("MainFrame.EditSubject"));
-        menu4.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(final ActionEvent event) {
-            try {
-              Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
-              if(timeslot.getSubjectAcronymList() == null){
-                JOptionPane.showMessageDialog(menu4, "Dort ist kein Fach zum editieren!", "Fehler", JOptionPane.PLAIN_MESSAGE);
-              }else{
-                editSubjectDialog.setTimeslot(Weekday.values()[col], row , schoolclass);
-                editSubjectDialog.setVisible(true);
-              }
-            }catch (DatasetException e){
-              e.printStackTrace();
-            } 
-          }
-          
+        menu5.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(final ActionEvent event) {
+        		try {
+        			Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
+        			if(timeslot.getSubjectAcronymList() == null){
+        				JOptionPane.showMessageDialog(menu4, "Dort ist kein Fach zum editieren!", "Fehler", JOptionPane.PLAIN_MESSAGE);
+        			}else {
+        				editSubjectDialog.setTimeslot(Weekday.values()[col], row , schoolclass);
+        				editSubjectDialog.setVisible(true);
+        			}
+        		}catch (DatasetException e){
+        			e.printStackTrace();
+        		} 
+        	}          
         });
-        popmen.add(menu4);
         popmen.add(menu1);
         popmen.add(menu2);
+        popmen.add(menu3);
+        popmen.add(menu4);
+        popmen.add(menu5);
         popmen.setVisible(true);
         return popmen;
     }
