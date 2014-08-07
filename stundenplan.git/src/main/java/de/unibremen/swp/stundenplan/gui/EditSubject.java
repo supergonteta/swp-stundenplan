@@ -54,7 +54,7 @@ public class EditSubject extends Panel {
 		p.add(acroField);
 		
 		
-		JButton button = new JButton("Editieren Abschließen");
+		JButton button = new JButton("Editieren Abschlieï¿½en");
 		p.add(button);
 		add(p, BorderLayout.NORTH);
 

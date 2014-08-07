@@ -73,10 +73,6 @@ public class StartFrame extends JFrame {
 		button2 = new JButton("Klasse hinzufügen");
 		button3 = new JButton("Fach hinzufügen");
 		okButton = new JButton("OK");
-		
-		button1.setSize(100, 50);
-		button2.setSize(100, 50);
-		button3.setSize(100, 50);
 
 		// Panels erzeugen
 		panel = new JPanel(new GridBagLayout());

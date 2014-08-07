@@ -53,7 +53,7 @@ public final class SchoolclassListModel extends DefaultListModel<String> {
      * FÃ¼gt eine Schulklasse hinzu.
      * 
      * @param schoolclass
-     *            die hinzuzufügende schulklasse.
+     *            die hinzuzufï¿½gende schulklasse.
      */
     protected void addSchoolclass(final Schoolclass schoolclass) {
         classes.add(schoolclass);
