@@ -24,7 +24,6 @@ import org.apache.log4j.Logger;
 import de.unibremen.swp.stundenplan.config.Config;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.gui.ErrorHandler;
-import de.unibremen.swp.stundenplan.gui.MainFrame;
 import de.unibremen.swp.stundenplan.gui.PlanList;
 import de.unibremen.swp.stundenplan.gui.SchoolclassFrame;
 import de.unibremen.swp.stundenplan.gui.StartFrame;
