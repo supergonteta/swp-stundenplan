@@ -112,11 +112,10 @@ public class SchoolclassFrame extends JFrame {
     	schoolclass = pSchoolclass;
     	addSubjectDialog = new AddSubjectDialog(this);
         addTeacherDialog = new AddTeacherDialog(this);
-        setTitle("Stundenplan der Klasse : "+pSchoolclass.getName());
+        setTitle("Stundenplan der Klasse: "+pSchoolclass.getName());
         table = new JTable(new SchoolclasstableModel(pSchoolclass));
 
         setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
-        setTitle(Messages.getString("MainFrame.Title"));
 
         table.addMouseListener(new MyMouseListener());
 

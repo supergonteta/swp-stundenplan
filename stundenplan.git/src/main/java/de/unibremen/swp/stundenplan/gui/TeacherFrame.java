@@ -134,11 +134,10 @@ public class TeacherFrame extends JFrame {
         teacher = pTeacher;
         addSubjectDialog = new AddSubjectDialog(this);
         addSchoolclassDialog = new AddSchoolclassDialog(this);
-        setTitle("Stundenplan von : "+teacher.getName());
+        setTitle("Stundenplan vom Lehrer: "+teacher.getName());
         table = new JTable(new TeachertableModel(pTeacher));
 
         setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
-        setTitle(Messages.getString("MainFrame.Title"));
 
         table.addMouseListener(new MyMouseListener());
         table.setDefaultRenderer(Timeslot.class, new TimetableRenderer());
