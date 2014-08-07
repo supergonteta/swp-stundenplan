@@ -202,15 +202,12 @@ public final class Data {
      *             auftritt
      * 
      */
-    public static Subject getSubjectByAcronym(final String acronym) throws DatasetException {
-        if (acronym == null || acronym.trim().isEmpty()) {
-            return null;
-        }
+    public static Subject getSubjectByID(final long id) throws DatasetException {     
         try {
-            return entityManager.find(Subject.class, acronym);
+            return entityManager.find(Subject.class, id);
         } catch (Exception e) {
-            LOGGER.error("Exception while getting subject by acronym " + acronym, e);
-            throw new DatasetException("Error while searching a subject for acronym " + acronym + ": " + e.getMessage());
+            LOGGER.error("Exception while getting subject by acronym " + id, e);
+            throw new DatasetException("Error while searching a subject for acronym " + id + ": " + e.getMessage());
         }
     }
 

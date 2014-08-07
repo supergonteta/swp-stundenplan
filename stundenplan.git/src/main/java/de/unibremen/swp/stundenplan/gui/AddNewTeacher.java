@@ -73,6 +73,7 @@ public class AddNewTeacher extends Panel {
 				
 				name = nameField.getText();
 				acro = acroField.getText();
+				
 				time = timeField.getText();
 				
 				
