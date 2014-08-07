@@ -2,6 +2,7 @@ package de.unibremen.swp.stundenplan.gui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -37,10 +38,10 @@ public class PlanList extends JFrame {
 	private JPanel panelTeacher;
 	private JPanel panelSchoolclass;
 	
-	Teacher[] lehrer;
+	Teacher[] teacher;
 	int anzLehrer;
 	
-	Schoolclass[] klassen;
+	Schoolclass[] schoolclasses;
 	int anzKlassen;
 	
 	public static JFrame pList;
@@ -56,10 +57,10 @@ public class PlanList extends JFrame {
 		try {
 			anzLehrer = Data.getAllTeachers().size();
 			panelTeacher = new JPanel(new GridLayout(anzLehrer,2));			
-			lehrer = new Teacher[anzLehrer];
-			Data.getAllTeachers().toArray(lehrer);			
-			for(int i=0; i < lehrer.length; i++){
-				JCheckBox current = new JCheckBox(lehrer[i].getName());
+			teacher = new Teacher[anzLehrer];
+			Data.getAllTeachers().toArray(teacher);			
+			for(int i=0; i < teacher.length; i++){
+				JCheckBox current = new JCheckBox(teacher[i].getName());
 				checkBoxen.add(current);
 				panelTeacher.add(current);				
 			}
@@ -69,10 +70,10 @@ public class PlanList extends JFrame {
 		try {
 			anzKlassen = Data.getAllSchoolclasses().size();
 			panelSchoolclass = new JPanel(new GridLayout(anzKlassen,2));			
-			klassen = new Schoolclass[anzKlassen];
-			Data.getAllSchoolclasses().toArray(klassen);			
-			for(int i=0; i < klassen.length; i++){			
-				JCheckBox current = new JCheckBox(klassen[i].getName());
+			schoolclasses = new Schoolclass[anzKlassen];
+			Data.getAllSchoolclasses().toArray(schoolclasses);			
+			for(int i=0; i < schoolclasses.length; i++){			
+				JCheckBox current = new JCheckBox(schoolclasses[i].getName());
 				checkBoxen.add(current);
 				panelSchoolclass.add(current);
 			}
@@ -109,39 +110,21 @@ public class PlanList extends JFrame {
 						isChecked = isChecked+1;
 						position =i;
 					}
-				}
+				}			
 				if(isChecked != 1){
-					System.out.println("mehrere gecheckt");
+					System.out.println("nur eine Box markieren bitte");
 				} else {
-					System.out.println("ein gecheckt"+checkBoxen.get(position).getText());
-					String checkName;
-					DayTable tag = new DayTable();
-					System.out.println("ein gecheckt");
-					for (int i = 0; i < checkBoxen.size(); i++) {
-						if (checkBoxen.get(i).isSelected()) {
-
-							checkName = checkBoxen.get(i).getText();
-							System.out.println(checkName);
-							try {
-								
-								for(Weekday weekday : Weekday.values()){
-								tag = Data.getDayTableForWeekday(weekday);
-								for (int j = 0; j < (Config.DAYTABLE_LENGTH_DEFAULT + 1); j++) {
-									for (Teacher t : tag.getTimeslot(j).getTeachers()) {
-
-										if (t.getName().equals(checkName)) {
-											System.out.println("geht klar"+j);
-										}
-									}
-								}
-								}
-							} catch (DatasetException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
+					System.out.println(checkBoxen.get(position).getText()+" wurde markiert");
+					// schließt Frame insofern bereits ein Stundenplan geoeffnet ist
+					for(Frame f : JFrame.getFrames()){
+					      if(f instanceof TeacherFrame || f instanceof SchoolclassFrame){
+					    	  f.dispose();
+					      }
 					}
-					for(Schoolclass s : klassen){
+					// geht die angezeigten Klassen durch
+					for(Schoolclass s : schoolclasses){
+						// Ist die angeklickte Klasse im Klassenverzeichnis 
+						// wird ein Stundenplan fuer diese Klasse erstellt
 						if(s.getName().equals(checkBoxen.get(position).getText())){
 							final SchoolclassFrame schoolclassFrame = new SchoolclassFrame();
 							schoolclassFrame.setTitle(schoolclassFrame.getTitle()+" "+checkBoxen.get(position).getText());
@@ -149,16 +132,42 @@ public class PlanList extends JFrame {
 			            	schoolclassFrame.pack();
 			            	schoolclassFrame.setVisible(true);
 			            	break;
-						}else{
+						} 	
+					}	
+					// geht die angezeigten Lehrer durch
+					for(Teacher t : teacher){
+						if(t.getName().equals(checkBoxen.get(position).getText())) {
 							final TeacherFrame teacherFrame = new TeacherFrame();
 							teacherFrame.setTitle(teacherFrame.getTitle()+" "+checkBoxen.get(position).getText());
 			            	teacherFrame.setLocation(300, 300);
 			            	teacherFrame.pack();
 			            	teacherFrame.setVisible(true);	
-			            	System.out.println(teacherFrame.getName());
 			            	break;
 						}
-					}				
+					}
+					//paddys teil
+					String checkName;
+					DayTable tag = new DayTable();
+					for (int i = 0; i < checkBoxen.size(); i++) {
+						if (checkBoxen.get(i).isSelected()) {
+							checkName = checkBoxen.get(i).getText();
+							System.out.println(checkName);
+							try {								
+								for(Weekday weekday : Weekday.values()){
+									tag = Data.getDayTableForWeekday(weekday);
+									for (int j = 0; j < (Config.DAYTABLE_LENGTH_DEFAULT + 1); j++) {
+										for (Teacher t : tag.getTimeslot(j).getTeachers()) {
+											if (t.getName().equals(checkName)) {
+												System.out.println("geht klar "+j);
+											}
+										}
+									}
+								}
+							} catch (DatasetException e) {
+								e.printStackTrace();
+							}
+						}
+					}		
 				}				
 			}
 		});
