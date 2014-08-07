@@ -172,8 +172,8 @@ public class MainFrame extends JFrame {
     protected JPopupMenu createPopup(final int row, final int col) {
         final JPopupMenu popmen = new JPopupMenu();
         final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
+        final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.RemoveSubject"));
         menu1.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(final ActionEvent event) {
             	try {
@@ -189,8 +189,23 @@ public class MainFrame extends JFrame {
 				}
             }
         });
+        menu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	try {
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row);
+					if(!timeslot.getSubjectAcronymList().equals("")) {
+						timeslot.getSubjects().clear();
+					}else {
+						JOptionPane.showMessageDialog(menu1, "Dort ist noch kein Fach eingetragen!", "Fehler", JOptionPane.PLAIN_MESSAGE);
+					}
+				} catch (DatasetException e) {
+					e.printStackTrace();
+				}
+            }
+        });
         popmen.add(menu1);
-        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSubject")));
+        popmen.add(menu2);
         popmen.setVisible(true);
         return popmen;
     }

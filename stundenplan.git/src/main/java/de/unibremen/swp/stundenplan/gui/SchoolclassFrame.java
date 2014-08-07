@@ -156,6 +156,7 @@ public class SchoolclassFrame extends JFrame {
     protected JPopupMenu createPopup(final int row, final int col) {
         final JPopupMenu popmen = new JPopupMenu();
         final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddTeacher"));
+        final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.RemoveTeacher"));
         menu1.addActionListener(new ActionListener() {
 
             @Override
@@ -164,7 +165,7 @@ public class SchoolclassFrame extends JFrame {
                 addTeacherDialog.setVisible(true);
             }
         });
-        final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
+        final JMenuItem menu3 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
         menu2.addActionListener(new ActionListener() {
 
             @Override
@@ -182,10 +183,21 @@ public class SchoolclassFrame extends JFrame {
 				}
             }
         });
-        popmen.add(menu2);
+        popmen.add(menu3);
         popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSubject")));
+        menu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	try {
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row);
+					if(!timeslot.getTeacherAcronymList().equals("")) timeslot.getTeachers().clear();					
+				} catch (DatasetException e) {
+					e.printStackTrace();
+				}
+            }
+        });
         popmen.add(menu1);
-        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveTeacher")));
+        popmen.add(menu2);
         popmen.setVisible(true);
         return popmen;
     }
