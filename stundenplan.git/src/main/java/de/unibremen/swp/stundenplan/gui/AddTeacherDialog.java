@@ -35,6 +35,7 @@ import org.apache.log4j.Logger;
 
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
+import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -159,6 +160,40 @@ public final class AddTeacherDialog extends JDialog implements PropertyChangeLis
 
     }
 
+    /**
+     * Setzt den Timeslot auf die Zeiteinheit die sich aus dem gegebenen Wochentag und der gegebenen Position ergibt.
+     * Fügt dazu alle Lehrer aus dem übergebenen Timeslot in das zugehörige teacherListModel ein.
+     * 
+     * @param weekday
+     *            Der Wochentag der Zeiteinheit
+     * @param position
+     *            die Position der Zeiteinheit
+     */
+    public void setTimeslot(final Weekday weekday, final int position, Object clazz) {
+        try {
+            Collection<Teacher> teachers;
+            timeslot = TimetableManager.getTimeslotAt(weekday, position, clazz);
+            final Collection<Teacher> teachersInSlot = timeslot.getTeachers();
+            teachers = TeacherManager.getAllTeachers();
+            teacherListModel.clear();
+            for (final Teacher teacher : teachers) {
+                if (!teachersInSlot.contains(teacher)) {
+                    teacherListModel.addTeacher(teacher);
+                }else {
+                    if(!teacher.getTimeslots().contains(timeslot)) {
+                    	teacher.addTimeslot(timeslot);
+                    	System.out.println("Timeslot wurde dem Lehre zugewiesen.");
+                    }
+                }
+            }
+            pack();
+
+        } catch (DatasetException e) {
+            LOGGER.error("Exception while setting timeslot " + timeslot, e);
+            ErrorHandler.criticalDatasetError();
+        }
+
+    }
     /*
      * (non-Javadoc)
      * 
@@ -225,5 +260,7 @@ public final class AddTeacherDialog extends JDialog implements PropertyChangeLis
             }
         }
     }
+
+
 
 }

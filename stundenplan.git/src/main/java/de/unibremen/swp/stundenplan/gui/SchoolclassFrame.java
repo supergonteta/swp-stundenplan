@@ -3,9 +3,13 @@ package de.unibremen.swp.stundenplan.gui;
 	import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Random;
 
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,10 +20,76 @@ import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Timeslot;
-import de.unibremen.swp.stundenplan.gui.MainFrame.MyMouseListener;
+import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.logic.TimetableManager;
 
-public class SchoolclassFrame extends MainFrame {
+public class SchoolclassFrame extends JFrame {
+	protected class MyMouseListener extends MouseAdapter {
+        @Override
+        public void mousePressed(final MouseEvent event) {
+            final int row = table.rowAtPoint(event.getPoint());
+            final int col = table.columnAtPoint(event.getPoint());
+            if (row >= 0 && row < table.getRowCount() && col >= 1 && col < table.getColumnCount()) {
+                table.changeSelection(row, col, false, false);
+            } else {
+                table.clearSelection();
+            }
+            checkPopup(event);
+            event.consume();
+        }
 
+        @Override
+        public void mouseReleased(final MouseEvent event) {
+            checkPopup(event);
+        }
+
+        /**
+         * Prüft, ob es sich bei dem gegebenen Mausereignis um einen Rechtsklick handelt. Falls das so ist, wird ein
+         * entsprechendes Popup-Menu an den durch das Mausereignis übermittelten Koordinaten geöffnet.
+         * 
+         * Vermeidet Redundanz in den Listenern für mouse-pressed und mouse-released-Ereignisse. Beide Listener sind
+         * nötig, da Windoof den Popup-Trigger erst auf Loslassen der Maustaste meldet, Linux und MacOs aber bereits
+         * beim Klicken der Maus.
+         * 
+         * @param event
+         *            das zu prüfende Mausevent
+         */
+        private void checkPopup(final MouseEvent event) {
+            final int row = table.rowAtPoint(event.getPoint());
+            final int col = table.columnAtPoint(event.getPoint());
+            if (event.isPopupTrigger()) {
+                /*
+                 * Verhindert den nochmaligen Aufruf unter Linux und MacOs.
+                 */
+                event.consume();
+                if (event.getComponent() instanceof JTable && row >= 0 && col >= 1) {
+                    final JPopupMenu popup = createPopup(row, col - 1);
+                    popup.show(table, event.getX(), event.getY());
+                }
+            }
+        }
+    }
+	
+	/**
+     * Zur Darstellung der Aktivitäten in einer Tabelle, wird die JTable benutzt.
+     */
+    protected JTable table;
+    
+    /**
+     * Der Dialog, der aufpopt, um ein Fach hinzuzufügen.
+     */
+    protected AddSubjectDialog addSubjectDialog;
+
+   /**
+     * Die Zeilenhöhe einer Tabellenzeile.
+     */
+    protected static final int ROW_HEIGHT = 40;
+    
+
+	
+    /**
+	 * 
+	 */
     /**
 	 * 
 	 */
@@ -29,24 +99,21 @@ public class SchoolclassFrame extends MainFrame {
      * Der Dialog, der aufpopt, um ein Fach hinzuzufügen.
      */
     private final AddTeacherDialog addTeacherDialog;
+    
+    private Schoolclass schoolclass;
 
     /**
      * Der Konstruktor des Frames. Hier werden die wesentlichen Eigenschaften der Darstellung des Frames definiert. Die
      * JTable wird angelegt und dem Frame hinzugefügt. Es werden die Darstellungseigenschaften der JTable festgelegt.
      * 
      */
-    public SchoolclassFrame() {
-        super();
+    public SchoolclassFrame(Schoolclass pSchoolclass) {
+    	super();
+    	schoolclass = pSchoolclass;
+    	addSubjectDialog = new AddSubjectDialog(this);
         addTeacherDialog = new AddTeacherDialog(this);
-        setTitle(super.getTitle() + " von der Klasse");
-    }
-
-    public SchoolclassFrame(Schoolclass schoolclass) {
-        super();
-        addTeacherDialog = new AddTeacherDialog(this);
-        setTitle("Stundenplan der Klasse : "+schoolclass.getName());
-        addSubjectDialog = new AddSubjectDialog(this);
-        table = new JTable(new SchoolclasstableModel(schoolclass));
+        setTitle("Stundenplan der Klasse : "+pSchoolclass.getName());
+        table = new JTable(new SchoolclasstableModel(pSchoolclass));
 
         setDefaultCloseOperation(MainFrame.DISPOSE_ON_CLOSE);
         setTitle(Messages.getString("MainFrame.Title"));
@@ -88,16 +155,36 @@ public class SchoolclassFrame extends MainFrame {
      * @return das neue Popup-Menu
      */
     protected JPopupMenu createPopup(final int row, final int col) {
-        final JPopupMenu popmen = super.createPopup(row, col);
+        final JPopupMenu popmen = new JPopupMenu();
         final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddTeacher"));
         menu1.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent event) {
-                addTeacherDialog.setTimeslot(Weekday.values()[col], row);
+                addTeacherDialog.setTimeslot(Weekday.values()[col], row, schoolclass);
                 addTeacherDialog.setVisible(true);
             }
         });
+        final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
+        menu2.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	try {
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
+					if(!timeslot.getSubjectAcronymList().equals("")) {
+						JOptionPane.showMessageDialog(menu1, "Dort ist bereits ein Fach eingetragen!", "Fehler", JOptionPane.PLAIN_MESSAGE);
+					}else {
+		                addSubjectDialog.setTimeslot(Weekday.values()[col], row, schoolclass);
+		                addSubjectDialog.setVisible(true);
+					}
+				} catch (DatasetException e) {
+					e.printStackTrace();
+				}
+            }
+        });
+        popmen.add(menu2);
+        popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveSubject")));
         popmen.add(menu1);
         popmen.add(new JMenuItem(Messages.getString("MainFrame.RemoveTeacher")));
         popmen.setVisible(true);

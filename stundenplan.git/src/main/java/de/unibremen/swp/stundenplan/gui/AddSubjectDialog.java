@@ -139,6 +139,35 @@ public final class AddSubjectDialog extends JDialog implements PropertyChangeLis
 
     }
 
+    /**
+     * Setzt den Timeslot auf die Zeiteinheit die sich aus dem gegebenen Wochentag und der gegebenen Position ergibt.
+     * Fügt dazu alle Lehrer aus dem übergebenen Timeslot in das zugehörige subjectListModel ein.
+     * 
+     * @param weekday
+     *            Der Wochentag der Zeiteinheit
+     * @param position
+     *            die Position der Zeiteinheit
+     */
+    public void setTimeslot(final Weekday weekday, final int position, final Object clazz) {
+        try {
+            Collection<Subject> subjects;
+            timeslot = TimetableManager.getTimeslotAt(weekday, position, clazz);
+            final Collection<Subject> subjectsInSlot = timeslot.getSubjects();
+            subjects = SubjectManager.getAllSubjects();
+            subjectListModel.clear();
+            for (final Subject subject : subjects) {
+                if (!subjectsInSlot.contains(subject)) {
+                    subjectListModel.addSubject(subject);
+                }
+            }
+            pack();
+
+        } catch (DatasetException e) {
+            LOGGER.error("Exception while setting timeslot " + timeslot, e);
+            ErrorHandler.criticalDatasetError();
+        }
+
+    }
     /*
      * (non-Javadoc)
      * 

@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
@@ -122,6 +123,36 @@ public final class AddSchoolclassDialog extends JDialog implements PropertyChang
         try {
             Collection<Schoolclass> schoolclasses;
             timeslot = TimetableManager.getTimeslotAt(weekday, position);
+            final Collection<Schoolclass> schoolclasssInSlot = timeslot.getSchoolclasses();
+            schoolclasses = SchoolclassManager.getAllSchoolclasses();
+            schoolclassListModel.clear();
+            for (final Schoolclass schoolclass : schoolclasses) {
+                if (!schoolclasssInSlot.contains(schoolclass)) {
+                    schoolclassListModel.addSchoolclass(schoolclass);
+                }
+            }
+            pack();
+
+        } catch (DatasetException e) {
+            LOGGER.error("Exception while setting timeslot " + timeslot, e);
+            ErrorHandler.criticalDatasetError();
+        }
+
+    }
+    
+    /**
+     * Setzt den Timeslot auf die Zeiteinheit die sich aus dem gegebenen Wochentag und der gegebenen Position ergibt.
+     * Fügt dazu alle Lehrer aus dem übergebenen Timeslot in das zugehörige schoolclassListModel ein.
+     * 
+     * @param weekday
+     *            Der Wochentag der Zeiteinheit
+     * @param position
+     *            die Position der Zeiteinheit
+     */
+    public void setTimeslot(final Weekday weekday, final int position, final Object clazz) {
+        try {
+            Collection<Schoolclass> schoolclasses;
+            timeslot = TimetableManager.getTimeslotAt(weekday, position, clazz);
             final Collection<Schoolclass> schoolclasssInSlot = timeslot.getSchoolclasses();
             schoolclasses = SchoolclassManager.getAllSchoolclasses();
             schoolclassListModel.clear();

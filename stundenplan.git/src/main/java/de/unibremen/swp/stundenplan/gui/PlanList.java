@@ -143,22 +143,23 @@ public class PlanList extends JFrame {
 					}
 					for(Schoolclass s : klassen){
 						if(s.getName().equals(checkBoxen.get(position).getText())){
-							final SchoolclassFrame schoolclassFrame = new SchoolclassFrame();
+							final SchoolclassFrame schoolclassFrame = new SchoolclassFrame(s);
 							schoolclassFrame.setTitle(schoolclassFrame.getTitle()+" "+checkBoxen.get(position).getText());
 			            	schoolclassFrame.setLocation(300, 300);
 			            	schoolclassFrame.pack();
 			            	schoolclassFrame.setVisible(true);
 			            	break;
-						}else{
-							final TeacherFrame teacherFrame = new TeacherFrame();
-							teacherFrame.setTitle(teacherFrame.getTitle()+" "+checkBoxen.get(position).getText());
-			            	teacherFrame.setLocation(300, 300);
+						}
+					}
+					for(Teacher t: lehrer){
+						if(t.getName().equals(checkBoxen.get(position).getText())){
+							final TeacherFrame teacherFrame = new TeacherFrame(t);
+							teacherFrame.setLocation(300, 300);
 			            	teacherFrame.pack();
-			            	teacherFrame.setVisible(true);	
-			            	System.out.println(teacherFrame.getName());
+			            	teacherFrame.setVisible(true);
 			            	break;
 						}
-					}				
+					}
 				}				
 			}
 		});
