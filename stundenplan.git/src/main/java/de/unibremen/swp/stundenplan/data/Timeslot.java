@@ -29,6 +29,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import de.unibremen.swp.stundenplan.config.Config;
 
@@ -137,7 +139,15 @@ public final class Timeslot implements Serializable {
     public void addTeacher(final Teacher teacher) {
         if (teacher != null) {
             teachers.add(teacher);
-            teacher.addWorkingHours(LENGTH);
+            teacher.addWorkingHours(LENGTH/60);
+            
+            if(teacher.getWorkingHours().intValue() > teacher.getHoursPerWeek().intValue()) {
+            	JFrame jFrame = new JFrame();
+            	jFrame.setLocation(500, 500);
+            	jFrame.setVisible(true);
+            	
+            	JOptionPane.showMessageDialog(jFrame, "Lehrer " + teacher.getName() + " hat seine maximal Zeit um " + (teacher.getWorkingHours().intValue() - teacher.getHoursPerWeek().intValue()) +  " Stunden ueberschritten");
+            }
         }
     }
     
