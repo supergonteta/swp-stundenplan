@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 
 import de.unibremen.swp.stundenplan.data.Subject;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -58,7 +59,6 @@ public class EditSubject extends Panel {
 		add(p, BorderLayout.NORTH);
 
 		buttonOkay(button);
-
 	}
 
 	private void buttonOkay(JButton b) {
@@ -81,7 +81,7 @@ public class EditSubject extends Panel {
 
 				System.out.println(name);
 
-				StartFrame.f.dispose();
+				EditSubjectDialog.e.dispose();
 			}
 		});
 	}

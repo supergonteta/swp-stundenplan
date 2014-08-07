@@ -173,6 +173,7 @@ public class MainFrame extends JFrame {
         final JPopupMenu popmen = new JPopupMenu();
         final JMenuItem menu1 = new JMenuItem(Messages.getString("MainFrame.AddSubject"));
         final JMenuItem menu2 = new JMenuItem(Messages.getString("MainFrame.RemoveSubject"));
+        final JMenuItem menu3 = new JMenuItem(Messages.getString("MainFrame.EditSubject"));
         menu1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent event) {
@@ -206,6 +207,7 @@ public class MainFrame extends JFrame {
         });
         popmen.add(menu1);
         popmen.add(menu2);
+        popmen.add(menu3);
         popmen.setVisible(true);
         return popmen;
     }

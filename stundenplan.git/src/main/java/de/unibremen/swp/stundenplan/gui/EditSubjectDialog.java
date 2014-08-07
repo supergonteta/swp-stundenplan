@@ -80,6 +80,7 @@ public final class EditSubjectDialog extends JDialog implements
 	 */
 	private final JOptionPane contentPane;
 
+	public static JFrame e;
 	/**
 	 * Der OK-Button als JButton.
 	 */
@@ -133,10 +134,10 @@ public final class EditSubjectDialog extends JDialog implements
 	 * @param position
 	 *            die Position der Zeiteinheit
 	 */
-	public void setTimeslot(final Weekday weekday, final int position) {
+	public void setTimeslot(final Weekday weekday, final int position, final Object clazz) {
 		try {
 			Collection<Subject> subjects;
-			timeslot = TimetableManager.getTimeslotAt(weekday, position);
+			timeslot = TimetableManager.getTimeslotAt(weekday, position, clazz);
 			final Collection<Subject> subjectsInSlot = timeslot.getSubjects();
 			subjects = SubjectManager.getAllSubjects();
 			subjectListModel.clear();
@@ -241,6 +242,7 @@ public final class EditSubjectDialog extends JDialog implements
 				fr.add(editsubject, BorderLayout.CENTER);
 				fr.pack();
 				fr.setVisible(true);
+				e = fr;
 			}
 		});
 	}

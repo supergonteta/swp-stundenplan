@@ -109,6 +109,7 @@ public class TeacherFrame extends JFrame {
      */
     protected AddSubjectDialog addSubjectDialog;
 
+   private EditSubjectDialog editSubjectDialog;
    /**
      * Die Zeilenhöhe einer Tabellenzeile.
      */
@@ -134,6 +135,7 @@ public class TeacherFrame extends JFrame {
         teacher = pTeacher;
         addSubjectDialog = new AddSubjectDialog(this);
         addSchoolclassDialog = new AddSchoolclassDialog(this);
+        editSubjectDialog = new EditSubjectDialog(this);
         setTitle("Stundenplan vom Lehrer: "+teacher.getName());
         table = new JTable(new TeachertableModel(pTeacher));
 
@@ -218,8 +220,27 @@ public class TeacherFrame extends JFrame {
 				}
             }
         });
+        final JMenuItem menu4 = new JMenuItem(Messages.getString("MainFrame.EditSubject"));
+        menu4.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(final ActionEvent event) {
+            try {
+              Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, teacher);
+              if(timeslot.getSubjectAcronymList() == null){
+                JOptionPane.showMessageDialog(menu4, "Dort ist kein Fach zum editieren!", "Fehler", JOptionPane.PLAIN_MESSAGE);
+              }else{
+                editSubjectDialog.setTimeslot(Weekday.values()[col], row, teacher);
+                editSubjectDialog.setVisible(true);
+              }
+            }catch (DatasetException e){
+              e.printStackTrace();
+            } 
+          }
+          
+        });
         popmen.add(menu1);
         popmen.add(menu2);
+        popmen.add(menu4);
         popmen.setVisible(true);
         return popmen;
     }
