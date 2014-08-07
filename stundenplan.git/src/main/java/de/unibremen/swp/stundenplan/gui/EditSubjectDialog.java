@@ -238,6 +238,9 @@ public final class EditSubjectDialog extends JDialog implements
 				List<Subject> subjects = subjectListModel.getSubjects();
 				EditSubject editsubject= new EditSubject(subjects.get(subjectList.getSelectedIndex()));
 				System.out.println("EditSubject erstellt");
+				for(int i=0; i < subjects.size(); i++){
+					System.out.println(subjects.get(i).getName());
+				}
 				fr.setLocation(500, 150);
 				fr.add(editsubject, BorderLayout.CENTER);
 				fr.pack();

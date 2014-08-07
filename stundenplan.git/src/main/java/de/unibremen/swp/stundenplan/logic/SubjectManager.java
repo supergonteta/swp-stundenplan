@@ -128,11 +128,14 @@ public final class SubjectManager {
 
     public static void editSubject(final Subject s, final String acronym, final String name) throws DatasetException {
     	LOGGER.debug("editing subject");
-    	s.setAcronym(acronym);
-    	s.setName(name);
-    	Data.editSubject(s);
-    	LOGGER.debug("subject edited "+ s);
+    	Timeslot t= s.getTimeslot();
+    	t.getSubjects().remove(s);
+    	Subject sub = new Subject();
+    	sub.setAcronym(acronym);
+    	sub.setName(name);
+    	t.getSubjects().add(sub);
+    	Data.addSubject(sub);
+    	LOGGER.debug("subject edited "+ sub);
     }
 
 }
-
