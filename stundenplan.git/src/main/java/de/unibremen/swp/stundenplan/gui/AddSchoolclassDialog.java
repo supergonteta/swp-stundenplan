@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
+import de.unibremen.swp.stundenplan.data.Subject;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -226,6 +227,7 @@ public final class AddSchoolclassDialog extends JDialog implements PropertyChang
             try {
 				Timeslot timeslotSchoolclass = Data.getDayTableForWeekday(weekday, schoolclass).getTimeslot(position);
 				timeslotSchoolclass.addTeacher(teacher);
+				if(timeslot.getSubjects().size()>0) timeslotSchoolclass.addSubject((Subject)timeslot.getSubjects().toArray()[0]);
 				TimetableManager.updateTimeslot(timeslotSchoolclass);
 			} catch (DatasetException e) {
 				e.printStackTrace();

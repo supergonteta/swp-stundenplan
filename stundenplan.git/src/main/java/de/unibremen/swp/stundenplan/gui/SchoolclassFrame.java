@@ -189,7 +189,7 @@ public class SchoolclassFrame extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent event) {
             	try {
-					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row);
+					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
 					if(!timeslot.getTeacherAcronymList().equals("")) timeslot.getTeachers().clear();					
 				} catch (DatasetException e) {
 					e.printStackTrace();
