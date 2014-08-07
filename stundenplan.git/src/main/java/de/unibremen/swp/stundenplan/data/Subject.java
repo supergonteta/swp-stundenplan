@@ -37,6 +37,7 @@ public final class Subject implements Serializable {
     @Column(length = Data.MAX_ACRONYM_LEN)
     private String acronym;
     
+    private Timeslot timeslot;
     /**
      * Gibt den Namen dieses Faches zurück.
      * 
@@ -81,4 +82,15 @@ public final class Subject implements Serializable {
         }
         acronym = pAcronym.trim().substring(0, Math.min(Data.MAX_ACRONYM_LEN, pAcronym.length()));
     }
+    
+    public Timeslot getTimeslot(){
+    	return timeslot;
+    }
+    
+    public void setTimeslot(final Timeslot t){
+    	if(t!= null){
+    		timeslot = t;
+    	}
+    }
+
 }

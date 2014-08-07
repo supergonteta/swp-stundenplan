@@ -170,7 +170,15 @@ public final class Timeslot implements Serializable {
     public void addSubject(final Subject subject) {
         if (subject != null) {
         	subjects.add(subject);
+        	subject.setTimeslot(this);
         }
+    }
+
+    public void editSubject(final Subject subject, final String name, final String acro){
+    	if(subject != null){
+    		subject.setAcronym(acro);
+    		subject.setName(name);
+    	}
     }
 
     /**

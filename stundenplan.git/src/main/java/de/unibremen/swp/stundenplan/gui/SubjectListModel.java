@@ -82,4 +82,7 @@ public final class SubjectListModel extends DefaultListModel<String> {
         subjects.clear();
     }
 
+    public List<Subject> getSubjects(){
+    	return subjects;
+    }
 }

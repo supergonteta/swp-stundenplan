@@ -126,5 +126,13 @@ public final class SubjectManager {
         return Data.getSubjectByAcronym(acronym);
     }
 
+    public static void editSubject(final Subject s, final String acronym, final String name) throws DatasetException {
+    	LOGGER.debug("editing subject");
+    	s.setAcronym(acronym);
+    	s.setName(name);
+    	Data.editSubject(s);
+    	LOGGER.debug("subject edited "+ s);
+    }
+
 }
 

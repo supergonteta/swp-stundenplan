@@ -214,6 +214,22 @@ public final class Data {
         }
     }
 
+    public static void editSubject(final Subject subject) throws DatasetException {
+    	if (subject == null){
+    		throw new IllegalArgumentException("Value of teacher parameter is null");
+    	}
+    	try{
+    		entityManager.getTransaction().begin();
+    		entityManager.merge(subject);
+    		entityManager.getTransaction().commit();
+    		LOGGER.debug(String.format("Subject %s edited. ", subject));
+    	}catch (Exception e){
+    		LOGGER.error("Error editing subject: ", e);
+    		throw new DatasetException("Error while editing a subject: " + e.getMessage());
+    	}
+    }
+
+    
     /**
      * Gibt die Sammlung aller im Datenbestand befindlichen F�cher zurück.
      * 
