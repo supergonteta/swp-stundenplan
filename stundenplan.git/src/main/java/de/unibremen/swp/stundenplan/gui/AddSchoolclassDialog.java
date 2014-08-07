@@ -26,6 +26,7 @@ import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 import de.unibremen.swp.stundenplan.logic.TimetableManager;
+import de.unibremen.swp.stundenplan.persistence.Data;
 
 /**
  * Der Dialog zum Hinzufügen eines Lehrers.
@@ -56,6 +57,21 @@ public final class AddSchoolclassDialog extends JDialog implements PropertyChang
      * Der aktuelle Timeslot.
      */
     private Timeslot timeslot;
+    
+    /**
+     * 
+     */
+    private Weekday weekday;
+    
+    /**
+     * 
+     */
+    private int position;
+    
+    /**
+     * 
+     */
+    private Teacher teacher;
 
     /**
      * Eine JList für die Fächer.
@@ -149,10 +165,13 @@ public final class AddSchoolclassDialog extends JDialog implements PropertyChang
      * @param position
      *            die Position der Zeiteinheit
      */
-    public void setTimeslot(final Weekday weekday, final int position, final Object clazz) {
+    public void setTimeslot(final Weekday weekday, final int position, final Teacher clazz) {
         try {
             Collection<Schoolclass> schoolclasses;
             timeslot = TimetableManager.getTimeslotAt(weekday, position, clazz);
+            this.weekday = weekday;
+            this.position = position;
+            teacher = clazz;
             final Collection<Schoolclass> schoolclasssInSlot = timeslot.getSchoolclasses();
             schoolclasses = SchoolclassManager.getAllSchoolclasses();
             schoolclassListModel.clear();
@@ -204,6 +223,13 @@ public final class AddSchoolclassDialog extends JDialog implements PropertyChang
         for (final int index : selectedIndices) {
             final Schoolclass schoolclass = schoolclassListModel.getSchoolclassAt(index);
             timeslot.addSchoolclass(schoolclass);
+            try {
+				Timeslot timeslotSchoolclass = Data.getDayTableForWeekday(weekday, schoolclass).getTimeslot(position);
+				timeslotSchoolclass.addTeacher(teacher);
+				TimetableManager.updateTimeslot(timeslotSchoolclass);
+			} catch (DatasetException e) {
+				e.printStackTrace();
+			}
             try {
                 TimetableManager.updateTimeslot(timeslot);
             } catch (DatasetException ex) {

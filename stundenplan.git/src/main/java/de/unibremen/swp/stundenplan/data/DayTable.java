@@ -139,6 +139,14 @@ public final class DayTable {
         schoolclass = pSchoolclass;
     }
     
+    public Teacher getTeacher() {
+    	return teacher;
+    }
+    
+    public Schoolclass getSchoolclass() {
+    	return schoolclass;
+    }
+    
     /**
      * Fügt die übergebene Zeiteinheit zu diesem Tagesplan hinzu. Löst eine {@link IllegalArgumentException} aus, falls
      * die übergebene Zeiteinheit {@code null} ist
