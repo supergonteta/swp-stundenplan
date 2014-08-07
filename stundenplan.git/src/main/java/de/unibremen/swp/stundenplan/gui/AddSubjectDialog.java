@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import de.unibremen.swp.stundenplan.config.Messages;
 import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Subject;
+import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
@@ -152,6 +153,10 @@ public final class AddSubjectDialog extends JDialog implements PropertyChangeLis
         try {
             Collection<Subject> subjects;
             timeslot = TimetableManager.getTimeslotAt(weekday, position, clazz);
+            if(clazz instanceof Teacher){
+            	Teacher t = (Teacher)clazz;
+            	t.addWorkingHours(1);
+            	}
             final Collection<Subject> subjectsInSlot = timeslot.getSubjects();
             subjects = SubjectManager.getAllSubjects();
             subjectListModel.clear();
