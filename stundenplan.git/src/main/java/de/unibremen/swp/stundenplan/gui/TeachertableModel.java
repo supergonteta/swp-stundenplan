@@ -7,6 +7,10 @@ import de.unibremen.swp.stundenplan.logic.TimetableManager;
 
 public class TeachertableModel extends TimetableModel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6489253299912309163L;
 	private Teacher teacher;
 	
 	public TeachertableModel(final Teacher pTeacher){

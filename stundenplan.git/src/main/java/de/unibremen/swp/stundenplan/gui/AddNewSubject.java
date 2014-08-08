@@ -11,11 +11,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
-import de.unibremen.swp.stundenplan.data.Subject;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
-import de.unibremen.swp.stundenplan.logic.TeacherManager;
-import de.unibremen.swp.stundenplan.persistence.Data;
 
 public class AddNewSubject extends Panel {
 

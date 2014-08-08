@@ -57,7 +57,7 @@ public final class TeacherListModel extends DefaultListModel<String> {
      */
     protected void addTeacher(final Teacher teacher) {
         teachers.add(teacher);
-        addElement(String.format("%s (%s)", teacher.getName(), teacher.getAcronym()));
+        addElement(String.format("%s (%s) %sh", teacher.getName(), teacher.getAcronym(), teacher.getHoursPerWeek().intValue()));
     }
 
     /**

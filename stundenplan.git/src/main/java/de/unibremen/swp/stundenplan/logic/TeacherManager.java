@@ -19,9 +19,7 @@ import java.util.Collection;
 
 import org.apache.log4j.Logger;
 
-import de.unibremen.swp.stundenplan.config.Weekday;
 import de.unibremen.swp.stundenplan.data.Teacher;
-import de.unibremen.swp.stundenplan.data.Timeslot;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.persistence.Data;
 

@@ -2,7 +2,6 @@ package de.unibremen.swp.stundenplan.gui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,9 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import de.unibremen.swp.stundenplan.config.Config;
-import de.unibremen.swp.stundenplan.config.Weekday;
-import de.unibremen.swp.stundenplan.data.DayTable;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -57,7 +53,7 @@ public class PlanList extends JFrame {
 			teacher = new Teacher[Data.getAllTeachers().size()];
 			Data.getAllTeachers().toArray(teacher);			
 			for(int i=0; i < teacher.length; i++){
-				JCheckBox current = new JCheckBox(teacher[i].getName());
+				JCheckBox current = new JCheckBox(teacher[i].getAcronym());
 				checkBoxen.add(current);
 				panelTeacher.add(current);				
 			}
@@ -123,7 +119,7 @@ public class PlanList extends JFrame {
 					}
 					// geht die angezeigten Lehrer durch
 					for(Teacher t: teacher){
-						if(t.getName().equals(checkBoxen.get(position).getText())){
+						if(t.getAcronym().equals(checkBoxen.get(position).getText())){
 							final TeacherFrame teacherFrame = new TeacherFrame(t);
 							teacherFrame.setLocation(275, 225);
 							break;

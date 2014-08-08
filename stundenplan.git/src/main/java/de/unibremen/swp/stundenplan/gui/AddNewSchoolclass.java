@@ -14,7 +14,6 @@ import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
-import de.unibremen.swp.stundenplan.persistence.Data;
 
 
 public class AddNewSchoolclass extends Panel {

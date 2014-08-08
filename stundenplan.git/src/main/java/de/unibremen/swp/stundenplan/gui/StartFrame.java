@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
@@ -24,7 +23,6 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
 import de.unibremen.swp.stundenplan.logic.TeacherManager;
-import de.unibremen.swp.stundenplan.persistence.Data;
 
 public class StartFrame extends JFrame {
 	/**
@@ -35,7 +33,6 @@ public class StartFrame extends JFrame {
 	private final JButton button1;
 	private final JButton button2;
 	private final JButton button3;
-	private final JButton okButton;
 	
 	private final JPanel panel;
 
@@ -74,7 +71,6 @@ public class StartFrame extends JFrame {
 		button1 = new JButton("Lehrer hinzufügen");
 		button2 = new JButton("Klasse hinzufügen");
 		button3 = new JButton("Fach hinzufügen");
-		okButton = new JButton("OK");
 
 		// Panels erzeugen
 		panel = new JPanel(new GridBagLayout());
