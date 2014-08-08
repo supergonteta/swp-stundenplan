@@ -89,8 +89,8 @@ public final class Stundenplan {
             	final StartFrame startFrame = new StartFrame();
             	pList = new PlanList();
                 ErrorHandler.setMainFrame(startFrame);
-                startFrame.setLocation(800, 300);
-                pList.setLocation(800, 500);
+                startFrame.setLocation(50, 50);
+                pList.setLocation(50, 225);
             }
         });
     }

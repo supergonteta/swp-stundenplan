@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -105,6 +106,7 @@ public final class AddSubjectDialog extends JDialog implements PropertyChangeLis
         final JLabel label = new JLabel(Messages.getString("AddSubjectDialog.RemoveSubject"));
         subjectListModel = new SubjectListModel();
         subjectList = new JList<>(subjectListModel);
+        subjectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         subjectList.addListSelectionListener(this);
 
         final Object[] elements = { label, subjectList };

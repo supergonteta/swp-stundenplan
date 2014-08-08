@@ -199,6 +199,7 @@ public class TeacherFrame extends JFrame {
         menu2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent event) {
+            	teacher.addWorkingHours(-Timeslot.LENGTH/60);
             	try {
 					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, teacher);
 					Boolean deleted= false;

@@ -46,7 +46,6 @@ public class PlanList extends JFrame {
 	
 	public PlanList() {
 		super("StundenplanListe");
-		setLocation(800, 500);
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(5, 5));
@@ -117,7 +116,7 @@ public class PlanList extends JFrame {
 						// wird ein Stundenplan fuer diese Klasse erstellt
 						if(s.getName().equals(checkBoxen.get(position).getText())){
 							final SchoolclassFrame schoolclassFrame = new SchoolclassFrame(s);
-							schoolclassFrame.setLocation(300, 300);
+							schoolclassFrame.setLocation(275, 225);
 			            	break;
 						}
 					}
@@ -125,7 +124,7 @@ public class PlanList extends JFrame {
 					for(Teacher t: teacher){
 						if(t.getName().equals(checkBoxen.get(position).getText())){
 							final TeacherFrame teacherFrame = new TeacherFrame(t);
-							teacherFrame.setLocation(300, 300);
+							teacherFrame.setLocation(275, 225);
 							break;
 						} 	
 					}	

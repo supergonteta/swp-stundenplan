@@ -1,6 +1,7 @@
 package de.unibremen.swp.stundenplan.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -13,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.data.Subject;
@@ -62,7 +65,6 @@ public class StartFrame extends JFrame {
 	
 	public StartFrame() {
 		super("Add-Panel");
-		setLocation(100, 300);
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(5, 5));
@@ -80,25 +82,40 @@ public class StartFrame extends JFrame {
 		// ListModels
 		teacherListModel = new TeacherListModel();
         teacherList = new JList<>(teacherListModel);
+        teacherList.setLayoutOrientation(JList.VERTICAL);
+        teacherList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        JScrollPane teacherListScroller = new JScrollPane(teacherList);
+        teacherListScroller.setPreferredSize(new Dimension(250, 80));
 		updateTeacherList();
         
         schoolclassListModel = new SchoolclassListModel();
         schoolclassList = new JList<>(schoolclassListModel);
+        schoolclassList.setLayoutOrientation(JList.VERTICAL);
+        schoolclassList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        JScrollPane schoolclassListScroller = new JScrollPane(schoolclassList);
+        schoolclassListScroller.setPreferredSize(new Dimension(250, 80));
         updateSchoolclassList();
         
         subjectListModel = new SubjectListModel();
         subjectList = new JList<>(subjectListModel);
+        subjectList.setLayoutOrientation(JList.VERTICAL);
+        subjectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        JScrollPane subjectListScroller = new JScrollPane(subjectList);
+        subjectListScroller.setPreferredSize(new Dimension(250, 80));
 		updateSubjectList();
         
 		// Listen der Daten
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 1;
-		panel.add(teacherList, c);
+		panel.add(teacherListScroller, c);
 		c.gridx = 1;
-		panel.add(schoolclassList, c);
+		panel.add(schoolclassListScroller, c);
 		c.gridx = 2;
-		panel.add(subjectList, c);
+		panel.add(subjectListScroller, c);
 
 		// Auf Panel Buttons packen
 		c.gridx = 0;

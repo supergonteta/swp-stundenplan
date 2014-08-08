@@ -144,7 +144,7 @@ public final class Timeslot implements Serializable {
             if(teacher.getWorkingHours().intValue() > teacher.getHoursPerWeek().intValue()) {
             	JFrame jFrame = new JFrame();
             	jFrame.setLocation(500, 500);
-            	jFrame.setVisible(true);
+            	jFrame.setVisible(false);
             	
             	JOptionPane.showMessageDialog(jFrame, "Lehrer " + teacher.getName() + " hat seine maximal Zeit um " + (teacher.getWorkingHours().intValue() - teacher.getHoursPerWeek().intValue()) +  " Stunden ueberschritten");
             }

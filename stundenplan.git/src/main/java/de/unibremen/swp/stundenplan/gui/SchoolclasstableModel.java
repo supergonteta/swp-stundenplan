@@ -13,6 +13,7 @@ public class SchoolclasstableModel extends TimetableModel {
 	private Schoolclass schoolclass;
     
     public SchoolclasstableModel(final Schoolclass pSchoolclassModel){
+    	super();
     	schoolclass = pSchoolclassModel;
     	
     }

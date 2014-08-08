@@ -185,6 +185,7 @@ public class SchoolclassFrame extends JFrame {
 					Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.values()[col], row, schoolclass);
 					Boolean deleted= false;
 					for(Teacher t : timeslot.getTeachers()){
+						t.addWorkingHours(-Timeslot.LENGTH/60);
 						Timeslot ts =Data.getDayTableForWeekday(Weekday.values()[col], t).getTimeslot(row);
 						for(Schoolclass sc : ts.getSchoolclasses()){
 							if(sc.getName()==schoolclass.getName())

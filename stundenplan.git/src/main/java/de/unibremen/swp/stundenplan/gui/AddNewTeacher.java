@@ -82,10 +82,10 @@ public class AddNewTeacher extends Panel {
 		            	JFrame jFrame = new JFrame();
 		            	jFrame.setLocation(500, 500);
 		            	
-		            	jFrame.setVisible(true);
+		            	jFrame.setVisible(false);
 		            	
-		            	JOptionPane.showMessageDialog(jFrame, "Die Arbeitszeit muss unter 40 Stunden liegen" );
-		            	
+		            	JOptionPane.showMessageDialog(jFrame, "Die Arbeitszeit muss zwischen 4 und 40 Stunden liegen" );
+		            	return;
 		            }
 				
 				
