@@ -67,13 +67,7 @@ public final class TeacherManager {
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
      */
     private static void fillDefaultData() throws DatasetException {
-        LOGGER.info("Creating test data in database");
-        addTeacher("DrL", "Dr. Hannibal Lecter", "35");
-        addTeacher("KKK", "Karsten Klaus Kinski", "2");
-        addTeacher("HdF", "Halto de Fressi", "40");
-        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1, getTeacherByAcronym("HdF"));
-        timeslot.addTeacher(getTeacherByAcronym("HdF"));
-        Data.updateTimeslot(timeslot);
+        LOGGER.info("No Teacher data in database");
     }
 
     /**

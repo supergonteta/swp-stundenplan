@@ -46,6 +46,7 @@ public class PlanList extends JFrame {
 	
 	public PlanList() {
 		super("StundenplanListe");
+		setLocation(50, 225);
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(5, 5));

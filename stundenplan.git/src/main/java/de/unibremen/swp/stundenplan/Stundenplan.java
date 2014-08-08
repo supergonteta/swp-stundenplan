@@ -76,10 +76,10 @@ public final class Stundenplan {
             throw new IllegalStateException("Could not create configuration." + e.getMessage());
         }
         try {
-            TimetableManager.init();
             TeacherManager.init();
             SubjectManager.init();
             SchoolclassManager.init();
+            TimetableManager.init();
         } catch (DatasetException e) {
             LOGGER.error("Exception while initializing logic!", e);
             throw new IllegalStateException("Could not initialize logic components: " + e.getMessage());

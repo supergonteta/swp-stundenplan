@@ -66,13 +66,7 @@ public final class SubjectManager {
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
      */
     private static void fillDefaultData() throws DatasetException {
-        LOGGER.info("Creating test data in database");
-        addSubject("Spo", "Sport");
-        addSubject("Omv", "Omasvermöbeln");
-        addSubject("Imp", "Imperiumkram");
-        addSubject("Mat", "Mathematik");
-        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1 );
-        Data.updateTimeslot(timeslot);
+        LOGGER.info("No Subject data in database");
     }
 
     /**

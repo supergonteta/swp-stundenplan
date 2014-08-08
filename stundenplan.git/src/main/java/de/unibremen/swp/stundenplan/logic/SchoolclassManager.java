@@ -66,13 +66,7 @@ public final class SchoolclassManager {
      *             falls ein Fehler beim Aktualisieren des Datenbestandes auftritt
      */
     private static void fillDefaultData() throws DatasetException {
-        LOGGER.info("Creating test data in database");
-        addSchoolclass("1b");
-        addSchoolclass("2c");
-        addSchoolclass("4a");
-        final Timeslot timeslot = TimetableManager.getTimeslotAt(Weekday.TUESDAY, 1, getSchoolclassByName("4a"));
-        timeslot.addSchoolclass(getSchoolclassByName("4a"));
-        Data.updateTimeslot(timeslot);
+        LOGGER.info("No Schoolclass data in database");
     }
 
     /**
