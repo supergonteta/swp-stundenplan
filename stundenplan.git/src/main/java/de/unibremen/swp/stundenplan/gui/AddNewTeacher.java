@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -74,6 +76,17 @@ public class AddNewTeacher extends Panel {
 				name = nameField.getText();
 				acro = acroField.getText();
 				time = timeField.getText();
+				Integer timer = new Integer(time);
+				
+				 if(timer >40 || timer < 4) {
+		            	JFrame jFrame = new JFrame();
+		            	jFrame.setLocation(500, 500);
+		            	
+		            	jFrame.setVisible(true);
+		            	
+		            	JOptionPane.showMessageDialog(jFrame, "Die Arbeitszeit muss unter 40 Stunden liegen" );
+		            	
+		            }
 				
 				
 				
