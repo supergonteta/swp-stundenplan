@@ -8,7 +8,9 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
@@ -16,7 +18,7 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 
 
-public class AddNewSchoolclass extends Panel {
+public class AddNewSchoolclass extends JPanel {
 	
 	String name;
 
@@ -33,10 +35,9 @@ public class AddNewSchoolclass extends Panel {
 
 	public AddNewSchoolclass(){
 		
-		Panel p = new Panel();
-		p.setLayout(new GridLayout(4,2));
-		
-		Label l = new Label("Name der neuen Klasse: ");
+		JPanel p = new JPanel();
+		p.setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufügen"));
+		Label l = new Label("Name der Klasse: ");
 		l.setAlignment(Label.LEFT);
 		p.add(l);
 		nameField = new TextField(20);

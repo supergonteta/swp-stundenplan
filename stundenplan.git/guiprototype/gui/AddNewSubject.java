@@ -8,8 +8,10 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
@@ -34,10 +36,10 @@ public class AddNewSubject extends Panel {
 
 	public AddNewSubject() {
 
-		Panel p = new Panel();
-		p.setLayout(new GridLayout(4,2));
+		JPanel p = new JPanel();
+		p.setBorder(BorderFactory.createTitledBorder("Neues Fach hinzufügen"));
 
-		Label lName = new Label("Titel des neuen Faches");
+		Label lName = new Label("Titel des Faches");
 		lName.setAlignment(Label.LEFT);
 		p.add(lName);
 		nameField = new TextField(20);

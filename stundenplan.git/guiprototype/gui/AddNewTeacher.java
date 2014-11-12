@@ -8,9 +8,11 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
@@ -41,8 +43,8 @@ public class AddNewTeacher extends Panel {
 		String[] labels = {"Name: ", "Akronym: ", "Max. Arbeitstunden:"};
 		
 
-		Panel p = new Panel();
-		p.setLayout(new GridLayout(4,2));
+		JPanel p = new JPanel();
+		p.setBorder(BorderFactory.createTitledBorder("Neues Personal hinzufügen"));
 		
 		Label l = new Label(labels[0]);
 		l.setAlignment(Label.LEFT);
