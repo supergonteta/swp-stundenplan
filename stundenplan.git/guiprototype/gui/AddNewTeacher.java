@@ -1,7 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
@@ -10,6 +13,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,55 +23,61 @@ import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.gui.PlanList;
 import de.unibremen.swp.stundenplan.logic.TeacherManager;
 
-public class AddNewTeacher extends Panel {
+public class AddNewTeacher extends JPanel {
 	
-	String name;
-	String acro;
-	String time;
+	private String name;
+	private String acro;
+	private String time;
+
+	Label lName = new Label("Name des Lehrers");
+	Label lAcro = new Label("Acronym:");
+	Label lTime = new Label("Max. Arbeitstunden:");
+
+	private TextField nameField = new TextField(20);
+	private TextField acroField = new TextField(20);
+	private TextField timeField= new TextField(20);
 	
+	public JButton button = new JButton("Lehrer Hinzufügen");
+	
+	private GridBagConstraints c = new GridBagConstraints();	
 	
 	public static PlanList planList;
 	
-	TextField nameField;
-	TextField acroField;
-	TextField timeField;
-	
-	JButton button = new JButton("Lehrer Hinzufügen");
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1219589162309740553L;
 
 	public AddNewTeacher(){
-		
-		String[] labels = {"Name: ", "Akronym: ", "Max. Arbeitstunden:"};
-		
+	    setLayout(new GridBagLayout());
+		setBorder(BorderFactory.createTitledBorder("Neues Personal hinzufügen"));
+		c.insets=new Insets(1,1,1,1);
+		c.anchor=GridBagConstraints.WEST;
+		c.gridx=0;
+		c.gridy=0;
+		add(lName,c);
+		c.gridx=1;
+		add(nameField,c);
 
-		JPanel p = new JPanel();
-		p.setBorder(BorderFactory.createTitledBorder("Neues Personal hinzufügen"));
+		c.gridx=0;
+		c.gridy=1;
+		add(lAcro,c);
+		c.gridx=1;
+		add(acroField,c);
+			
+		c.gridx=0;
+		c.gridy=2;
+		add(lTime,c);
+		c.gridx=1;
+		add(timeField,c);
 		
-		Label l = new Label(labels[0]);
-		l.setAlignment(Label.LEFT);
-		p.add(l);
-		nameField = new TextField(20);
-	    p.add(nameField);
-	    
-	    Label l2 = new Label(labels[1]);
-	    l2.setAlignment(Label.LEFT);
-	    p.add(l2);
-		acroField = new TextField(4);
-	    p.add(acroField);
-	    
-	    Label l3 = new Label(labels[2]);
-	    l3.setAlignment(Label.LEFT);
-	    p.add(l3);
-		timeField = new TextField(2);
-	    p.add(timeField);
-	    
-		p.add(button);
-	    add(p,BorderLayout.NORTH);
-	    
-	    buttonOkay(button);
+		c.gridx=0;
+		c.gridy=3;
+		c.gridwidth=2;
+		c.fill=GridBagConstraints.HORIZONTAL;
+		add(button,c);
+
+		buttonOkay(button);
 
 	}
 	

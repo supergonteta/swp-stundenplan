@@ -1,7 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
@@ -9,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -20,13 +24,15 @@ import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 
 public class AddNewSchoolclass extends JPanel {
 	
-	String name;
+	private Label l = new Label("Name der Klasse: ");
 
+	public TextField nameField = new TextField(20);
 	
-
-	TextField nameField;
+	public String name;
 	
 	public JButton button = new JButton("Klasse Hinzufügen");
+	
+	private GridBagConstraints c = new GridBagConstraints();
 	
 	/**
 	 * 
@@ -34,22 +40,21 @@ public class AddNewSchoolclass extends JPanel {
 	private static final long serialVersionUID = 1219589162309740553L;
 
 	public AddNewSchoolclass(){
-		
-		JPanel p = new JPanel();
-		p.setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufügen"));
-		Label l = new Label("Name der Klasse: ");
-		l.setAlignment(Label.LEFT);
-		p.add(l);
-		nameField = new TextField(20);
-	    p.add(nameField);
-	   
-	    
-	    
-		p.add(button);
-	    add(p,BorderLayout.EAST);
-	    
-	    buttonOkay(button);
-		
+		setLayout(new GridBagLayout());
+		setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufügen"));
+		c.insets=new Insets(1,1,1,1);
+		c.anchor=GridBagConstraints.WEST;
+		c.gridx=0;
+		c.gridy=0;
+		add(l,c);
+		c.gridx=1;
+	    add(nameField,c);   
+	    c.gridx=0;
+	    c.gridy=1;
+	    c.gridwidth=2;
+	    c.fill=GridBagConstraints.HORIZONTAL;
+		add(button,c);    
+	    buttonOkay(button);	
 	}
 	
 	private void buttonOkay(JButton b) {

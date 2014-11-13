@@ -15,7 +15,7 @@ public class MainFrame extends JFrame{
 	
 	private JTabbedPane tabpane = new JTabbedPane(JTabbedPane.TOP);
 	
-	private DataPane dataPane = new DataPane();
+	private DataPanel dataPanel = new DataPanel();
     private JPanel paneStundenplan = new JPanel();
     private JPanel paneLehrer = new JPanel(); 
     
@@ -23,11 +23,13 @@ public class MainFrame extends JFrame{
 		super("GUI-Prototype");	
 		//später wieder aktivieren
 		//setSize(screen.width, screen.height);
-		setSize(800, 500);
+		//setSize(800, 500); 
+		//setSize soll laut stackoverflowkommentar zu problemen führen, 
+		//lieber pack() benutzen oder componenten vergrößern
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         initComponents();
-       // pack();
+        pack();
 		setVisible(true);
 	}
 	
@@ -36,7 +38,7 @@ public class MainFrame extends JFrame{
         paneStundenplan.setBackground(Color.LIGHT_GRAY);
         paneLehrer.setBackground(Color.LIGHT_GRAY);
         
-        tabpane.addTab("Daten", dataPane);
+        tabpane.addTab("Daten", dataPanel);
         tabpane.addTab("Stundenpläne", paneStundenplan);
         tabpane.addTab("Lehreransicht", paneLehrer);
 		

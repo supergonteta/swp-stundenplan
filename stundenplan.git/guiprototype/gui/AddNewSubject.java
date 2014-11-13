@@ -1,7 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
@@ -9,58 +12,68 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.logic.SubjectManager;
 
-public class AddNewSubject extends Panel {
+public class AddNewSubject extends JPanel {
 
-	String name;
-	String acro;
+	private String name;
+	private String acro;
 
+	Label lName = new Label("Titel der Aktivität:");
+	Label lAcro = new Label("Acronym:");
+	Label lPause = new Label("Ist es eine Pause?");
 
-	TextField nameField;
-	TextField acroField;
+	private TextField nameField = new TextField(20);
+	private TextField acroField = new TextField(20);
 	
-	JButton button = new JButton("Fach Hinzufügen");
+	public JButton button = new JButton("Fach Hinzufügen");
 	
-
-	JCheckBox pause;
+	private JCheckBox pause = new JCheckBox();
+	
+	private GridBagConstraints c = new GridBagConstraints();
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1219589162309740553L;
 
 	public AddNewSubject() {
+		setLayout(new GridBagLayout());
+		setBorder(BorderFactory.createTitledBorder("Neues Fach hinzufügen"));
+		c.insets=new Insets(1,1,1,1);
+		c.anchor=GridBagConstraints.WEST;
+		c.gridx=0;
+		c.gridy=0;
+		add(lName,c);
+		c.gridx=1;
+		add(nameField,c);
 
-		JPanel p = new JPanel();
-		p.setBorder(BorderFactory.createTitledBorder("Neues Fach hinzufügen"));
-
-		Label lName = new Label("Titel des Faches");
-		lName.setAlignment(Label.LEFT);
-		p.add(lName);
-		nameField = new TextField(20);
-		p.add(nameField);
-
-		Label lAcro = new Label("Acro");
-		lAcro.setAlignment(Label.LEFT);
-		p.add(lAcro);
-		acroField = new TextField(20);
-		p.add(acroField);
-		
-		
-		Label lPause = new Label("Pause?");
-		lPause.setAlignment(Label.LEFT);
-		p.add(lPause);
-		pause = new JCheckBox();
+		c.gridx=0;
+		c.gridy=1;
+		add(lAcro,c);
+		c.gridx=1;
+		add(acroField,c);
+			
+		c.gridx=0;
+		c.gridy=2;
+		add(lPause,c);
 		pause.setSelected(false);
-		p.add(pause);
-				
-		p.add(button);
-		add(p, BorderLayout.NORTH);
+		c.gridx=1;
+		add(pause,c);
+		
+		c.gridx=0;
+		c.gridy=3;
+		c.gridwidth=2;
+		c.fill=GridBagConstraints.HORIZONTAL;
+		add(button,c);
 
 		buttonOkay(button);
 
