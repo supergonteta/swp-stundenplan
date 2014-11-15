@@ -37,7 +37,7 @@ public final class SubjectListModel extends DefaultListModel<String> {
     private static final long serialVersionUID = 5554982556376658908L;
 
     /**
-     * Die Liste der F�cher dieses Modells.
+     * Die Liste der Faecher dieses Modells.
      */
     private final List<Subject> subjects;
 

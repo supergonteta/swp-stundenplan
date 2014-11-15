@@ -30,7 +30,7 @@ public class AddNewSchoolclass extends JPanel {
 	
 	public String name;
 	
-	public JButton button = new JButton("Klasse Hinzufügen");
+	public JButton button = new JButton("Klasse HinzufÃ¼gen");
 	
 	private GridBagConstraints c = new GridBagConstraints();
 	
@@ -41,7 +41,7 @@ public class AddNewSchoolclass extends JPanel {
 
 	public AddNewSchoolclass(){
 		setLayout(new GridBagLayout());
-		setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufügen"));
+		setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufÃ¼gen"));
 		c.insets=new Insets(1,1,1,1);
 		c.anchor=GridBagConstraints.WEST;
 		c.gridx=0;
