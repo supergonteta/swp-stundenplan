@@ -35,7 +35,7 @@ public class StundenplanPanel extends JPanel {
 		liste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		add(liste);
 		JScrollPane listScroller = new JScrollPane(liste);
-		listScroller.setPreferredSize(new Dimension(100, 250));
+		listScroller.setPreferredSize(new Dimension(200, 350));
 		add(listScroller,c);
 		String[] columnNames = {
 				" Uhrzeiten", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"
@@ -43,10 +43,13 @@ public class StundenplanPanel extends JPanel {
 		String [][] rowData ={ {"8-9","","","","",""}, {"9-10","","","","",""}, {"10-11","","","","",""}, {"11-12","","","","",""}, {"12-13","","","","",""}, {"13-14","","","","",""},{"14-15","","","","",""},{"16-17","","","","",""}, {"17-18","","","","",""}};
 		table = new JTable(rowData, columnNames);
 		table.setRowSelectionAllowed(true);
+		table.setRowHeight(40);
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx =1;
 		c.gridy = 0;
-		add(new JScrollPane(table),c);
+		JScrollPane pane = new JScrollPane(table);
+		pane.setPreferredSize(new Dimension(500,350));
+		add(pane,c);
 		
 	}
 	
