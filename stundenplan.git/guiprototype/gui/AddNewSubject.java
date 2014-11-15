@@ -28,14 +28,14 @@ public class AddNewSubject extends JPanel {
 	private String name;
 	private String acro;
 
-	Label lName = new Label("Titel der Aktivität:");
+	Label lName = new Label("Titel der AktivitÃ¤t:");
 	Label lAcro = new Label("Acronym:");
 	Label lPause = new Label("Ist es eine Pause?");
 
 	private TextField nameField = new TextField(20);
 	private TextField acroField = new TextField(20);
 	
-	public JButton button = new JButton("Fach Hinzufügen");
+	public JButton button = new JButton("Fach HinzufÃ¼gen");
 	
 	private JCheckBox pause = new JCheckBox();
 	
@@ -47,7 +47,7 @@ public class AddNewSubject extends JPanel {
 
 	public AddNewSubject() {
 		setLayout(new GridBagLayout());
-		setBorder(BorderFactory.createTitledBorder("Neues Fach hinzufügen"));
+		setBorder(BorderFactory.createTitledBorder("Neues Fach hinzufÃ¼gen"));
 		c.insets=new Insets(1,1,1,1);
 		c.anchor=GridBagConstraints.WEST;
 		c.gridx=0;

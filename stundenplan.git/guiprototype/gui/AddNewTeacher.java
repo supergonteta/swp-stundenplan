@@ -37,7 +37,7 @@ public class AddNewTeacher extends JPanel {
 	private TextField acroField = new TextField(20);
 	private TextField timeField= new TextField(20);
 	
-	public JButton button = new JButton("Lehrer Hinzufügen");
+	public JButton button = new JButton("Lehrer HinzufÃ¼gen");
 	
 	private GridBagConstraints c = new GridBagConstraints();	
 	
@@ -50,7 +50,7 @@ public class AddNewTeacher extends JPanel {
 
 	public AddNewTeacher(){
 	    setLayout(new GridBagLayout());
-		setBorder(BorderFactory.createTitledBorder("Neues Personal hinzufügen"));
+		setBorder(BorderFactory.createTitledBorder("Neues Personal hinzufÃ¼gen"));
 		c.insets=new Insets(1,1,1,1);
 		c.anchor=GridBagConstraints.WEST;
 		c.gridx=0;

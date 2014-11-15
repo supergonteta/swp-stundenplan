@@ -108,7 +108,7 @@ public class DataPanel extends JPanel{
 		teacherListScroller.setBorder(BorderFactory.createTitledBorder("Existierendes Personal"));
 		add(teacherListScroller, c);
 		c.gridx = 1;
-		subjectListScroller.setBorder(BorderFactory.createTitledBorder("Existierende Fächer"));
+		subjectListScroller.setBorder(BorderFactory.createTitledBorder("Existierende FÃ¤cher"));
 		add(subjectListScroller, c);
 		c.gridx = 2;
 		schoolclassListScroller.setBorder(BorderFactory.createTitledBorder("Existierende Schulklassen"));
@@ -151,7 +151,7 @@ public class DataPanel extends JPanel{
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 //				AddNewSubject a = new AddNewSubject();
-//				f = new JFrame("neue Aktivitaet hinzufügen");
+//				f = new JFrame("neue Aktivitaet hinzufï¿½gen");
 //				f.setLocation(500, 150);
 //				f.add(a, BorderLayout.CENTER);
 //				f.pack();
