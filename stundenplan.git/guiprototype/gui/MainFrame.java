@@ -16,7 +16,7 @@ public class MainFrame extends JFrame{
 	private JTabbedPane tabpane = new JTabbedPane(JTabbedPane.TOP);
 	
 	private DataPanel dataPanel = new DataPanel();
-    private JPanel paneStundenplan = new JPanel();
+    private StundenplanPanel paneStundenplan = new StundenplanPanel();
     private JPanel paneLehrer = new JPanel(); 
     
 	public MainFrame() {
