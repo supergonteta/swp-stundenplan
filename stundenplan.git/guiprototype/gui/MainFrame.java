@@ -21,11 +21,11 @@ public class MainFrame extends JFrame{
     
 	public MainFrame() {
 		super("GUI-Prototype");	
-		//später wieder aktivieren
+		//spï¿½ter wieder aktivieren
 		//setSize(screen.width, screen.height);
 		//setSize(800, 500); 
-		//setSize soll laut stackoverflowkommentar zu problemen führen, 
-		//lieber pack() benutzen oder componenten vergrößern
+		//setSize soll laut stackoverflowkommentar zu problemen fï¿½hren, 
+		//lieber pack() benutzen oder componenten vergrï¿½ï¿½ern
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         initComponents();
@@ -39,7 +39,7 @@ public class MainFrame extends JFrame{
         paneLehrer.setBackground(Color.LIGHT_GRAY);
         
         tabpane.addTab("Daten", dataPanel);
-        tabpane.addTab("Stundenpläne", paneStundenplan);
+        tabpane.addTab("StundenplÃ¤ne", paneStundenplan);
         tabpane.addTab("Lehreransicht", paneLehrer);
 		
         add(tabpane);
