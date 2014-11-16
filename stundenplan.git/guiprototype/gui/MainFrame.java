@@ -17,7 +17,7 @@ public class MainFrame extends JFrame{
 	
 	private DataPanel dataPanel = new DataPanel();
     private StundenplanPanel paneStundenplan = new StundenplanPanel();
-    private JPanel paneLehrer = new JPanel(); 
+    private JPanel paneLehrer = new LehreransichtPanel(); 
     
 	public MainFrame() {
 		super("GUI-Prototype");	
