@@ -3,12 +3,22 @@ package gui;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
+import javax.swing.Box;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 
 public class StundenplanPanel extends JPanel {
 
@@ -28,15 +38,25 @@ public class StundenplanPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
+		c.weightx = 0.3;
+		c.weighty = 1.0;
 		c.gridx=0;
 		c.gridy=0;
-		liste = new JList<>(schoolclassListModel);
-		liste.setLayoutOrientation(JList.VERTICAL);
-		liste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		add(liste);
-		JScrollPane listScroller = new JScrollPane(liste);
-		listScroller.setPreferredSize(new Dimension(200, 350));
-		add(listScroller,c);
+		
+		JMenuBar menuBar;
+		JMenu menu;
+		
+		menuBar = new JMenuBar();
+
+		menu = new JMenu("Lehrer");
+		menuBar.add(menu);
+		
+		menu = new JMenu("Klasse");
+		menuBar.add(menu);
+		
+		menuBar.setLayout(new GridLayout(0,1));
+		add(menuBar, c);
+		
 		String[] columnNames = {
 				" Uhrzeiten", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"
 		};
@@ -44,7 +64,10 @@ public class StundenplanPanel extends JPanel {
 		table = new JTable(rowData, columnNames);
 		table.setRowSelectionAllowed(true);
 		table.setRowHeight(40);
+		c.fill = GridBagConstraints.BOTH;
 		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = 0.7;
+		c.weighty = 1.0;
 		c.gridx =1;
 		c.gridy = 0;
 		JScrollPane pane = new JScrollPane(table);
