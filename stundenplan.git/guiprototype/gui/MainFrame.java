@@ -10,8 +10,8 @@ import javax.swing.JTabbedPane;
 
 
 public class MainFrame extends JFrame{
-	//screenresolution kriegen
-	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	private MenuBar menu = new MenuBar(this);
 	
 	private JTabbedPane tabpane = new JTabbedPane(JTabbedPane.TOP);
 	
@@ -21,11 +21,6 @@ public class MainFrame extends JFrame{
     
 	public MainFrame() {
 		super("GUI-Prototype");	
-		//sp�ter wieder aktivieren
-		//setSize(screen.width, screen.height);
-		//setSize(800, 500); 
-		//setSize soll laut stackoverflowkommentar zu problemen f�hren, 
-		//lieber pack() benutzen oder componenten vergr��ern
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         initComponents();
@@ -34,14 +29,12 @@ public class MainFrame extends JFrame{
 	}
 	
 	private void initComponents(){
-		
-        paneStundenplan.setBackground(Color.LIGHT_GRAY);
-        paneLehrer.setBackground(Color.LIGHT_GRAY);
-        
+		     
         tabpane.addTab("Daten", dataPanel);
         tabpane.addTab("Stundenpläne", paneStundenplan);
         tabpane.addTab("Lehreransicht", paneLehrer);
 		
+        setJMenuBar(menu);
         add(tabpane);
 	};
 	

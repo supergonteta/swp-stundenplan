@@ -16,6 +16,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 
 public class DataPanel extends JPanel{
@@ -24,6 +25,8 @@ public class DataPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private JToolBar toolBar= new JToolBar("Daten hinzufuegen",JToolBar.VERTICAL);
 	
     private AddNewTeacher addNewTeacher = new AddNewTeacher();
     private AddNewSubject addNewSubject = new AddNewSubject();
@@ -48,7 +51,6 @@ public class DataPanel extends JPanel{
      */
     private static SubjectListModel subjectListModel;
     
-    private JLabel oben;
     public static JFrame f;
 	public static JFrame l;
 	public static JFrame c;
@@ -66,57 +68,63 @@ public class DataPanel extends JPanel{
 		c.insets = new Insets(5,5,5,5);
 		c.gridx = 0;
 		c.gridy = 0;
-		add(addNewTeacher,c);
-		c.gridx = 1;
-		add(addNewSubject,c);
-		c.gridx = 2;
-		add(addNewSchoolclass,c);	
-		
-		// ListModels
-		teacherListModel = new TeacherListModel();
-		teacherList = new JList<>(teacherListModel);
-		teacherList.setLayoutOrientation(JList.VERTICAL);
-		teacherList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		JScrollPane teacherListScroller = new JScrollPane(teacherList);
-		teacherListScroller.setPreferredSize(new Dimension(250, 200));
-//		updateTeacherList();
-		
-		subjectListModel = new SubjectListModel();
-		subjectList = new JList<>(subjectListModel);
-		subjectList.setLayoutOrientation(JList.VERTICAL);
-		subjectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		JScrollPane subjectListScroller = new JScrollPane(subjectList);
-		subjectListScroller.setPreferredSize(new Dimension(250, 200));
-//		updateSubjectList();
-
-		schoolclassListModel = new SchoolclassListModel();
-		schoolclassList = new JList<>(schoolclassListModel);
-		schoolclassList.setLayoutOrientation(JList.VERTICAL);
-		schoolclassList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		JScrollPane schoolclassListScroller = new JScrollPane(schoolclassList);
-		schoolclassListScroller.setPreferredSize(new Dimension(250, 200));
-//		updateSchoolclassList();
-
-
-		// Listen der Daten
-		c.fill=GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 1;
-		teacherListScroller.setBorder(BorderFactory.createTitledBorder("Existierendes Personal"));
-		add(teacherListScroller, c);
-		c.gridx = 1;
-		subjectListScroller.setBorder(BorderFactory.createTitledBorder("Existierende Fächer"));
-		add(subjectListScroller, c);
-		c.gridx = 2;
-		schoolclassListScroller.setBorder(BorderFactory.createTitledBorder("Existierende Schulklassen"));
-		add(schoolclassListScroller, c);
-
-		addTeacher(addNewTeacher.button);
-		addSubject(addNewSubject.button);
-		addSchoolclass(addNewSchoolclass.button);
+		add(toolBar,c);
+//		c.fill=GridBagConstraints.VERTICAL;
+//		c.anchor=GridBagConstraints.NORTH;
+//		c.insets = new Insets(5,5,5,5);
+//		c.gridx = 0;
+//		c.gridy = 0;
+//		add(addNewTeacher,c);
+//		c.gridx = 1;
+//		add(addNewSubject,c);
+//		c.gridx = 2;
+//		add(addNewSchoolclass,c);	
+//		
+//		// ListModels
+//		teacherListModel = new TeacherListModel();
+//		teacherList = new JList<>(teacherListModel);
+//		teacherList.setLayoutOrientation(JList.VERTICAL);
+//		teacherList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//
+//		JScrollPane teacherListScroller = new JScrollPane(teacherList);
+//		teacherListScroller.setPreferredSize(new Dimension(250, 200));
+////		updateTeacherList();
+//		
+//		subjectListModel = new SubjectListModel();
+//		subjectList = new JList<>(subjectListModel);
+//		subjectList.setLayoutOrientation(JList.VERTICAL);
+//		subjectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//
+//		JScrollPane subjectListScroller = new JScrollPane(subjectList);
+//		subjectListScroller.setPreferredSize(new Dimension(250, 200));
+////		updateSubjectList();
+//
+//		schoolclassListModel = new SchoolclassListModel();
+//		schoolclassList = new JList<>(schoolclassListModel);
+//		schoolclassList.setLayoutOrientation(JList.VERTICAL);
+//		schoolclassList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//
+//		JScrollPane schoolclassListScroller = new JScrollPane(schoolclassList);
+//		schoolclassListScroller.setPreferredSize(new Dimension(250, 200));
+////		updateSchoolclassList();
+//
+//
+//		// Listen der Daten
+//		c.fill=GridBagConstraints.HORIZONTAL;
+//		c.gridx = 0;
+//		c.gridy = 1;
+//		teacherListScroller.setBorder(BorderFactory.createTitledBorder("Existierendes Personal"));
+//		add(teacherListScroller, c);
+//		c.gridx = 1;
+//		subjectListScroller.setBorder(BorderFactory.createTitledBorder("Existierende Fächer"));
+//		add(subjectListScroller, c);
+//		c.gridx = 2;
+//		schoolclassListScroller.setBorder(BorderFactory.createTitledBorder("Existierende Schulklassen"));
+//		add(schoolclassListScroller, c);
+//
+//		addTeacher(addNewTeacher.button);
+//		addSubject(addNewSubject.button);
+//		addSchoolclass(addNewSchoolclass.button);
 		
 	}
 	
