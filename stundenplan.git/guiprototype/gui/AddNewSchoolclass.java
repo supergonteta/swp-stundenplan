@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
+import de.unibremen.swp.stundenplan.gui.PlanList;
 import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 
 
@@ -64,19 +65,15 @@ public class AddNewSchoolclass extends JPanel {
 				try {
 					SchoolclassManager.addSchoolclass(name);
 					Stundenplan.pList.dispose();
-	//				Stundenplan.pList = new PlanList();
+					Stundenplan.pList = new PlanList();
 				} catch (DatasetException e) {
 					System.out.println("Fehler addSchoolclass");
-				}
-				
-	//			StartFrame.updateSchoolclassList();
-				
+				}				
+	//			StartFrame.updateSchoolclassList();				
 				System.out.println(name);
 				nameField.setText("");
 	//			StartFrame.c.dispose();
 			}
 		});
 	}
-	
-
 }

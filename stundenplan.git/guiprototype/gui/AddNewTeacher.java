@@ -1,24 +1,22 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Label;
-import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
+import de.unibremen.swp.stundenplan.data.Teacher;
 import de.unibremen.swp.stundenplan.exceptions.DatasetException;
 import de.unibremen.swp.stundenplan.gui.PlanList;
 import de.unibremen.swp.stundenplan.logic.TeacherManager;
@@ -29,15 +27,15 @@ public class AddNewTeacher extends JPanel {
 	private String acro;
 	private String time;
 
-	Label lName = new Label("Name des Lehrers");
-	Label lAcro = new Label("Acronym:");
-	Label lTime = new Label("Max. Arbeitstunden:");
+	private Label lName = new Label("Name des Lehrers");
+	private Label lAcro = new Label("Acronym:");
+	private Label lTime = new Label("Max. Arbeitstunden:");
 
-	private TextField nameField = new TextField(20);
-	private TextField acroField = new TextField(20);
-	private TextField timeField= new TextField(20);
+	public TextField nameField = new TextField(20);
+	public TextField acroField = new TextField(20);
+	public TextField timeField= new TextField(20);
 	
-	public JButton button = new JButton("Lehrer Hinzufügen");
+	public JButton button = new JButton("Lehrer Hinzufuegen");
 	
 	private GridBagConstraints c = new GridBagConstraints();	
 	
@@ -78,6 +76,7 @@ public class AddNewTeacher extends JPanel {
 		add(button,c);
 
 		buttonOkay(button);
+		nameField.requestFocus();
 
 	}
 	
@@ -100,9 +99,7 @@ public class AddNewTeacher extends JPanel {
 		            	JOptionPane.showMessageDialog(jFrame, "Die Arbeitszeit muss zwischen 4 und 40 Stunden liegen" );
 		            	return;
 		            }
-				
-				
-				
+	
 				try {
 					TeacherManager.addTeacher(acro, name, time);
 					Stundenplan.pList.dispose();
@@ -110,20 +107,18 @@ public class AddNewTeacher extends JPanel {
 				} catch (DatasetException e) {
 					System.out.println("Teacheradd fehlgeschlagen");
 				}
-				
-				
 				nameField.setText("");
 				acroField.setText("");
 				timeField.setText("");
 				
-//				StartFrame.updateTeacherList();
+			//	StartFrame.updateTeacherList();
 				
 				System.out.println(name +" " + acro + " "+ time);
-				
-	//			StartFrame.l.dispose();
 			}
 		});
 	}
+
+	
 	
 
 }

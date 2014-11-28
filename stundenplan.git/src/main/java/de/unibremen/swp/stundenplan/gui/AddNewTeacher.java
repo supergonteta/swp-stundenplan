@@ -71,42 +71,30 @@ public class AddNewTeacher extends Panel {
 	private void buttonOkay(JButton b) {
 		b.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent ae) {
-				
+			public void actionPerformed(ActionEvent ae) {			
 				name = nameField.getText();
 				acro = acroField.getText();
 				time = timeField.getText();
-				Integer timer = new Integer(time);
-				
+				Integer timer = new Integer(time);	
 				 if(timer >40 || timer < 4) {
 		            	JFrame jFrame = new JFrame();
-		            	jFrame.setLocation(500, 500);
-		            	
-		            	jFrame.setVisible(false);
-		            	
+		            	jFrame.setLocation(500, 500);		            	
+		            	jFrame.setVisible(false);	            	
 		            	JOptionPane.showMessageDialog(jFrame, "Die Arbeitszeit muss zwischen 4 und 40 Stunden liegen" );
 		            	return;
-		            }
-				
-				
-				
+		            }			
 				try {
 					TeacherManager.addTeacher(acro, name, time);
 					Stundenplan.pList.dispose();
 					Stundenplan.pList = new PlanList();
 				} catch (DatasetException e) {
 					System.out.println("Teacheradd fehlgeschlagen");
-				}
-				
-				
+				}	
 				nameField.setText("");
 				acroField.setText("");
-				timeField.setText("");
-				
-				StartFrame.updateTeacherList();
-				
-				System.out.println(name +" " + acro + " "+ time);
-				
+				timeField.setText("");				
+				StartFrame.updateTeacherList();			
+				System.out.println(name +" " + acro + " "+ time);			
 				StartFrame.l.dispose();
 			}
 		});
