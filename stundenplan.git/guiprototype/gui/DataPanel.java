@@ -166,8 +166,8 @@ public class DataPanel extends JPanel {
 				                }  
 				            }			      
 				        });
-						pop.edit.addMouseListener(new MouseAdapter() {
-	                        public void mouseClicked(MouseEvent e) {
+						pop.edit.addActionListener(new ActionListener() {
+	                        public void actionPerformed(ActionEvent ae) {
 	                       	 Teacher t = teacherListModel.getTeacherAt(teacherList.getSelectedIndex());
 	                       	 addNewTeacher.nameField.setText(t.getName());
 	                       	 addNewTeacher.acroField.setText(t.getAcronym());
