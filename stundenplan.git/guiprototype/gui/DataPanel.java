@@ -182,6 +182,13 @@ public class DataPanel extends JPanel {
 	                       	 editTeacher.timeField.setText((String)t.getHoursPerWeek().toString());
 	                       }
 	                   });
+						pop.delete.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent arg0) {
+								DeleteDialogue deleteD = new DeleteDialogue();
+								deleteD.setVisible(true);
+							}
+						});
 					}});
 			}
 		});	
