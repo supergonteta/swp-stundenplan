@@ -35,7 +35,7 @@ public class AddNewSubject extends JPanel {
 	private TextField nameField = new TextField(20);
 	private TextField acroField = new TextField(20);
 	
-	public JButton button = new JButton("Stundeninhalt hinzufügen");
+	public JButton button = new JButton("Stundeninhalt hinzufÃ¼gen");
 	
 	private JCheckBox pause = new JCheckBox();
 	

@@ -19,6 +19,7 @@ public class MainFrame extends JFrame{
     private StundenplanPanel paneStundenplan = new StundenplanPanel();
     private JPanel paneLehrer = new LehreransichtPanel(); 
     private JPanel paneRaeume = new RaumbelegungsplanPanel();
+    private JPanel paneConfig = new ConfigPanel();
     
 	public MainFrame() {
 		super("GUI-Prototype");	
@@ -27,6 +28,7 @@ public class MainFrame extends JFrame{
         initComponents();
         pack();
 		setVisible(true);
+		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	}
 	
 	private void initComponents(){
@@ -35,6 +37,7 @@ public class MainFrame extends JFrame{
         tabpane.addTab("Stundenpläne", paneStundenplan);
         tabpane.addTab("Lehreransicht", paneLehrer);
         tabpane.addTab("Raumbelegungsplan", paneRaeume);
+        tabpane.addTab("Einstellungen", paneConfig);
 		
         setJMenuBar(menu);
         add(tabpane);

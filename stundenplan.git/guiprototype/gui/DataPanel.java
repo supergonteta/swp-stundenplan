@@ -274,7 +274,7 @@ public class DataPanel extends JPanel {
 				// updateTeacherList();
 
 				c.gridy = 2;
-				roomListScroller.setBorder(BorderFactory.createTitledBorder("Existierende Räume"));
+				roomListScroller.setBorder(BorderFactory.createTitledBorder("Existierende RÃ¤ume"));
 				add(roomListScroller, c);
 				addRoom(addNewRoom.button);
 				

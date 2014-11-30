@@ -23,7 +23,6 @@ import javax.swing.SwingConstants;
 public class StundenplanPanel extends JPanel {
 
 	public DataPanel data = new DataPanel();
-	private JList<String> liste;
 
 	private static SchoolclassListModel schoolclassListModel = new SchoolclassListModel();
 	private JTable table;

@@ -21,7 +21,7 @@ import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 public class AddNewRoom extends JPanel {
 	
 	private Label lName = new Label("Name des Raumes: ");
-	private Label lPos = new Label("In welchem Geb‰ude: ");
+	private Label lPos = new Label("In welchem Geb√§ude: ");
 
 	public TextField nameField = new TextField(20);
 	public TextField positionField = new TextField(20);

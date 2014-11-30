@@ -53,7 +53,7 @@ public final class RoomListModel extends DefaultListModel<String> {
      * Fügt eine Schulklasse hinzu.
      * 
      * @param schoolclass
-     *            die hinzuzuf�gende schulklasse.
+     *            die hinzuzufügende schulklasse.
      */
     protected void addRoom(final Room room) {
         rooms.add(room);
