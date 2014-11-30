@@ -33,7 +33,6 @@ public class AddNewTeacher extends JPanel {
 	private Label lTime = new Label("Zeitverpflichtung");
 	private Label lSubjects = new Label("Stundeninhalte:");
 	private Label lPrefTime = new Label("Zeitwunsch:");
-	private Label lKlassenLehrer = new Label("Klassenlehrerin von:");
 
 	public TextField nameField = new TextField(20);
 	public TextField acroField = new TextField(20);
