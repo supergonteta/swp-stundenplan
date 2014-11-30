@@ -53,7 +53,7 @@ public class AddNewTeacher extends JPanel {
 
 	public AddNewTeacher(){
 	    setLayout(new GridBagLayout());
-		setBorder(BorderFactory.createTitledBorder("Neues Personal hinzufÃ¼gen"));
+		setBorder(BorderFactory.createTitledBorder("Neues Personal hinzufügen"));
 		c.insets=new Insets(1,1,1,1);
 		c.anchor=GridBagConstraints.WEST;
 		c.gridx=0;
@@ -78,7 +78,8 @@ public class AddNewTeacher extends JPanel {
 		c.gridy=3;
 		add(lSubjects, c);
 		c.gridx=1;
-		add(subjectsField,c);
+		Label subjectsFieldText = new Label("Keine Stundeninhalte vorhanden");
+		add(subjectsFieldText,c);
 		
 		c.gridx=0;
 		c.gridy=4;
@@ -140,8 +141,4 @@ public class AddNewTeacher extends JPanel {
 			}
 		});
 	}
-
-	
-	
-
 }
