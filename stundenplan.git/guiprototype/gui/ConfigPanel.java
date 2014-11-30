@@ -35,8 +35,8 @@ public class ConfigPanel extends JPanel {
 	private JLabel label = new JLabel("Einstellungen");
 	private JMenuBar menuBar = new JMenuBar();
 
-	private JMenuItem mA = new JMenuItem("Allgemein");
-	private JMenuItem mE = new JMenuItem("Erweitert");
+	private JMenuItem mA = new JMenuItem("Dauer Planungseinheit");
+	private JMenuItem mE = new JMenuItem("Back-Up Intervall");
 	private JPanel allgConfig = new AllgConfig();
 	private JPanel advConfig = new AdvConfig();
 	
@@ -117,7 +117,7 @@ public class ConfigPanel extends JPanel {
 	}
 	
 	public class AllgConfig extends JPanel {
-		private Label lTime = new Label("Zeit einer Slot");
+		private Label lTime = new Label("Dauer einer Planungseinheit");
 		private String[] min = {"1","5","10","15","20","30","45","60"};
 		private JComboBox jc = new JComboBox(min);
 		private GridBagConstraints c = new GridBagConstraints();
@@ -125,7 +125,7 @@ public class ConfigPanel extends JPanel {
 		
 		public AllgConfig(){
 			setLayout(new GridBagLayout());
-			setBorder(BorderFactory.createTitledBorder("Neuen Stundeninhalt hinzufügen"));
+			setBorder(BorderFactory.createTitledBorder("Dauer einer Planungseinheit"));
 			c.insets=new Insets(1,1,1,1);
 			c.anchor=GridBagConstraints.PAGE_START;
 			c.gridx=0;
