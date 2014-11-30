@@ -29,11 +29,16 @@ public class AddNewTeacher extends JPanel {
 
 	private Label lName = new Label("Name des Lehrers");
 	private Label lAcro = new Label("Acronym:");
-	private Label lTime = new Label("Max. Arbeitstunden:");
+	private Label lTime = new Label("Zeitverpflichtung");
+	private Label lSubjects = new Label("Stundeninhalte:");
+	private Label lPrefTime = new Label("Zeitwunsch:");
 
 	public TextField nameField = new TextField(20);
 	public TextField acroField = new TextField(20);
 	public TextField timeField= new TextField(20);
+	public TextField subjectsField= new TextField(20);
+	public TextField prefTimeFieldFrom= new TextField(10);
+	public TextField prefTimeFieldTo=new TextField(10);
 	
 	public JButton button = new JButton("Persnoal hinzufügen");
 	
@@ -71,9 +76,27 @@ public class AddNewTeacher extends JPanel {
 		
 		c.gridx=0;
 		c.gridy=3;
+		add(lSubjects, c);
+		c.gridx=1;
+		add(subjectsField,c);
+		
+		c.gridx=0;
+		c.gridy=4;
+		add(lPrefTime, c);
+		c.gridx=1;
+		add(prefTimeFieldFrom,c);
+		c.gridx=2;
+		Label bis = new Label("bis");
+		add(bis,c);
+		c.gridx=3;
+		add(prefTimeFieldTo,c);
+		
+		c.gridx=0;
+		c.gridy=5;
 		c.gridwidth=2;
 		c.fill=GridBagConstraints.HORIZONTAL;
 		add(button,c);
+		
 
 		buttonOkay(button);
 		nameField.requestFocus();
