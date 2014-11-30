@@ -35,8 +35,10 @@ public class ConfigPanel extends JPanel {
 	private JLabel label = new JLabel("Einstellungen");
 	private JMenuBar menuBar = new JMenuBar();
 
-	private JMenuItem mA = new JMenuItem("Dauer Planungseinheit");
-	private JMenuItem mE = new JMenuItem("Back-Up Intervall");
+	private JMenuItem mP = new JMenuItem("Dauer Planungseinheit");
+	private JMenuItem mBI = new JMenuItem("Back-Up Intervall");
+	private JMenuItem mV = new JMenuItem("Zu verplanende Wochentage");
+	private JMenuItem mBE = new JMenuItem("Beginn und Ende eines Wochentags");
 	private JPanel allgConfig = new PlanungsEinheitConfig();
 	private JPanel advConfig = new BackUpConfig();
 	
@@ -67,14 +69,16 @@ public class ConfigPanel extends JPanel {
 		c.weighty = 1.8;
 		c.gridx = 0;
 		c.gridy = 1;
-		menuBar.add(mA);
-		menuBar.add(mE);
+		menuBar.add(mP);
+		menuBar.add(mBI);
+		menuBar.add(mV);
+		menuBar.add(mBE);
 		menuBar.setLayout(new GridLayout(0, 1));
 		add(menuBar, c);
 		
 	
 		// klick auf mA
-		mA.addActionListener(new ActionListener() {
+		mP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				c.fill = GridBagConstraints.BOTH;
 				c.anchor = GridBagConstraints.EAST;
@@ -92,7 +96,7 @@ public class ConfigPanel extends JPanel {
 		});
 		
 		// klick auf mE
-				mE.addActionListener(new ActionListener() {
+				mBI.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent ae) {
 						c.fill = GridBagConstraints.BOTH;
 						c.anchor = GridBagConstraints.EAST;

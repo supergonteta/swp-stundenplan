@@ -81,7 +81,7 @@ public class StundenplanPanel extends JPanel {
 		add(pane,c);
 		
 		JButton pdf = new JButton("PDF");
-		JButton cvs = new JButton("CVS");
+		JButton csv = new JButton("CSV");
 		JButton text = new JButton("Text");
 		
 		c.anchor = GridBagConstraints.SOUTHWEST;
@@ -91,12 +91,12 @@ public class StundenplanPanel extends JPanel {
 		c.gridx=5;
 		add(pdf,c);
 		c.gridx=6;
-		add(cvs,c);
+		add(csv,c);
 		c.gridx=7;
 		add(text,c);	
 		
 		buttonOkay(pdf);
-		buttonOkay(cvs);
+		buttonOkay(csv);
 		buttonOkay(text);
 	}
 	private void buttonOkay(JButton b) {
