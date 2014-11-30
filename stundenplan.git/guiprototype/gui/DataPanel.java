@@ -168,12 +168,18 @@ public class DataPanel extends JPanel {
 				        });
 						pop.edit.addActionListener(new ActionListener() {
 	                        public void actionPerformed(ActionEvent ae) {
-	                       	 Teacher t = teacherListModel.getTeacherAt(teacherList.getSelectedIndex());
-	                       	 addNewTeacher.nameField.setText(t.getName());
-	                       	 addNewTeacher.acroField.setText(t.getAcronym());
-	                       	 addNewTeacher.timeField.setText((String)t.getHoursPerWeek().toString());
-	                       	 System.out.println("YO1");
-	                       	 addNewTeacher.setVisible(true);
+//	                       	 Teacher t = teacherListModel.getTeacherAt(teacherList.getSelectedIndex());
+//	                       	 addNewTeacher.nameField.setText(t.getName());
+//	                       	 addNewTeacher.acroField.setText(t.getAcronym());
+//	                       	 addNewTeacher.timeField.setText((String)t.getHoursPerWeek().toString());
+//	                       	 System.out.println("YO1");
+//	                       	 addNewTeacher.setVisible(true);
+	                         EditTeacherFrame editTeacher = new EditTeacherFrame();
+	                       	 editTeacher.setVisible(true);
+	                    	 Teacher t = teacherListModel.getTeacherAt(teacherList.getSelectedIndex());
+	                       	 editTeacher.nameField.setText(t.getName());
+	                       	 editTeacher.acroField.setText(t.getAcronym());
+	                       	 editTeacher.timeField.setText((String)t.getHoursPerWeek().toString());
 	                       }
 	                   });
 					}});
