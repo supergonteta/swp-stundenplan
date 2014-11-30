@@ -18,6 +18,7 @@ public class MainFrame extends JFrame{
 	private DataPanel dataPanel = new DataPanel();
     private StundenplanPanel paneStundenplan = new StundenplanPanel();
     private JPanel paneLehrer = new LehreransichtPanel(); 
+    private JPanel paneRaeume = new RaumbelegungsplanPanel();
     
 	public MainFrame() {
 		super("GUI-Prototype");	
@@ -33,6 +34,7 @@ public class MainFrame extends JFrame{
         tabpane.addTab("Daten", dataPanel);
         tabpane.addTab("Stundenpläne", paneStundenplan);
         tabpane.addTab("Lehreransicht", paneLehrer);
+        tabpane.addTab("Raumbelegungsplan", paneRaeume);
 		
         setJMenuBar(menu);
         add(tabpane);

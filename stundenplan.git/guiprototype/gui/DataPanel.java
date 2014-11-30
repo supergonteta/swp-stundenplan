@@ -52,10 +52,10 @@ public class DataPanel extends JPanel {
 
 	private JMenuBar menuBar = new JMenuBar();
 
-	private JMenuItem mT = new JMenuItem("Lehrer hinzufuegen");
-	private JMenuItem mS = new JMenuItem("Schulklassen hinzufuegen");
-	private JMenuItem mF = new JMenuItem("Faecher hinzufuegen");
-	private JMenuItem mR = new JMenuItem("Raueme hinzufuegen");
+	private JMenuItem mT = new JMenuItem("Personal");
+	private JMenuItem mS = new JMenuItem("Klassen");
+	private JMenuItem mF = new JMenuItem("Stundeninhalt");
+	private JMenuItem mR = new JMenuItem("Raeume");
 
 	private AddNewTeacher addNewTeacher = new AddNewTeacher();
 	private AddNewSubject addNewSubject = new AddNewSubject();
@@ -84,7 +84,7 @@ public class DataPanel extends JPanel {
 	private void initComponents() {
 
 		setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		final GridBagConstraints c = new GridBagConstraints();
 		// c.insets=new Insets(5,0,0,0);
 		c.anchor = GridBagConstraints.WEST;
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -156,7 +156,7 @@ public class DataPanel extends JPanel {
 				teacherList.addListSelectionListener(new ListSelectionListener() { 
 					public void valueChanged(ListSelectionEvent event) {
 						System.out.println("selected "+teacherList.getSelectedValue()+" "+teacherList.getSelectedIndex()+" "+teacherList.getComponentCount());
-						DataPopup pop = new DataPopup(teacherList, teacherListModel);
+						final DataPopup pop = new DataPopup(teacherList, teacherListModel);
 						setComponentPopupMenu(pop);	 
 						teacherList.addMouseListener(new MouseAdapter() {
 				            public void mouseClicked(MouseEvent e) {

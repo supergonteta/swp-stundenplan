@@ -35,7 +35,7 @@ public class AddNewTeacher extends JPanel {
 	public TextField acroField = new TextField(20);
 	public TextField timeField= new TextField(20);
 	
-	public JButton button = new JButton("Lehrer Hinzufuegen");
+	public JButton button = new JButton("Persnoal hinzufügen");
 	
 	private GridBagConstraints c = new GridBagConstraints();	
 	

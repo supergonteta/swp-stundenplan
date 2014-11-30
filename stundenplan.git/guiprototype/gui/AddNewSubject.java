@@ -35,7 +35,7 @@ public class AddNewSubject extends JPanel {
 	private TextField nameField = new TextField(20);
 	private TextField acroField = new TextField(20);
 	
-	public JButton button = new JButton("Fach Hinzufügen");
+	public JButton button = new JButton("Stundeninhalt hinzuf�gen");
 	
 	private JCheckBox pause = new JCheckBox();
 	
@@ -47,7 +47,7 @@ public class AddNewSubject extends JPanel {
 
 	public AddNewSubject() {
 		setLayout(new GridBagLayout());
-		setBorder(BorderFactory.createTitledBorder("Neues Fach hinzufügen"));
+		setBorder(BorderFactory.createTitledBorder("Neuen Stundeninhalt hinzufügen"));
 		c.insets=new Insets(1,1,1,1);
 		c.anchor=GridBagConstraints.WEST;
 		c.gridx=0;
