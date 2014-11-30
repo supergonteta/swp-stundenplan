@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -72,6 +74,23 @@ public class StundenplanPanel extends JPanel {
 		JScrollPane pane = new JScrollPane(table);
 		pane.setPreferredSize(new Dimension(500,350));
 		add(pane,c);
+		
+		JButton pdf = new JButton("PDF");
+		JButton cvs = new JButton("CVS");
+		JButton text = new JButton("Text");
+		
+		c.anchor = GridBagConstraints.SOUTHWEST;
+		c.gridx = 4;
+		c.gridy= 1;
+		add(new JLabel("Exportieren als:"),c);
+		c.gridx=5;
+		add(pdf,c);
+		c.gridx=6;
+		add(cvs,c);
+		c.gridx=7;
+		add(text,c);
+
+	
 		
 	}
 	
