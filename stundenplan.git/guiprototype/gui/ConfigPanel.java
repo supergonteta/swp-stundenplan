@@ -37,8 +37,8 @@ public class ConfigPanel extends JPanel {
 
 	private JMenuItem mA = new JMenuItem("Dauer Planungseinheit");
 	private JMenuItem mE = new JMenuItem("Back-Up Intervall");
-	private JPanel allgConfig = new AllgConfig();
-	private JPanel advConfig = new AdvConfig();
+	private JPanel allgConfig = new PlanungsEinheitConfig();
+	private JPanel advConfig = new BackUpConfig();
 	
 	public ConfigPanel(){
 		init();
@@ -116,14 +116,14 @@ public class ConfigPanel extends JPanel {
 		remove(advConfig);
 	}
 	
-	public class AllgConfig extends JPanel {
+	public class PlanungsEinheitConfig extends JPanel {
 		private Label lTime = new Label("Dauer einer Planungseinheit");
 		private String[] min = {"1","5","10","15","20","30","45","60"};
 		private JComboBox jc = new JComboBox(min);
 		private GridBagConstraints c = new GridBagConstraints();
 		private JButton button = new JButton("Einstellungen speichern");
 		
-		public AllgConfig(){
+		public PlanungsEinheitConfig(){
 			setLayout(new GridBagLayout());
 			setBorder(BorderFactory.createTitledBorder("Dauer einer Planungseinheit"));
 			c.insets=new Insets(1,1,1,1);
@@ -144,8 +144,31 @@ public class ConfigPanel extends JPanel {
 		
 	}
 
-	public class AdvConfig extends JPanel {
-
+	public class BackUpConfig extends JPanel {
+		private Label lTime = new Label("Back-Up wird alle");
+		private String[] min = {"1","5","10","15","20","30","45","60"};
+		private JComboBox jc = new JComboBox(min);
+		private GridBagConstraints c = new GridBagConstraints();
+		private JButton button = new JButton("Einstellungen speichern");
+		
+		public BackUpConfig(){
+			setLayout(new GridBagLayout());
+			setBorder(BorderFactory.createTitledBorder("Zeitintervall der Back-Ups"));
+			c.insets=new Insets(1,1,1,1);
+			c.anchor=GridBagConstraints.PAGE_START;
+			c.gridx=0;
+			c.gridy=0;
+			add(lTime,c);
+			c.gridx=1;
+			add(jc,c);
+			c.gridx=2;
+			add(new Label("Minuten erstellt."),c);
+			c.anchor = GridBagConstraints.PAGE_END;  //top padding
+			c.gridwidth=2;
+			c.gridx=10;
+			c.gridy=10;
+			add(button, c);
+		}	
 	}
 
 }
