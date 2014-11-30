@@ -42,7 +42,7 @@ public class AddNewTeacher extends JPanel {
 	public TextField prefTimeFieldFrom= new TextField(10);
 	public TextField prefTimeFieldTo=new TextField(10);
 	
-	public JButton button = new JButton("Persnoal hinzufügen");
+	public JButton button = new JButton("Personal hinzufügen");
 	
 	private GridBagConstraints c = new GridBagConstraints();	
 	
