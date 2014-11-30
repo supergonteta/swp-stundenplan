@@ -11,6 +11,7 @@ import java.util.Collection;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -79,11 +80,28 @@ public class AddNewTeacher extends JPanel {
 		c.gridy=3;
 		add(lSubjects, c);
 		c.gridx=1;
-		Label subjectsFieldText = new Label("Keine Stundeninhalte vorhanden");
-		add(subjectsFieldText,c);
+		Label deutsch = new Label("Deutsch");
+		add(deutsch,c);
+		c.gridx=2;
+		Label mathe = new Label("Mathe");
+		add(mathe,c);
+		c.gridx=3;
+		Label musik=new Label("Musik");
+		add(musik,c);
+		
+		c.gridx=1;
+		c.gridy=4;
+		JCheckBox box1 = new JCheckBox();
+		add(box1,c);
+		c.gridx=2;
+		JCheckBox box2= new JCheckBox();
+		add(box2,c);
+		c.gridx=3;
+		JCheckBox box3= new JCheckBox();
+		add(box3,c);
 		
 		c.gridx=0;
-		c.gridy=4;
+		c.gridy=5;
 		add(lPrefTime, c);
 		c.gridx=1;
 		add(prefTimeFieldFrom,c);
@@ -92,13 +110,6 @@ public class AddNewTeacher extends JPanel {
 		add(bis,c);
 		c.gridx=3;
 		add(prefTimeFieldTo,c);
-		
-		c.gridx=0;
-		c.gridy=5;
-		add(lKlassenLehrer,c);
-		c.gridx=1;
-		Label klassenLehrerText = new Label("Keine Klassen vorhanden");
-		add(klassenLehrerText,c);
 		
 		c.gridx=0;
 		c.gridy=6;
