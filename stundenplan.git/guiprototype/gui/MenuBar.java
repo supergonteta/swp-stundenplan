@@ -24,7 +24,6 @@ public class MenuBar extends JMenuBar{
 	private JMenuItem neww = new JMenuItem("Neue Datei");
 	private JMenuItem open = new JMenuItem("Öffnen");
 	private JMenuItem save = new JMenuItem("Speichern");
-	private JMenuItem print = new JMenuItem("Druckansicht");
 	
 	private JFileChooser chooser = new JFileChooser();
 	
@@ -41,19 +40,16 @@ public class MenuBar extends JMenuBar{
 		data.add(neww);
 		data.add(open);
 		data.add(save);
-		data.add(print);
 		add(data);
 		
 		newClick(neww);
 		openClick(open);
 		saveClick(save);
-		printClick(print);
 		
 		//Shortcuts
 		neww.setAccelerator(KeyStroke.getKeyStroke( 'N', InputEvent.CTRL_DOWN_MASK ));
 		open.setAccelerator(KeyStroke.getKeyStroke( 'O', InputEvent.CTRL_DOWN_MASK ));
 		save.setAccelerator(KeyStroke.getKeyStroke( 'S', InputEvent.CTRL_DOWN_MASK ));
-		print.setAccelerator(KeyStroke.getKeyStroke( 'P', InputEvent.CTRL_DOWN_MASK ));
 		
 	}
 	

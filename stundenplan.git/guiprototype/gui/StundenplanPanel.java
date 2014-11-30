@@ -5,10 +5,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
@@ -28,6 +31,8 @@ public class StundenplanPanel extends JPanel {
 
 	private static SchoolclassListModel schoolclassListModel = new SchoolclassListModel();
 	private JTable table;
+	private JFileChooser chooser = new JFileChooser();
+	private JFrame f;
 	
 	public StundenplanPanel(){
 		init();
@@ -88,10 +93,18 @@ public class StundenplanPanel extends JPanel {
 		c.gridx=6;
 		add(cvs,c);
 		c.gridx=7;
-		add(text,c);
-
-	
+		add(text,c);	
 		
+		buttonOkay(pdf);
+		buttonOkay(cvs);
+		buttonOkay(text);
 	}
-	
+	private void buttonOkay(JButton b) {
+		b.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chooser.showSaveDialog(f);
+			}
+		});
+	}	
 }
