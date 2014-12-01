@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
@@ -40,18 +43,38 @@ public class AddNewSchoolclass extends JPanel {
 		setLayout(new GridBagLayout());
 		setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufügen"));
 		c.insets=new Insets(1,1,1,1);
-		c.anchor=GridBagConstraints.WEST;
+		c.anchor=GridBagConstraints.PAGE_START;
 		c.gridx=0;
 		c.gridy=0;
 		add(l,c);
 		c.gridx=1;
 	    add(nameField,c);   
 	    c.gridx=0;
-	    c.gridy=1;
+		c.gridy=1;
+		add(new Label("Klassenlehrer/In"),c);
+		c.gridx=1;
+		String[] s = {"VID","NGU","HUE"};
+		add(new JComboBox(s),c);
+	    c.anchor=GridBagConstraints.PAGE_START;
+	    c.gridx=0;
+	    c.gridy=2;
 	    c.gridwidth=2;
 	    c.fill=GridBagConstraints.HORIZONTAL;
 		add(button,c);    
-	    buttonOkay(button);	
+	    buttonOkay(button);
+	    c.gridy=3;
+	    c.gridx=0;
+	    c.gridwidth=3;
+	    c.anchor=GridBagConstraints.PAGE_END;
+	    add(new Label("Stunden pro Woche"),c);
+	    final DefaultListModel<String> dummyList = new DefaultListModel<String>();
+	    for ( String ss : ("English		5h,Mathe		5h,		," +
+	                      "			, 		,		,").split(",") )
+	      dummyList.addElement( ss );
+	    JList<String> list = new JList<String>( dummyList );
+	    c.gridy=4;
+	    c.gridx=0;
+	    add(list,c);
 	}
 	
 	private void buttonOkay(JButton b) {
