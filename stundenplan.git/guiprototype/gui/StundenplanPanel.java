@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -18,12 +20,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 public class StundenplanPanel extends JPanel {
 
@@ -33,6 +37,14 @@ public class StundenplanPanel extends JPanel {
 	private JTable table;
 	private JFileChooser chooser = new JFileChooser();
 	private JFrame f;
+	
+	private int eventX;
+	private int eventY;
+	
+	private int eventXX;
+	private int eventYY;
+	
+	JPopupMenu popmen = new JPopupMenu();
 	
 	public StundenplanPanel(){
 		init();
@@ -98,7 +110,30 @@ public class StundenplanPanel extends JPanel {
 		buttonOkay(pdf);
 		buttonOkay(csv);
 		buttonOkay(text);
-	}
+		
+		
+		table.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent evt) {
+	        	eventX = evt.getXOnScreen();
+	        	eventY = evt.getYOnScreen();
+	        	eventXX = evt.getX();
+	        	eventYY = evt.getY();
+	           
+	        	if (SwingUtilities.isRightMouseButton(evt)) {
+	            	final int row = table.rowAtPoint(evt.getPoint());
+	                final int col = table.columnAtPoint(evt.getPoint());
+	              createPopup(row, col);
+	            }
+	        }
+	    });
+		
+        
+    }
+		
+
+	
+	
+	
 	private void buttonOkay(JButton b) {
 		b.addActionListener(new ActionListener() {
 			@Override
@@ -107,4 +142,126 @@ public class StundenplanPanel extends JPanel {
 			}
 		});
 	}	
+	
+	 /**
+     * Erzeugt ein Popup zum hinzufügen, editieren und löschen von Lehrern Fächern und Klassen
+     * 
+     * @param row
+     *            Die Zeile.
+     * @param col
+     *            Die Spalte.
+     * @return das neue Popup-Menu
+     */
+    protected JPopupMenu createPopup(final int row, final int col) {
+    	
+    	if( popmen.isVisible()) {
+    		return popmen;
+    	} else {
+    	popmen = new JPopupMenu();
+        final JMenuItem menu1 = new JMenuItem("Fach hinzufügen");
+        final JMenuItem menu2 = new JMenuItem("Fach editieren");
+        final JMenuItem menu3 = new JMenuItem("Fach entfernen");
+        final JMenuItem menu4 = new JMenuItem("Lehrer hinzufügen");
+        final JMenuItem menu5 = new JMenuItem("Lehrer editieren");
+        final JMenuItem menu6 = new JMenuItem("Lehrer entfernen");
+        final JMenuItem menu7 = new JMenuItem("Klasse hinzufügen");
+        final JMenuItem menu8 = new JMenuItem("Klasse editieren");
+        final JMenuItem menu9 = new JMenuItem("Klasse entfernen");
+        
+        
+        menu1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            KlassenPopupDialog r = new KlassenPopupDialog();
+            
+            String msg = (String) table.getValueAt(row, col);
+            msg = msg + r.doEingabe();
+            table.setValueAt(msg, row, col);
+            popmen.setVisible(false);
+            }
+        });
+        menu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	
+            }
+        });
+        menu3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	String msg = "";
+                table.setValueAt(msg, row, col);
+                popmen.setVisible(false);
+            }
+        });
+        menu4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+            	KlassenPopupDialog r = new KlassenPopupDialog();
+                
+                String msg = (String) table.getValueAt(row, col);
+                msg = msg + r.doEingabe();
+                table.setValueAt(msg, row, col);
+                popmen.setVisible(false);
+            }
+        });
+        menu5.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(final ActionEvent event) {
+        		
+        	}          
+        });
+        
+        menu6.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(final ActionEvent event) {
+        		String msg = "";
+                table.setValueAt(msg, row, col);
+                popmen.setVisible(false);
+        	}          
+        });
+        
+        menu7.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(final ActionEvent event) {
+        		KlassenPopupDialog r = new KlassenPopupDialog();
+                
+                String msg = (String) table.getValueAt(row, col);
+                msg = msg + r.doEingabe();
+                table.setValueAt(msg, row, col);
+                popmen.setVisible(false);
+        	}          
+        });
+        
+        menu8.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(final ActionEvent event) {
+        		
+        	}          
+        });
+        
+        menu9.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(final ActionEvent event) {
+        		String msg = "";
+                table.setValueAt(msg, row, col);
+                popmen.setVisible(false);
+        	}          
+        });
+        popmen.add(menu1);
+        popmen.add(menu2);
+        popmen.add(menu3);
+        popmen.add(menu4);
+        popmen.add(menu5);
+        popmen.add(menu6);
+        popmen.add(menu7);
+        popmen.add(menu8);
+        popmen.add(menu9);
+        popmen.setLocation(eventX, eventY);
+        popmen.setVisible(true);
+        return popmen;
+    	}
+    }
+	
+	
 }
