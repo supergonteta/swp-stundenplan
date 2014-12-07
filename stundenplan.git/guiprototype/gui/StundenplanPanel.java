@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -56,7 +57,7 @@ public class StundenplanPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
-		c.weightx = 0.3;
+		c.weightx = 0.0;
 		c.weighty = 1.0;
 		c.gridx=0;
 		c.gridy=0;
@@ -84,9 +85,9 @@ public class StundenplanPanel extends JPanel {
 		table.setRowHeight(40);
 		c.fill = GridBagConstraints.BOTH;
 		c.anchor = GridBagConstraints.CENTER;
-		c.weightx = 0.7;
-		c.weighty = 1.0;
-		c.gridx =1;
+		c.gridx = 1;
+		c.weightx = 1.0;
+		c.gridwidth = 4;
 		c.gridy = 0;
 		JScrollPane pane = new JScrollPane(table);
 		pane.setPreferredSize(new Dimension(500,350));
@@ -96,15 +97,17 @@ public class StundenplanPanel extends JPanel {
 		JButton csv = new JButton("CSV");
 		JButton text = new JButton("Text");
 		
-		c.anchor = GridBagConstraints.SOUTHWEST;
-		c.gridx = 4;
-		c.gridy= 1;
+		c.insets = new Insets(5,5,0,0);
+		c.fill = GridBagConstraints.CENTER;
+		c.gridx = 1;
+		c.gridy = 1;
+		c.gridwidth = 1;
 		add(new JLabel("Exportieren als:"),c);
-		c.gridx=5;
+		c.gridx = 2;
 		add(pdf,c);
-		c.gridx=6;
+		c.gridx = 3;
 		add(csv,c);
-		c.gridx=7;
+		c.gridx = 4;
 		add(text,c);	
 		
 		buttonOkay(pdf);
@@ -144,7 +147,7 @@ public class StundenplanPanel extends JPanel {
 	}	
 	
 	 /**
-     * Erzeugt ein Popup zum hinzufügen, editieren und löschen von Lehrern Fächern und Klassen
+     * Erzeugt ein Popup zum hinzufï¿½gen, editieren und lï¿½schen von Lehrern Fï¿½chern und Klassen
      * 
      * @param row
      *            Die Zeile.
@@ -158,13 +161,13 @@ public class StundenplanPanel extends JPanel {
     		return popmen;
     	} else {
     	popmen = new JPopupMenu();
-        final JMenuItem menu1 = new JMenuItem("Fach hinzufügen");
+        final JMenuItem menu1 = new JMenuItem("Fach hinzufï¿½gen");
         final JMenuItem menu2 = new JMenuItem("Fach editieren");
         final JMenuItem menu3 = new JMenuItem("Fach entfernen");
-        final JMenuItem menu4 = new JMenuItem("Lehrer hinzufügen");
+        final JMenuItem menu4 = new JMenuItem("Lehrer hinzufï¿½gen");
         final JMenuItem menu5 = new JMenuItem("Lehrer editieren");
         final JMenuItem menu6 = new JMenuItem("Lehrer entfernen");
-        final JMenuItem menu7 = new JMenuItem("Klasse hinzufügen");
+        final JMenuItem menu7 = new JMenuItem("Klasse hinzufï¿½gen");
         final JMenuItem menu8 = new JMenuItem("Klasse editieren");
         final JMenuItem menu9 = new JMenuItem("Klasse entfernen");
         
