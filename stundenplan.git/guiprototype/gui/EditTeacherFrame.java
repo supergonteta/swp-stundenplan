@@ -36,11 +36,9 @@ public class EditTeacherFrame extends JFrame {
 
 	public EditTeacherFrame(){
 		super("Lehrer bearbeiten");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(editTeacher);
-		setSize(600,300);
-		setVisible(true);
-		
+		setSize(600,400);
+		setVisible(true);	
 	}
 		
 }

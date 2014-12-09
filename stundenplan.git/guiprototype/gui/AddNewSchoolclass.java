@@ -41,9 +41,9 @@ public class AddNewSchoolclass extends JPanel {
 
 	public AddNewSchoolclass(){
 		setLayout(new GridBagLayout());
-		setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufügen"));
+		setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufuegen"));
 		c.insets=new Insets(1,1,1,1);
-		c.anchor=GridBagConstraints.PAGE_START;
+		c.anchor=GridBagConstraints.WEST;
 		c.gridx=0;
 		c.gridy=0;
 		add(l,c);
@@ -51,7 +51,7 @@ public class AddNewSchoolclass extends JPanel {
 	    add(nameField,c);   
 	    c.gridx=0;
 		c.gridy=1;
-		add(new Label("Klassenlehrer/In"),c);
+		add(new Label("Klassenlehrerin"),c);
 		c.gridx=1;
 		String[] s = {"VID","NGU","HUE"};
 		add(new JComboBox(s),c);

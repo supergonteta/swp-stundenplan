@@ -30,6 +30,7 @@ import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -48,13 +49,12 @@ public class DataPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JLabel label = new JLabel("Daten hinzufuegen");
 
 	private JMenuBar menuBar = new JMenuBar();
 
 	private JMenuItem mT = new JMenuItem("Personal");
 	private JMenuItem mS = new JMenuItem("Klassen");
-	private JMenuItem mF = new JMenuItem("Stundeninhalt");
+	private JMenuItem mF = new JMenuItem("Stundeninhalte");
 	private JMenuItem mR = new JMenuItem("Raeume");
 
 	private AddNewTeacher addNewTeacher = new AddNewTeacher();
@@ -85,17 +85,7 @@ public class DataPanel extends JPanel {
 
 		setLayout(new GridBagLayout());
 		final GridBagConstraints c = new GridBagConstraints();
-		// c.insets=new Insets(5,0,0,0);
-		c.anchor = GridBagConstraints.WEST;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridwidth = 2;
-		c.gridheight = 1;
-		c.weightx = 1.0;
-		c.weighty = 0.05;
-		c.gridx = 0;
-		c.gridy = 0;
-		label.setFont(new Font("Arial", Font.BOLD, 15));
-		add(label, c);
+		 c.insets=new Insets(5,5,5,5);
 
 		c.fill = GridBagConstraints.VERTICAL;
 		c.anchor = GridBagConstraints.WEST;
@@ -105,6 +95,11 @@ public class DataPanel extends JPanel {
 		c.weighty = 1.8;
 		c.gridx = 0;
 		c.gridy = 1;
+		mT.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		mS.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		mF.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		mR.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		
 		menuBar.add(mT);
 		menuBar.add(mS);
 		menuBar.add(mF);
@@ -172,7 +167,6 @@ public class DataPanel extends JPanel {
 //	                       	 addNewTeacher.nameField.setText(t.getName());
 //	                       	 addNewTeacher.acroField.setText(t.getAcronym());
 //	                       	 addNewTeacher.timeField.setText((String)t.getHoursPerWeek().toString());
-//	                       	 System.out.println("YO1");
 //	                       	 addNewTeacher.setVisible(true);
 	                         EditTeacherFrame editTeacher = new EditTeacherFrame();
 	                       	 editTeacher.setVisible(true);

@@ -69,6 +69,12 @@ public class ConfigPanel extends JPanel {
 		c.weighty = 1.8;
 		c.gridx = 0;
 		c.gridy = 1;
+		
+		mP.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		mBI.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		mV.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		mBE.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		
 		menuBar.add(mP);
 		menuBar.add(mBI);
 		menuBar.add(mV);
