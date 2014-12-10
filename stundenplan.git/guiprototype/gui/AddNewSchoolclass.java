@@ -11,9 +11,12 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.data.Schoolclass;
@@ -24,15 +27,22 @@ import de.unibremen.swp.stundenplan.logic.SchoolclassManager;
 
 public class AddNewSchoolclass extends JPanel {
 	
-	private Label l = new Label("Name der Klasse: ");
+	
+	private Label jahr = new Label("Jahrgang: ");
+	private Label bez = new Label("Zusatzbezeichner: ");
 
-	public TextField nameField = new TextField(20);
+	
+	public TextField bezField = new TextField(5);
 	
 	public String name;
+	public Integer[] jahrgang = {1,2,3,4};
 	
-	public JButton button = new JButton("Klasse Hinzufügen");
+	public JButton button = new JButton("Klasse hinzufuegen");
+	public JButton bTeam =new JButton("+");
 	
 	private GridBagConstraints c = new GridBagConstraints();
+	
+	private int x=1;
 	
 	/**
 	 * 
@@ -42,47 +52,64 @@ public class AddNewSchoolclass extends JPanel {
 	public AddNewSchoolclass(){
 		setLayout(new GridBagLayout());
 		setBorder(BorderFactory.createTitledBorder("Neue Schulklasse hinzufuegen"));
-		c.insets=new Insets(1,1,1,1);
+		c.insets=new Insets(1,5,1,1);
 		c.anchor=GridBagConstraints.WEST;
 		c.gridx=0;
 		c.gridy=0;
-		add(l,c);
+		add(jahr,c);
 		c.gridx=1;
-	    add(nameField,c);   
-	    c.gridx=0;
+	    add(new JComboBox(jahrgang),c);   
+		c.gridx=0;
 		c.gridy=1;
-		add(new Label("Klassenlehrerin"),c);
+		add(bez,c);
 		c.gridx=1;
-		String[] s = {"VID","NGU","HUE"};
-		add(new JComboBox(s),c);
-	    c.anchor=GridBagConstraints.PAGE_START;
+	    add(bezField,c);
 	    c.gridx=0;
 	    c.gridy=2;
+		add(new Label("Klassenraum:"),c);
+		c.gridx=1;
+		String[] raeume = {"32","24","23423"};
+		add(new JComboBox(raeume),c);
+		c.gridx=0;
+		c.gridy=3;
+		add(new Label("Klassenteam:"),c);
+		c.gridx=1;
+	    CheckBoxList checkList = new CheckBoxList();
+	    checkList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+	    JCheckBox[] boxes = {new JCheckBox("VID"), new JCheckBox("KND")};
+	    checkList.setListData(boxes);
+		add(checkList,c);
+	    c.gridx=0;
+	    c.gridy=4;
 	    c.gridwidth=2;
 	    c.fill=GridBagConstraints.HORIZONTAL;
+	    add(new Label("Stunden pro Woche"),c);
+	    DefaultTableModel model = new DefaultTableModel();
+	    String[] array={"English 5h","Mathe 5h"};
+	    model.addColumn("MyColumnHeader",array);
+	    JTable table = new JTable(model);
+//	    final DefaultListModel<String> dummyList = new DefaultListModel<String>();
+//	    for ( String ss : ("English		5h,Mathe		5h,		," +
+//	                      "			, 		,		,").split(",") )
+//	      dummyList.addElement( ss );
+//	    JList<String> list = new JList<String>( dummyList );    
+	    c.gridy=5;
+	    c.gridx=0; 
+	    add(table,c);
+	    
+	    c.gridy=6;
+	    c.gridx=0;
 		add(button,c);    
 	    buttonOkay(button);
-	    c.gridy=3;
-	    c.gridx=0;
-	    c.gridwidth=3;
-	    c.anchor=GridBagConstraints.PAGE_END;
-	    add(new Label("Stunden pro Woche"),c);
-	    final DefaultListModel<String> dummyList = new DefaultListModel<String>();
-	    for ( String ss : ("English		5h,Mathe		5h,		," +
-	                      "			, 		,		,").split(",") )
-	      dummyList.addElement( ss );
-	    JList<String> list = new JList<String>( dummyList );
-	    c.gridy=4;
-	    c.gridx=0;
-	    add(list,c);
 	}
+	
 	
 	private void buttonOkay(JButton b) {
 		b.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent ae) {
 				
-				name = nameField.getText();
+				name = bezField.getText();
 				Schoolclass c = new Schoolclass();
 				c.setName(name);
 				try {
@@ -94,7 +121,7 @@ public class AddNewSchoolclass extends JPanel {
 				}				
 	//			StartFrame.updateSchoolclassList();				
 				System.out.println(name);
-				nameField.setText("");
+				bezField.setText("");
 	//			StartFrame.c.dispose();
 			}
 		});

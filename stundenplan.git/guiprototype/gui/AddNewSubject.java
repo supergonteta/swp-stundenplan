@@ -13,9 +13,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -28,16 +30,16 @@ public class AddNewSubject extends JPanel {
 	private String name;
 	private String acro;
 
-	Label lName = new Label("Titel der Aktivität:");
+	Label lName = new Label("Titel der Aktivitaet:");
 	Label lAcro = new Label("Acronym:");
-	Label lPause = new Label("Ist es eine Pause?");
+	Label ltime = new Label("Regeldauer in h:");
+	Label lPause = new Label("rythmischer Typ:");
 
-	private TextField nameField = new TextField(20);
-	private TextField acroField = new TextField(20);
+	private TextField nameField = new TextField(15);
+	private TextField acroField = new TextField(5);
+	private TextField timeField = new TextField(5);
 	
 	public JButton button = new JButton("Stundeninhalt hinzufügen");
-	
-	private JCheckBox pause = new JCheckBox();
 	
 	private GridBagConstraints c = new GridBagConstraints();
 	/**
@@ -61,16 +63,33 @@ public class AddNewSubject extends JPanel {
 		add(lAcro,c);
 		c.gridx=1;
 		add(acroField,c);
-			
-		c.gridx=0;
-		c.gridy=2;
-		add(lPause,c);
-		pause.setSelected(false);
-		c.gridx=1;
-		add(pause,c);
 		
 		c.gridx=0;
+		c.gridy=2;
+		add(ltime,c);
+		c.gridx=1;
+		add(timeField,c);
+			
+		c.gridx=0;
 		c.gridy=3;
+		add(lPause,c);
+		c.gridx=1;
+		JRadioButton pauseB = new JRadioButton("Pause");
+		pauseB.setSelected(true);
+		JRadioButton leichtB = new JRadioButton("Leicht");
+		JRadioButton schwerB = new JRadioButton("Schwer");
+		ButtonGroup group = new ButtonGroup();
+	    group.add(pauseB);
+	    group.add(leichtB);
+	    group.add(schwerB);
+	    add(pauseB,c);
+	    c.gridy=4;
+	    add(leichtB,c);
+	    c.gridy=5;
+	    add(schwerB,c);
+		
+		c.gridx=0;
+		c.gridy=6;
 		c.gridwidth=2;
 		c.fill=GridBagConstraints.HORIZONTAL;
 		add(button,c);

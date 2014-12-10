@@ -10,11 +10,14 @@ import java.awt.event.ActionListener;
 import java.util.Collection;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
 import de.unibremen.swp.stundenplan.data.Teacher;
@@ -29,32 +32,31 @@ public class AddNewTeacher extends JPanel {
 	private String time;
 
 	private Label lName = new Label("Name des Personals:");
-	private Label lLehrer = new Label("Ist es ein Lehrer?");
 	private Label lAcro = new Label("Acronym:");
-	private Label lTime = new Label("Zeitverpflichtung");
 	private Label lPrefTime = new Label("Zeitwunsch:");
 	private Label lBis = new Label("bis");
 	private Label lMo = new Label("Montag:");
 	private Label lDi = new Label("Dienstag:");
 	private Label lMi = new Label("Mittwoch:");
 	private Label lDo = new Label("Donnerstag:");
+	private Label lTime = new Label("Zeitverpflichtung in h:");
 	private Label lFr = new Label("Freitag:");
-	private Label lSubjects = new Label("Stundeninhalte:");
 
-	public TextField nameField = new TextField(20);
-	public TextField acroField = new TextField(20);
-	public TextField timeField= new TextField(20);
-	public TextField subjectsField= new TextField(20);
-	public TextField prefTimeFieldMoFrom= new TextField(10);
-	public TextField prefTimeFieldMoTo=new TextField(10);
-	public TextField prefTimeFieldDiFrom= new TextField(10);
-	public TextField prefTimeFieldDiTo=new TextField(10);
-	public TextField prefTimeFieldMiFrom= new TextField(10);
-	public TextField prefTimeFieldMiTo=new TextField(10);
-	public TextField prefTimeFieldDoFrom= new TextField(10);
-	public TextField prefTimeFieldDoTo=new TextField(10);
-	public TextField prefTimeFieldFrFrom= new TextField(10);
-	public TextField prefTimeFieldFrTo=new TextField(10);
+	public TextField nameField = new TextField(15);
+	public TextField acroField = new TextField(5);
+	public TextField timeField= new TextField(5);
+	public TextField subjectsField= new TextField(5);
+	public TextField prefTimeFieldMoFrom= new TextField(5);
+	public TextField prefTimeFieldMoTo=new TextField(5);
+	public TextField prefTimeFieldDiFrom= new TextField(5);
+	public TextField prefTimeFieldDiTo=new TextField(5);
+	public TextField prefTimeFieldMiFrom= new TextField(5);
+	public TextField prefTimeFieldMiTo=new TextField(5);
+	public TextField prefTimeFieldDoFrom= new TextField(5);
+	public TextField prefTimeFieldDoTo=new TextField(5);
+	public TextField prefTimeFieldFrFrom= new TextField(5);
+	private Label lSubjects = new Label("Stundeninhalte:");
+	public TextField prefTimeFieldFrTo=new TextField(5);
 	
 	public JButton button = new JButton("Personal hinzufügen");
 	
@@ -78,26 +80,29 @@ public class AddNewTeacher extends JPanel {
 		c.gridx=1;
 		add(nameField,c);
 		c.gridx=2;
-		add(lLehrer,c);
-		c.gridx=3;
-		JCheckBox personalBox= new JCheckBox();
-		add(personalBox,c);
+		JRadioButton lehrerB = new JRadioButton("Lehrer");
+		lehrerB.setSelected(true);
+		JRadioButton paedagogeB = new JRadioButton("Paedagoge");
+		ButtonGroup group = new ButtonGroup();
+	    group.add(lehrerB);
+	    group.add(paedagogeB);
+	    add(lehrerB,c);
+	    c.gridx=3;
+	    add(new Label("oder"));
+	    c.gridx=4;
+	    add(paedagogeB,c);
 
 		c.gridx=0;
 		c.gridy=1;
 		add(lAcro,c);
 		c.gridx=1;
-		c.ipadx=-115;
 		add(acroField,c);
-		c.ipadx=0;
 			
 		c.gridx=0;
 		c.gridy=2;
 		add(lTime,c);
 		c.gridx=1;
-		c.ipadx=-115;
 		add(timeField,c);
-		c.ipadx=0;
 		
 		
 		c.gridx=0;

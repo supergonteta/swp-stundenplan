@@ -39,6 +39,7 @@ public class ConfigPanel extends JPanel {
 	private JMenuItem mBI = new JMenuItem("Back-Up Intervall");
 	private JMenuItem mV = new JMenuItem("Zu verplanende Wochentage");
 	private JMenuItem mBE = new JMenuItem("Beginn und Ende eines Wochentags");
+	private JMenuItem mBStd = new JMenuItem("Bedarf an Stundeninhalten fuer die Klassen");
 	private JPanel allgConfig = new PlanungsEinheitConfig();
 	private JPanel advConfig = new BackUpConfig();
 	
@@ -74,11 +75,13 @@ public class ConfigPanel extends JPanel {
 		mBI.setBorder(BorderFactory.createRaisedSoftBevelBorder());
 		mV.setBorder(BorderFactory.createRaisedSoftBevelBorder());
 		mBE.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+		mBStd.setBorder(BorderFactory.createRaisedSoftBevelBorder());
 		
 		menuBar.add(mP);
 		menuBar.add(mBI);
 		menuBar.add(mV);
 		menuBar.add(mBE);
+		menuBar.add(mBStd);
 		menuBar.setLayout(new GridLayout(0, 1));
 		add(menuBar, c);
 		

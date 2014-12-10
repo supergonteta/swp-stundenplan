@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.unibremen.swp.stundenplan.Stundenplan;
@@ -23,12 +26,11 @@ public class AddNewRoom extends JPanel {
 	private Label lName = new Label("Name des Raumes: ");
 	private Label lPos = new Label("In welchem Gebäude: ");
 
-	public TextField nameField = new TextField(20);
-	public TextField positionField = new TextField(20);
+	public TextField nameField = new TextField(5);
 	
 	public String name;
 	
-	public JButton button = new JButton("Raum Hinzufügen");
+	public JButton button = new JButton("Raum Hinzufuegen");
 	
 	private GridBagConstraints c = new GridBagConstraints();
 	
@@ -51,9 +53,18 @@ public class AddNewRoom extends JPanel {
 		c.gridy=1;
 	    add(lPos,c);
 	    c.gridx=1;
-	    add(positionField,c);   
+	    Integer[] gebaeude = {1,2};
+		add(new JComboBox(gebaeude),c);
+		c.gridx=0;
+		c.gridy=2;
+		add(new Label("Spezieller Raum fuer:"),c);
+		c.gridx=1;
+		CheckBoxList checkList = new CheckBoxList();
+	    JCheckBox[] boxes = {new JCheckBox("Musik"), new JCheckBox("Naturwissenschaften")};
+	    checkList.setListData(boxes);
+		add(checkList,c);
 	    c.gridx=0;
-	    c.gridy=2;
+	    c.gridy=3;
 	    c.gridwidth=2;
 	    c.fill=GridBagConstraints.HORIZONTAL;
 		add(button,c);    

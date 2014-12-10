@@ -1,10 +1,14 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -21,6 +25,7 @@ public class MainFrame extends JFrame{
     private JPanel paneRaeume = new RaumbelegungsplanPanel();
     private JPanel paneConfig = new ConfigPanel();
     private WochenplanPanel paneWochen = new WochenplanPanel(); 
+    private WarningPanel paneWarning = new WarningPanel();
     
 	public MainFrame() {
 		super("GUI-Prototype");	
@@ -43,6 +48,7 @@ public class MainFrame extends JFrame{
 		
         setJMenuBar(menu);
         add(tabpane);
+        add(paneWarning, BorderLayout.SOUTH);
 	};
 	
 	public static void main(String[] args){ 
