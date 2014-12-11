@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -44,6 +45,8 @@ public class StundenplanPanel extends JPanel {
 	
 	private int eventXX;
 	private int eventYY;
+	
+	public JLabel warning = new JLabel();
 	
 	JPopupMenu popmen = new JPopupMenu();
 	
@@ -113,6 +116,16 @@ public class StundenplanPanel extends JPanel {
 		buttonOkay(pdf);
 		buttonOkay(csv);
 		buttonOkay(text);
+		
+		
+		
+		warning.setText("Warnungsfeld: Keine Probleme");
+		warning.setBackground(Color.GREEN);
+		warning.setOpaque(true);
+		c.gridy = 2;
+		c.gridx = 0;
+		
+		add(warning, c);
 		
 		
 		table.addMouseListener(new MouseAdapter() {

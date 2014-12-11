@@ -1,9 +1,17 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -11,6 +19,14 @@ import javax.swing.JTable;
 public class LehreransichtPanel extends JPanel {
 
 	private JTable table;
+	
+	
+	private JFileChooser chooser = new JFileChooser();
+	private JFrame f;
+	
+	
+	public JLabel warning = new JLabel();
+	
 	
 	public LehreransichtPanel(){
 		init();
@@ -47,5 +63,44 @@ public void init(){
 		JScrollPane pane = new JScrollPane(table);
 		pane.setPreferredSize(new Dimension(500,350));
 		add(pane,c);
+		
+		JButton pdf = new JButton("PDF");
+		JButton csv = new JButton("CSV");
+		JButton text = new JButton("Text");
+		
+		c.insets = new Insets(5,5,0,0);
+		c.fill = GridBagConstraints.CENTER;
+		c.gridx = 1;
+		c.gridy = 1;
+		c.gridwidth = 1;
+		add(new JLabel("Exportieren als:"),c);
+		c.gridx = 2;
+		add(pdf,c);
+		c.gridx = 3;
+		add(csv,c);
+		c.gridx = 4;
+		add(text,c);	
+		
+		buttonOkay(pdf);
+		buttonOkay(csv);
+		buttonOkay(text);
+		
+		warning.setText("Warnungsfeld: Keine Probleme");
+		warning.setBackground(Color.GREEN);
+		warning.setOpaque(true);
+		c.gridy = 2;
+		c.gridx = 0;
+		
+		add(warning, c);
+		
 }
+
+private void buttonOkay(JButton b) {
+	b.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			chooser.showSaveDialog(f);
+		}
+	});
+}	
 }
