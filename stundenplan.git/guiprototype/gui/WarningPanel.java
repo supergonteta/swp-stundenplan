@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.TextField;
@@ -19,6 +20,7 @@ public class WarningPanel extends JPanel{
 	public WarningPanel(){
 		t.setText(message);
 		t.setEditable(false);
+		t.setBackground(new Color(150,205,150));
 		setLayout(new GridBagLayout());
 		add(t);
 	}
