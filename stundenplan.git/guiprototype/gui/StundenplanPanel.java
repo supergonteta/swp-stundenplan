@@ -39,10 +39,9 @@ public class StundenplanPanel extends JPanel {
 	private JTable table;
 	private JFileChooser chooser = new JFileChooser();
 	private JFrame f;
-	
 	private int eventX;
 	private int eventY;
-	
+
 	private int eventXX;
 	private int eventYY;
 	
@@ -78,7 +77,7 @@ public class StundenplanPanel extends JPanel {
 		
 		menuBar.setLayout(new GridLayout(0,1));
 		add(menuBar, c);
-		
+
 		String[] columnNames = {
 				" Uhrzeiten", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"
 		};
