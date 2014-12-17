@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
 
 public class WochenplanPanel extends JPanel {
 
-	private JTabbedPane tabPane = new JTabbedPane();
+	public JTabbedPane tabPane = new JTabbedPane();
 	private WochenplanTag montag = new WochenplanTag();
 	private WochenplanTag dienstag = new WochenplanTag();
 	private WochenplanTag mittwoch = new WochenplanTag();

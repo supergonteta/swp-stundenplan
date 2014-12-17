@@ -31,7 +31,7 @@ public class WochenplanTag extends JPanel {
 	private JFrame f;
 	String[] columnNames = { "8:00 - 9:00", "9:00 - 10:00", "10:00- 11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"};
 	String[][] rowData = { {"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""}};
-	private JTable table;
+	public JTable table;
 	public JLabel warning = new JLabel();
 
 	private DefaultListModel<String> pListe = new DefaultListModel<String>();
@@ -99,8 +99,8 @@ public class WochenplanTag extends JPanel {
 		warning.setOpaque(true);
 		c.gridy = 2;
 		c.gridx = 0;
-		
 		add(warning, c);
+		
 		
 	}
 
