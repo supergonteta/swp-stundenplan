@@ -35,7 +35,6 @@ public class WochenplanPanel extends JPanel {
 		tabPane.add("Samstag",samstag);
 		add(tabPane);
 		
-		
 	}
 
 }

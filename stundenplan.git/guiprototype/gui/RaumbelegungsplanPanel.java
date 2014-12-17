@@ -54,7 +54,7 @@ public class RaumbelegungsplanPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
-		c.weightx = 0.3;
+		c.weightx = 0.0;
 		c.weighty = 1.0;
 		c.gridx=0;
 		c.gridy=0;
@@ -78,23 +78,25 @@ public class RaumbelegungsplanPanel extends JPanel {
 		table.setRowHeight(40);
 		c.fill = GridBagConstraints.BOTH;
 		c.anchor = GridBagConstraints.CENTER;
-		c.weightx = 0.7;
-		c.weighty = 1.0;
-		c.gridx =1;
+		c.weightx = 1.0;
+		c.gridx = 1;
 		c.gridy = 0;
+		c.gridwidth = 4;
 		JScrollPane pane = new JScrollPane(table);
-		pane.setPreferredSize(new Dimension(500,350));
 		add(pane,c);
 		
 		JButton pdf = new JButton("PDF");
 		JButton csv = new JButton("CSV");
 		JButton text = new JButton("Text");
 		
-		c.insets = new Insets(5,5,0,0);
+		c.insets = new Insets(5,5,5,5);
 		c.fill = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.LINE_START;
 		c.gridx = 1;
 		c.gridy = 1;
 		c.gridwidth = 1;
+		c.weightx = 0.0;
+		c.weighty = 0.0;
 		add(new JLabel("Exportieren als:"),c);
 		c.gridx = 2;
 		add(pdf,c);
@@ -111,7 +113,8 @@ public class RaumbelegungsplanPanel extends JPanel {
 		warning.setBackground(Color.GREEN);
 		warning.setOpaque(true);
 		c.gridy = 2;
-		c.gridx = 0;
+		c.gridx = 1;
+		c.gridwidth = 4;
 		
 		add(warning, c);
 		

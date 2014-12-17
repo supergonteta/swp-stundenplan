@@ -37,10 +37,12 @@ public void init(){
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.FIRST_LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 1.0;
+		c.weighty = 1.0;
 		c.gridx=0;
 		c.gridy=0;
+		c.gridwidth = 4;
 		
 		String[] columnNames = {
 				"", "", "Deu", "E", "MA", "SU/BGU", "KU"
@@ -57,28 +59,27 @@ public void init(){
 		table = new JTable(rowData, columnNames);
 		table.setRowSelectionAllowed(true);
 		table.setRowHeight(40);
-		c.anchor = GridBagConstraints.CENTER;
-		c.gridx =1;
-		c.gridy = 0;
 		JScrollPane pane = new JScrollPane(table);
-		pane.setPreferredSize(new Dimension(500,350));
 		add(pane,c);
 		
 		JButton pdf = new JButton("PDF");
 		JButton csv = new JButton("CSV");
 		JButton text = new JButton("Text");
 		
-		c.insets = new Insets(5,5,0,0);
+		c.insets = new Insets(5,5,5,5);
 		c.fill = GridBagConstraints.CENTER;
-		c.gridx = 1;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.gridx = 0;
 		c.gridy = 1;
 		c.gridwidth = 1;
+		c.weightx = 0.0;
+		c.weighty = 0.0;
 		add(new JLabel("Exportieren als:"),c);
-		c.gridx = 2;
+		c.gridx = 1;
 		add(pdf,c);
-		c.gridx = 3;
+		c.gridx = 2;
 		add(csv,c);
-		c.gridx = 4;
+		c.gridx = 3;
 		add(text,c);	
 		
 		buttonOkay(pdf);
@@ -90,6 +91,7 @@ public void init(){
 		warning.setOpaque(true);
 		c.gridy = 2;
 		c.gridx = 0;
+		c.gridwidth = 4;
 		
 		add(warning, c);
 		

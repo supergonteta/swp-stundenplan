@@ -23,7 +23,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 
-//Diese Klasse repräsentiert einen Plan und einem bestimmten Tag im Wochenplan.
+//Diese Klasse reprï¿½sentiert einen Plan und einem bestimmten Tag im Wochenplan.
 public class WochenplanTag extends JPanel {
 	
 	
@@ -42,13 +42,12 @@ public class WochenplanTag extends JPanel {
 	public void init(){
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(0,0,0,0);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.FIRST_LINE_START;
-		c.weightx = 0.0;
+		c.weightx = 1.0;
 		c.weighty = 1.0;
-		c.gridx=0;
-		c.gridy=0;
+		c.gridx = 0;
+		c.gridy = 0;
 		JMenuBar menuBar;
 		JMenu menu;
 		menuBar = new JMenuBar();
@@ -61,27 +60,26 @@ public class WochenplanTag extends JPanel {
 		menu = new JMenu("Personal");
 		menuBar.add(menu);
 		add(menuBar, c);
-		c.gridx = 0;
-		c.gridy =1;
 		
-		c.anchor = GridBagConstraints.PAGE_START;
-		c.insets = new Insets(0,0,0,0);
-		c.gridwidth = 3;
-		c.gridy = (int)0;
+		c.fill = GridBagConstraints.BOTH;
+		c.anchor = GridBagConstraints.CENTER;
+		c.gridwidth = 4;
+		c.gridy = 0;
 		c.gridx = 1;
-		pane.setPreferredSize(new Dimension(1600,800));
+		pane.setPreferredSize(new Dimension(500, 350));
 		add(pane,c);
-		c.gridy = 3;
-		c.weightx = 0.5;
 		JButton pdf = new JButton("PDF");
 		JButton csv = new JButton("CSV");
 		JButton text = new JButton("Text");
 
 		c.fill = GridBagConstraints.LAST_LINE_END;
-
+		c.insets = new Insets(5,5,5,5);
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 1;
+		c.weightx = 0.0;
+		c.weighty = 0.0;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new JLabel("Exportieren als:"),c);
 		c.gridx = 2;
 		add(pdf,c);
@@ -97,8 +95,9 @@ public class WochenplanTag extends JPanel {
 		warning.setText("Warnungsfeld: Keine Probleme");
 		warning.setBackground(Color.GREEN);
 		warning.setOpaque(true);
-		c.gridy = 2;
-		c.gridx = 0;
+		c.gridy = 3;
+		c.gridx = 1;
+		c.gridwidth = 4;
 		add(warning, c);
 		
 		
